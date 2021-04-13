@@ -1,0 +1,181 @@
+\documentclass[usenames,dvipsnames,10pt,aspectratio=169]{beamer} 
+% Add option 'aspectratio=169' for 16:9 widescreen 
+% Add option  'handout' to ignore animations
+% If you have a smaller amount of text, feel free to also try '11pt'! / Jesper
+
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{minted}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{color, xcolor}
+\usepackage[document]{ragged2e}
+\usetheme{umu}
+
+\usemintedstyle{monokai}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=ucugreyish,
+    filecolor=ucured,
+    urlcolor=ucublue,
+}
+\urlstyle{same}
+
+\lstdefinestyle{codestyle}{
+    commentstyle=\color{ucugreyish},
+    keywordstyle=\color{codeblue},
+    numberstyle=\tiny\color{codegrey},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+% %%% Bibliography
+% \usepackage[style=authoryear,backend=biber]{biblatex}
+% \addbibresource{bibliography.bib}
+
+% \DeclareNameAlias{author}{given-family}
+
+% %%% Suppress biblatex annoying warning
+% \usepackage{silence}
+% \WarningFilter{biblatex}{Patching footnotes failed}
+
+%%% Some useful commands
+% pdf-friendly newline in links
+\newcommand{\pdfnewline}{\texorpdfstring{\newline}{ }} 
+% Fill the vertical space in a slide (to put text at the bottom)
+\newcommand{\framefill}{\vskip0pt plus 1filll}
+
+%%% Enter additional packages below (or above, I can't stop you)! / Jesper
+\renewcommand{\proofname}{\sffamily{Proof}}
+
+% presentation template slides usage
+% \framecard[color (not working)]{textbuf}
+% \framesplit{Header}{picture}{textbuf}
+% \framepic{image}{text}
+
+% \begin{frame}[fragile]
+% \lstset{style=codestyle}
+% \begin{lstlisting}[language=Python, caption=Python example]
+% import numpy as np
+    
+% def incmatrix(genl1,genl2):
+%     m = len(genl1)
+%     n = len(genl2)
+%     M = None #to become the incidence matrix
+%     VT = np.zeros((n*m,1), int)  #dummy variable
+    
+%     #compute the bitwise xor matrix
+%     M1 = bitxormatrix(genl1)
+%     M2 = np.triu(bitxormatrix(genl2),1) 
+
+% \end{lstlisting}
+% \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Linux course}
+\subtitle{Shell}
+\date[\today]{\small\today}
+\author[Morhunenko Mykola]{Morhunenko Mykola}
+\institute{APPS@UCU}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{\contentsname}
+\setbeamercolor{background canvas}{bg=ucugrey}
+\tableofcontents
+\end{frame}
+
+\section{What is Command Shell?}
+\framecard{What is Command Shell?}
+
+\begin{frame}{What is command Shell?}
+\begin{itemize}
+    \item Command Shell is a computer program, that provide the user with a (CLI) command line interface to control the computer using keyboard, without GUI (Graphical user interface), for communication with the Linux system
+    \item If you are using Linux, you have definitely see the command prompt. Usually it looks like {\color{ucugreen}\$} or, probably, {\color{ucugreen} \text{[username@hostname path] }\$}
+    \item From the very beginning it looks like GUI is faster, but it is totally false: CLI just have high entry threshold. But it allows to write scripts (files with shell commands) that can automate routine, which is impossible in GUI
+    \item Much more programs provide only CLI. If you want to use servers, connect to other computers via ssh, to be a real programmer, you must know shell
+    \item You can check your shell by the command {\color{ucugreen} \$ echo \$SHELL}
+    \item Most likely you have {\color{ucugreen} bash}, the most popular and stable one
+    \item If you are done, you can leave the shell with {\color{ucugreen} exit} command, or by pressing the {\color{ucugreen}Ctrl+d} in the terminal emulator window
+\end{itemize}
+
+\end{frame}
+
+\section{Bash/Zsh/Fish}
+\framecard{Bash/Zsh/Fish}
+
+\begin{frame}{What is Bash}
+\begin{itemize}
+    \item Bash stands for "Bourne(born)-again-shell"
+    \item It is default shell for most Linux distros
+    \item POSIX standard have a full description of the shell. Bash implements all this features, plus something own, known as {\color{ucugreen} bashism}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Different shells}
+    \begin{itemize}
+        \item Bash is a standard shell for the majority of  Linux distros, but it doesn't mean it is the best one
+        \item 
+    \end{itemize}
+\end{frame}
+
+
+\section{Paths}
+\framecard{Paths}
+\begin{frame}{Path}
+    \begin{itemize}
+        \item  {\color{ucugreen} Path} - one of the most important terms in this topic (and in understanding, how programs work)
+        \item Paths can be absolute or relative
+        \item Absolute
+            \begin{itemize}
+                \item {\color{ucugreen} /} - also known as  {\color{ucugreen} root path}, all paths that starts from it are {\color{ucugreen} absolute}. Other examples:
+                \item {\color{ucugreen} /home/username}
+                \item {\color{ucugreen} /usr/local/share/zsh/site-functions/}
+            \end{itemize}
+        \item Relative
+            \begin{itemize}
+                \item Relative paths don't starts from the root. They are relative with respect to the current path.
+                \item {\color{ucugreen} .zshrc}
+                \item {\color{ucugreen} Documents/UCULinux/presentations}
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+\begin{frame}{Path}
+    \begin{itemize}
+        \item Names are case-sensitive, that means {\color{ucugreen} /home/UserName} and {\color{ucugreen} /home/username} are different names
+        \item There are also special paths
+        \begin{itemize}
+            \item {\color{ucugreen} ./} stands for the current path
+            \item {\color{ucugreen} ../} stands for the path one step back. For example, if the {\color{ucugreen} ./} is {\color{ucugreen} /home/username}, the {\color{ucugreen} ../} will be {\color{ucugreen} /home}
+            \item {\color{ucugreen} ~/} stands for the directory of current user. For example, for {\color{ucugreen} root} user {\color{ucugreen} ~/} will be {\color{ucugreen} /root}, and for {\color{ucugreen} username} it will be {\color{ucugreen} /home/username}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\section{Where am I? Who am I?}
+\framecard{Where am I? Who am I?}
+
+
+
+\section{Permissions}
+\framecard{Permissions}
+
+\end{document}
