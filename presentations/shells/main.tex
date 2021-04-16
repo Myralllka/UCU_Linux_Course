@@ -103,8 +103,8 @@
 \tableofcontents
 \end{frame}
 
-\section{What is Command Shell?}
-\framecard{What is Command Shell?}
+\section{What Command Shell is?}
+\framecard{What Command Shell is?}
 
 \begin{frame}{What is command Shell?}
 \begin{itemize}
@@ -116,24 +116,25 @@
     \item Most likely you have {\color{ucugreen} bash}, the most popular and stable one
     \item If you are done, you can leave the shell with {\color{ucugreen} exit} command, or by pressing the {\color{ucugreen}Ctrl+d} in the terminal emulator window
 \end{itemize}
-
 \end{frame}
-
-\section{Bash/Zsh/Fish}
-\framecard{Bash/Zsh/Fish}
 
 \begin{frame}{What is Bash}
 \begin{itemize}
     \item Bash stands for "Bourne(born)-again-shell"
     \item It is default shell for most Linux distros
     \item POSIX standard have a full description of the shell. Bash implements all this features, plus something own, known as {\color{ucugreen} bashism}
+    \item Bash is a standard shell for the majority of  Linux distros, but it doesn't mean it is the best one
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Different shells}
+\begin{frame}{ZSH}
     \begin{itemize}
-        \item Bash is a standard shell for the majority of  Linux distros, but it doesn't mean it is the best one
-        \item 
+        \item Zsh stands for {\color{ucugreen}Z-shell}
+        \item Like Bash, it derives from Bourne family of shells, in everyday usage zsh is the same, as {\color{ucugreen} bash}, but have a lot of extensions and other syntax of configuration files (default - {\color{ucugreen}~/.zshrc})
+        \item There is an entire eco-system of configuration tools and themes called oh-my-zsh which is very popular
+        \item Also there are a huge amount of extensions at the github, that can make everyday usage easier - from auto-complete to syntax highlighting
+        \item also there are differences in scripts, about it is later.
+        
     \end{itemize}
 \end{frame}
 
@@ -143,6 +144,7 @@
 \begin{frame}{Path}
     \begin{itemize}
         \item  {\color{ucugreen} Path} - one of the most important terms in this topic (and in understanding, how programs work)
+        \item Current path - or current directory, working directory - the directory, from where you are working, launching programs/scripts
         \item Paths can be absolute or relative
         \item Absolute
             \begin{itemize}
@@ -152,7 +154,7 @@
             \end{itemize}
         \item Relative
             \begin{itemize}
-                \item Relative paths don't starts from the root. They are relative with respect to the current path.
+                \item Relative paths don't starts from the root. Shell interpreter always run all programs with respect to the current path. They never begins with \ex{/}
                 \item {\color{ucugreen} .zshrc}
                 \item {\color{ucugreen} Documents/UCULinux/presentations}
             \end{itemize}
@@ -165,17 +167,100 @@
         \begin{itemize}
             \item {\color{ucugreen} ./} stands for the current path
             \item {\color{ucugreen} ../} stands for the path one step back. For example, if the {\color{ucugreen} ./} is {\color{ucugreen} /home/username}, the {\color{ucugreen} ../} will be {\color{ucugreen} /home}
-            \item {\color{ucugreen} ~/} stands for the directory of current user. For example, for {\color{ucugreen} root} user {\color{ucugreen} ~/} will be {\color{ucugreen} /root}, and for {\color{ucugreen} username} it will be {\color{ucugreen} /home/username}
+            \item {\color{ucugreen} \textasciitilde /} stands for the directory of current user. For example, for {\color{ucugreen} root} user {\color{ucugreen} ~/} will be {\color{ucugreen} /root}, and for {\color{ucugreen} username} it will be {\color{ucugreen} /home/username}
         \end{itemize}
     \end{itemize}
 \end{frame}
 
-\section{Where am I? Who am I?}
-\framecard{Where am I? Who am I?}
+\section{Bash Intro}
+\framecard{Bash Intro}
 
+\begin{frame}{Syntax}
+    All default commands (programs) have very similar syntax
+    \begin{examples}
+    \text{program\_name [option]... [arguments]...}
+    \end{examples}
+    Options starts from \ex{-} or \ex{-{}-} \newline
+    To see, how to use any command
+    \begin{examples}
+        \text{program\_name -h} \newline or
+        \text{program\_name -{}-}help \newline behind are synonyms, but parameter is in short and long form \newline
+        man \text{program\_name}  - it provides full documentation about the command
+    \end{examples}
+\end{frame}
 
+\begin{frame}{Base commands}
+\begin{itemize}
+    \item \ex{pwd} - print working directory - show your current path
+    \item \ex{ls <path>} - list - show what is inside the directory
+    \item \ex{cd [path]} - change directory - change your current directory
+\end{itemize}
+So now it is possible to get something 
+\begin{examples}
+    username\$ pwd \newline
+    \ex[ucugrey]{> /home/username} \newline
+    username\$ ls \newline
+    \ex[ucugrey]{> Desktop Documents Downloads Music Pictures Videos} \newline
+    username\$ cd Downloads \newline
+    username\$ pwd \newline
+    \ex[ucugrey]{> /home/username/Downloads}
+\end{examples}
+\end{frame}
+\begin{frame}{Base commands}
+
+{\Large{Introducing ls}} \newline
+\begin{itemize}
+    \item \ex{ls -a} - list all, including names starting with dot symbol "."
+    \item \ex{ls -l} - list using a long list format, to display more information including permissions, size and important dates
+    \item \ex{ls -r} - list in reversed order
+    \item \ex{ls -R} - list current directory and all subdirectories recursively
+    \item \ex{ls -S} - sort by file size, largest first
+    Also they can be combined. The most commonly used
+    \item \ex{ls -la} - list all with full info
+    And the command have path as an argument, so the following command is also valid
+    \item \ex{ls -la /etc/systemd/system}
+\end{itemize}
+And there are much more options, that can be found using \ex{ls -{}-help}
+\end{frame}
+
+\begin{frame}{Base commands}
+    Now you can move around and see, what is around. But to work on your labs or projects, you need to create something and see, what is inside, and somehow manipulate it: \newline
+    \begin{itemize}
+        \item \ex{mkdir [dirname]} - make directory - create a new directory
+        \item \ex{touch [filename]} - create a file with filename or update the date of file's last modification to current date
+        \item \ex{date} - print current date and time
+        \item \ex{echo [text]} - print the text to the standard output
+        \item \ex{cat [filename]} - short for concatenate - show the file content
+        \item \ex{cp [source...] [destination]} - copy - copy all from source (all arguments except the last) to the destination (the last argument). \ex{-r} option required for directories
+        \item \ex{mv [source...] [destination]} - move - move all from source to destination
+        \item \ex{rm [path]} - remove - remove the file. \ex{-rf} required for directories
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Going deeper}
+
+    {\Large Creating Links} \newline
+    In Linux there are two types of links: soft and hard
+    \begin{itemize}
+        \item yep
+    \end{itemize}
+    
+\end{frame}
+
+% MORE COMMADS ARE HERE https://ss64.com/bash/
 
 \section{Permissions}
 \framecard{Permissions}
+
+\section{Sources}
+\framecard{The end =)}
+\framecard{Sources}
+\begin{frame}{Sources}
+\begin{itemize}
+    \item \href{https://cms.ucu.edu.ua/pluginfile.php/181565/mod_resource/content/3/os_p01_bash.pdf}{Bash presentation for Operating systems course, UCU, Oleg Farenyuk (only from UCU domain)}
+    \item \href{https://www.funtoo.org/Linux_Fundamentals,_Part_1}{Linux basics from the founder of Gentoo, Daniel Robbins, Chris Houser, Aron Griffis}
+    \item \href {https://scriptingosx.com/}{Scripting OS X}
+\end{itemize}    
+\end{frame}
 
 \end{document}
