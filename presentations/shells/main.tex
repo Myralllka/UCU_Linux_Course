@@ -240,13 +240,85 @@ And there are much more options, that can be found using \ex{ls -{}-help}
 \begin{frame}{Going deeper}
 
     {\Large Creating Links} \newline
-    In Linux there are two types of links: soft and hard
+    In Linux there are two types of links: hard and symbolic
     \begin{itemize}
-        \item yep
+        \item Inode - a data structure in the Unix-style file systems, that describes a file-system object
+        \item Inode can have any number of hard links, and the inode will persists on the system until all hard links disappear. Changing in one file apply this changes also to all it's hard links
     \end{itemize}
-    
 \end{frame}
 
+\begin{frame}{Going deeper}
+    \begin{itemize}
+        \item \ex{ls -i} command is used to list all files with it's inodes
+        \item \ex{ln [source] [destination]} is used to create hard links
+        \begin{examples}
+            username \$ ln file1 file2 \newline
+            username \$ ls -i \newline
+            \ex[ucugrey]{> 9700529 file1  9700529 file2}
+        \end{examples}
+        as far as wee can see, both files have same inode
+        \begin{examples}
+        username \$ echo "Hello Wrold!" >> file1 \newline
+        username \$ cat file2 \newline
+        \ex[ucugrey]{> Hello World!}
+        \end{examples}
+        So changes in one file apply this changes to the other one \newline
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Going deeper}
+    What about symbolic links?
+    \begin{itemize}
+        \item symbolic links (symlinks) are used more often. This is a special type, and the link refers to another file by name, not by inode.
+        \item deleting the source file will make the symlink broken
+        \item \ex{ln -s} - used to create the symbolic link
+        \begin{examples}
+        username \$ ln -s file1 file3 \newline
+        username \$ ls -l \newline
+        
+        > -rw-rw-r-- 2 username groupname 18 Apr 17 00:47 file1 \newline
+        \, \, -rw-rw-r-- 2 username groupname 18 Apr 17 00:47 file2 \newline
+        \, \, lrwxrwxrwx 1 username groupname  5 Apr 17 00:54 file3 -> file1
+        \end{examples}
+        \item Symlinks can be created to any type of file system objects
+        \item Can be used to point to an object from another file system
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Going deeper}
+
+    {\Large Wildcards, Globs}
+    \begin{itemize}
+        \item In case, there is a folder with 25 test files, but it is necessary to delete first 8 of them... there are few ways, how to deal with that
+        \begin{examples}
+        username \$ rm test1 test2 test3 test4 test5 test6 test7 test8 \newline
+        \,\,\,or... \newline
+        username \$ rm test[1-8] \newline
+        \,\,\,or if you want to delete all tests... \newline
+        username \$ rm test*
+        \end{examples}
+        \item So, \ex{*} wildcard stands for all matches, any number of any symbol
+        \item \ex{?} stands for \ex{any one symbol}
+        \item \ex{[]} wildcard stands for ranges, so \ex{[abc]} means "any of a, b, c", the same for [a-c]
+        \item \ex{!} stands for non-match, so [!a] stands for any symbol except 'a'
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Going deeper}
+
+    {\Large Important about wildcards}
+    \begin{itemize}
+        \item Be careful while using wildcards
+        \item Bash preprocess all input to extend it with respect to wildcards
+        \item so if you want to use one of such symbols just as symbols, you can either escape character with \ex{\textbackslash} symbol, or use single quotes
+        \begin{examples}
+        username \$ echo [fo]* > ./new\_file \newline in this case you will add names of all files starts with 'f' or 'o' \newline
+        username \$ echo '[fo]*' > ./new\_file\newline
+        username \$ echo \textbackslash [fo\textbackslash ]\textbackslash * > ./new\_file \newline
+        both approaches above are correct
+        \end{examples}
+    \end{itemize}
+\end{frame}
 % MORE COMMADS ARE HERE https://ss64.com/bash/
 
 \section{Permissions}
