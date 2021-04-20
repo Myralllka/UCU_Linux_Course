@@ -317,12 +317,66 @@ And there are much more options, that can be found using \ex{ls -{}-help}
         username \$ echo \textbackslash [fo\textbackslash ]\textbackslash * > ./new\_file \newline
         both approaches above are correct
         \end{examples}
+        \item \ex{ All bash commands are \href{https://ss64.com/bash/}{here}}
     \end{itemize}
 \end{frame}
-% MORE COMMADS ARE HERE https://ss64.com/bash/
 
 \section{Permissions}
 \framecard{Permissions}
+
+\framesplitc{Extensions}{graphics/ext.jpg}{
+    \begin{itemize}
+        \item The Linux world doesn't need file extensions
+        \item The operating system doesn't use them to determine how to open a file
+        \item But extensions are used by some parts of the OS to determine which program to use to open file
+        \item So how the operating system find out, what the file is and how to deal with it?
+    \end{itemize}
+}
+
+\begin{frame}{Permissions}
+    \begin{itemize}
+        \item When executing the \ex{ls -l} command, at the very beginning of every line there is 10 characters and then two words
+        \begin{examples}
+        username \$ ls -la \newline
+        \ex[ucugrey]{> drwxrwxr-x 10 username groupname 4096 Apr 20 02:21 example\_directory} \newline
+        \ex[ucugrey]{\,\,\, -rw-rw-r-{}- \hspace{0.2cm} 10 username groupname 4096 Apr 20 02:21 example\_textfile} \newline
+        \ex[ucugrey]{\,\,\, -rwxr-xr-x \hspace{0.25cm} 10 username groupname 4096 Apr 20 02:21 example\_binary\_file} \newline
+        \end{examples}
+        \item They are not just letters, there is a lot of information behind these 10 characters (or, actually, 3 decimal numbers)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Permissions}
+    \begin{figure}
+        \centering
+        \includegraphics[height=0.8\paperheight]{graphics/permissions1.jpg}
+\end{figure}
+    
+\end{frame}
+
+
+\framesplitc{Permissions}{graphics/permissions.png}{
+    \begin{itemize}
+        \item The very first letter stands for file type, about them the info will be in the Filesystems topic
+        \item To change permissions, there is a command \ex{chmod}
+        \item To see all possible parameters, use \ex{chmod --help}. (But some explanations for the beginners are on the next page)
+        \item All triplets of permissions \ex{rwx} have it's number correspondences
+    \end{itemize}
+}
+
+\begin{frame}{Permissions}
+    \begin{itemize}
+        \item So in the help of \ex{chmod} are a little bit confusing things
+        \item In \ex{[ugoa]} - User, Group, Other users, All
+        \item In \ex{[rwxXst]} - Read, Write, eXecute
+        \item eXecute only if the file is a directory or already has execute permission for some user
+        \item Set user or group ID on execution
+        \item Save program text on swap device (a performance enhancer)
+    \end{itemize}
+\end{frame}
+
+\section{Scripts}
+\framecard{Scripts}
 
 \section{Sources}
 \framecard{The end =)}

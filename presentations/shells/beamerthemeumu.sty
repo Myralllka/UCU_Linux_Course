@@ -71,13 +71,17 @@
 \newcommand{\framesplit}[3]{
     {
        \begin{frame}{#1}
-            \begin{wrapfigure}{r}{0.5\textwidth}
-                \centering
-                \includegraphics[width=0.5\textwidth]{#2}
-            \end{wrapfigure}
-            \normalsize
-            #3
-            \vskip 0.8cm
+            \begin{columns}[t, totalwidth=1.02\textwidth]
+                \begin{column}{0.45\linewidth}
+                    #3
+                \end{column}
+        
+                \begin{column}{0.48\linewidth}
+                    \begin{center}
+                        \includegraphics[width=1\textwidth]{#2}
+                    \end{center}
+                \end{column}
+            \end{columns}
         \end{frame}
     }
 }
@@ -88,26 +92,11 @@
 
 \newcommand{\framesplitc}[3]{
     {
-    
          \usebackgroundtemplate{
             \tikz[overlay,remember picture] \node[opacity=1, at=(current page.center)] {
             \includegraphics[height=\paperheight]{graphics/fg_split_v.png}};
         }
-        
-      \begin{frame}
-    
-            \begin{wrapfigure}{r}{0.5\textwidth}
-                \begin{changemargin}{(\paperwidth - \textwidth)/4}{0}
-                    \centering
-                    \includegraphics[width=0.5\textwidth]{#2}
-                \end{changemargin}  
-            \end{wrapfigure}
-            
-            \Huge\textbf{#1}    
-            \vskip 1cm
-        \end{frame}
-        
-        
+      \framesplit{#1}{#2}{#3}
     }
 }
 
