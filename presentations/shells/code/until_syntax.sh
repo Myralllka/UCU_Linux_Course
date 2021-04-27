@@ -1,4 +1,4 @@
-until [ condition to be False]
+until [ condition to be False ]
 do
     statements
 done

@@ -14,11 +14,10 @@
 % If we don't have a subtitle, put the title
 % at the center of the header
 \ifx\insertframesubtitle\@empty
-
-  \begin{textblock*}{10cm}(0.15cm,0.2cm)
+  \begin{textblock*}{10cm}(0.2cm,0.23cm)
       {\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle}
   \end{textblock*}
-
+  \vspace{-0.4cm}
 \else
 % If we have both title and subtitle, stack them
   \begin{textblock*}{10cm}(0.15cm,0.1cm)
@@ -31,35 +30,6 @@
 
 \fi
 
-}
-
-% Frame footer
-\setbeamertemplate{footline}
-{
-    \ifnum\thepage>1
-        \begin{tikzpicture}
-            \useasboundingbox (0,0) rectangle(\the\paperwidth,1);
-            
-            % Colored line
-            % \fill[color=ucugreyish] (0,1.25) rectangle(\the\paperwidth,1.25);
-        
-        \end{tikzpicture}
-
-    \begin{textblock*}{0.6cm}(0.1cm,9.25cm)
-        \raggedleft
-        {\usebeamercolor[fg]{title in head/foot}\usebeamerfont{title in head/foot}\insertframenumber/\inserttotalframenumber}
-    \end{textblock*}
-
-    \begin{textblock*}{3cm}(2cm,9.25cm)
-        {\usebeamercolor[fg]{author in head/foot}\usebeamerfont{author in head/foot}\insertshortauthor}
-    \end{textblock*}
-
-    \begin{textblock*}{7cm}(\dimexpr\the\paperwidth-7.8cm,9.25cm) 
-        \raggedleft
-        {\usebeamercolor[fg]{block}\usebeamerfont{title in head/foot}\insertshorttitle}
-    \end{textblock*}
-
-\fi % \ifnum\thepage>1
 }
 
 % BACKGROUND CANVAS TEMPLATES. -------------------------------------------------

@@ -31,8 +31,6 @@
 % Table of contents (outline) styling
 \setbeamertemplate{section in toc}[ball numbered]
 
-% Bibliography styling
-\setbeamertemplate{bibliography item}[text]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%										%%%%%
@@ -60,10 +58,23 @@
   }
 }
 
+%%%%%
+%%%%%
+%%%%%
+
 \newcommand{\ex}[2][ucugreen]{
     {\color{#1} #2}
 }
-
+%%%%%
+%%%%%
+%%%%%
+\newcommand{\exshell}[3]{
+    {
+        \begin{lstlisting}[language=Bash, style=shellstyle]
+        
+        \end{lstlisting}
+    }
+}
 %%%%%       					        %%%%%
 %%%%%       	~Splited frame~	        %%%%%
 %%%%%       					        %%%%%
