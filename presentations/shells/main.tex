@@ -342,7 +342,7 @@ username $ ls -la | wc -l
             \begin{itemize}
                 \item \ex{Ctrl + n or arrow-up} -- previous command in the history
                 \item \ex{Ctrl + p or or arrow-down} -- next command in the history 
-                \item \ex{Ctrl + c} -- SIGINT signal to the program (SIGnal INTerrupn, usually stops the program)
+                \item \ex{Ctrl + c} -- SIGINT signal to the program (SIGnal INTerrupn, usually stops the process)
                 \item \ex{Ctrl + l} -- clear the screen, call \ex{clear} program
                 \item \ex{Ctrl + x; Ctrl + e} -- open the \ex{\$EDITOR} to change the inputted command; if there is no command, just open the \ex{\$EDITOR}
                 \item \ex{Ctrl + z} -- freeze current program
@@ -425,10 +425,39 @@ username $ ls -la
     \end{itemize}
 }
 
-\begin{frame}{Process Control}
+\begin{frame}[fragile]{Process Control}
     \begin{itemize}
-        \item 
+        \item To stop the process, we can use \ex{Ctrl + z} keybinding
+        \item To unstop the process, \ex{fg} program is used (foreground)
+        \item To unstop the program, but leave it in the background, \ex{bg} program is used (background)
+        \item If you want some program to run at tha background, \ex{\&} symbol is used
+        \begin{lstlisting}[language=bash, style=shellstyle]
+username $ clion &
+> [1] 117306 \end{lstlisting}
+        \item This command will start a \ex{clion} from the current environment, but the command line still will be available for the input
+        \item \ex[ucured]{Be careful.} After such command all clion output will still be printed to the stdout (if not redirect it)
+        \item \ex{jobs -l} -- list all background jobs
     \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Process Control}
+    \begin{itemize}
+        \item Signals - one of possible ways how different processes communicate with each other in the POSIX systems
+        \item To sent signal to the process ID (that 5-6 digits numbers) \ex{kill} command can be used
+        \item \ex{SIGTERM} - kill sends it by default. it means stop the program (TERMinate)
+        \item \ex{SIGINT} - INTerrupt the process, the hotkey is \ex{Ctrl + C}
+        \item But \ex{jobs} program shows only processes started from the current session
+        \item \ex{ps} program used to see all processes, their PIDs and other info
+        \begin{lstlisting}[language=bash, style=shellstyle]
+username $ ps ax
+> PID TTY      STAT   TIME COMMAND
+    1 ?        Ss     0:02 /sbin/init     
+    2 ?        S      0:00 [kthreadd]
+    3 ?        I<     0:00 [rcu_gp]
+    .....\end{lstlisting}
+        \item So to stop the process immediately, just run \ex{kill [PID]}
+    \end{itemize}
+    
 \end{frame}
 
 \section{Scripts}
@@ -627,8 +656,8 @@ username $ ./script.sh
 
 \begin{frame}[fragile]{Functions}
     \begin{itemize}
-        \item Functions are a good practice in all languages. What is more, it's much simpler to read the code decomposed on functions
-        
+        \item Function declarations can be like this:
+        \lstinputlisting[language=Bash, style=codestyle]{code/function_ex.sh}
     \end{itemize}
 \end{frame}
 
