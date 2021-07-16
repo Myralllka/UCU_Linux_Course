@@ -54,18 +54,18 @@
 \tableofcontents
 \end{frame}
 
-\section{What Command Shell is?}
-\framecard{What Command Shell is?}
+\section{What is Command Shell?}
+\framecard{What is Command Shell?}
 
 \begin{frame}{Command Shell}
 \begin{itemize}
-    \item Command Shell is a computer program, that provide the user with a (CLI) command line interface to control the computer using keyboard, without GUI (Graphical user interface), for communication with the Linux system
-    \item If you are using Linux, you have definitely see the command prompt. Usually it looks like {\color{ucugreen}\$} or, probably, {\color{ucugreen} \text{[username@hostname path] }\$}
-    \item From the very beginning it looks like GUI is faster, but it is totally false: CLI just have high entry threshold. But it allows to write scripts (files with shell commands) that can automate routine, which is impossible in GUI
-    \item Much more programs provide only CLI. If you want to use servers, connect to other computers via ssh, to be a real programmer, you must know shell
+    \item Command Shell is a computer program which provides user with a (CLI) command line interface to control the computer using keyboard, without GUI (Graphical user interface), for communication with the Linux system
+    \item If you use Linux, you have definitely seen the command prompt. Usually it looks like {\color{ucugreen}\$} or, probably, {\color{ucugreen} \text{[username@hostname path] }\$}
+    \item From the very beginning it looks like GUI is faster, but it is totally false: CLI just has high entry threshold. But it allows to write scripts (files with shell commands) that can automate routine, which is impossible in GUI
+    \item Much more programs provide only CLI. If you want to use servers and connect to other computers via ssh, then being a real programmer is knowing shell
     \item You can check your shell by the command {\color{ucugreen} \$ echo \$SHELL}
     \item Most likely you have {\color{ucugreen} bash}, the most popular and stable one
-    \item If you are done, you can leave the shell with {\color{ucugreen} exit} command, or by pressing the {\color{ucugreen}Ctrl+d} in the terminal emulator window
+    \item If you are done, you can exit shell with {\color{ucugreen} exit} command, or by pressing the {\color{ucugreen}Ctrl+d} in the terminal emulator window
 \end{itemize}
 \end{frame}
 
@@ -73,18 +73,18 @@
 \begin{itemize}
     \item Bash stands for "Bourne(born)-again-shell"
     \item It is default shell for most Linux distros
-    \item POSIX standard have a full description of the shell. Bash implements all this features, plus something own, known as {\color{ucugreen} bashism}
-    \item Bash is a standard shell for the majority of  Linux distros, but it doesn't mean it is the best one
+    \item POSIX standard has a full description of shell. Bash implements all this features, plus something of its own, known as {\color{ucugreen} bashism}
+    \item Bash is a standard shell for the majority of Linux distros, but it doesn't mean it is the best one
 \end{itemize}
 \end{frame}
 
 \begin{frame}{ZSH}
     \begin{itemize}
         \item Zsh stands for {\color{ucugreen}Z-shell}
-        \item Like Bash, it derives from Bourne family of shells, in everyday usage zsh is the same, as {\color{ucugreen} bash}, but have a lot of extensions and other syntax of configuration files (default - {\color{ucugreen}~/.zshrc})
+        \item Like Bash, it derives from Bourne family of shells, in everyday usage zsh is the same, as {\color{ucugreen} bash}, but has a lot of extensions and other configuration files' syntax (default - {\color{ucugreen}~/.zshrc})
         \item There is an entire eco-system of configuration tools and themes called oh-my-zsh which is very popular
-        \item Also there are a huge amount of extensions at the github, that can make everyday usage easier - from auto-complete to syntax highlighting
-        \item also there are differences in scripts, about it is later.
+        \item Also there is a huge amount of extensions on github, that can make everyday usage easier - ranging from auto-complete to syntax highlighting
+        \item also there are differences in scripts, we'll pick this up later.
         
     \end{itemize}
 \end{frame}
@@ -93,7 +93,7 @@
 \framecard{Paths}
 \begin{frame}{Path}
     \begin{itemize}
-        \item  {\color{ucugreen} Path} - one of the most important terms in this topic (and in understanding, how programs work)
+        \item  {\color{ucugreen} Path} - one of the most important terms in this topic (and in understanding how programs work)
         \item Current path - or current directory, working directory - the directory, from where you are working, launching programs/scripts
         \item Paths can be absolute or relative
         \item Absolute
@@ -104,7 +104,7 @@
             \end{itemize}
         \item Relative
             \begin{itemize}
-                \item Relative paths don't starts from the root. Shell interpreter always run all programs with respect to the current path. They never begins with \ex{/}
+                \item Relative paths don't start from the root. Shell interpreter always run all programs with respect to the current path. They never begin with \ex{/}
                 \item {\color{ucugreen} .zshrc}
                 \item {\color{ucugreen} Documents/UCULinux/presentations}
             \end{itemize}
@@ -113,7 +113,7 @@
 
 \begin{frame}{Paths}
     \begin{itemize}
-        \item Names are case-sensitive, that means {\color{ucugreen} /home/UserName} and {\color{ucugreen} /home/username} are different names
+        \item Names are case-sensitive, which means {\color{ucugreen} /home/UserName} and {\color{ucugreen} /home/username} are different names
         \item There are also special paths
         \begin{itemize}
             \item {\color{ucugreen} ./} stands for the current path
@@ -146,7 +146,7 @@
     \item \ex{ls <path>} - list - show what is inside the directory
     \item \ex{cd [path]} - change directory - change your current directory
 \end{itemize}
-So now it is possible to get something 
+Now it is possible to get something 
 \begin{examples}
     username\$ pwd \newline
     \ex[ucugrey]{> /home/username} \newline
@@ -161,28 +161,29 @@ So now it is possible to get something
 
 {\Large{Introducing ls}} \newline
 \begin{itemize}
-    \item \ex{ls -a} - list all, including names starting with dot symbol "."
+    \item \ex{ls -a} - list all, including names starting with the dot symbol "."
     \item \ex{ls -l} - list using a long list format, to display more information including permissions, size and important dates
     \item \ex{ls -r} - list in reversed order
     \item \ex{ls -R} - list current directory and all subdirectories recursively
-    \item \ex{ls -S} - sort by file size, largest first
-    Also they can be combined. The most commonly used
-    \item \ex{ls -la} - list all with full info
-    And the command have path as an argument, so the following command is also valid
+    \item \ex{ls -S} - sort by file size, larger first. They can be combined as well.
+\end{itemize}
+The most commonly used are:
+\begin{itemize}
+    \item \ex{ls -la} - list all with full info. The command has path as an argument so the following command is also valid
     \item \ex{ls -la /etc/systemd/system}
 \end{itemize}
-And there are much more options, that can be found using \ex{ls -{}-help}
+There are much more options, that can be found using \ex{ls -{}-help}
 \end{frame}
 
 \begin{frame}{Base commands}
-    Now you can move around and see, what is around. But to work on your labs or projects, you need to create something and see, what is inside, and somehow manipulate it: \newline
+    Now it is possible to move around the directories and see, what is around. In order to work on labs or projects it's usually required to create something and see what is inside being able manipulate it somehow: \newline
     \begin{itemize}
         \item \ex{mkdir [dirname]} - make directory - create a new directory
-        \item \ex{touch [filename]} - create a file with filename or update the date of file's last modification to current date
+        \item \ex{touch [filename]} - create a file with filename or update the date of file's last modification to the current date
         \item \ex{date} - print current date and time
-        \item \ex{echo [text]} - print the text to the standard output
-        \item \ex{cat [filename]} - short for concatenate - show the file content
-        \item \ex{cp [source...] [destination]} - copy - copy all from source (all arguments except the last) to the destination (the last argument). \ex{-r} option required for directories
+        \item \ex{echo [text]} - print text to the standard output
+        \item \ex{cat [filename]} - short for concatenate - show the file's content
+        \item \ex{cp [source...] [destination]} - copy - copy all from source (all arguments except the last one) to the destination (the last argument). \ex{-r} option required for directories
         \item \ex{mv [source...] [destination]} - move - move all from source to destination
         \item \ex{rm [path]} - remove - remove the file. \ex{-rf} required for directories
     \end{itemize}
@@ -194,7 +195,7 @@ And there are much more options, that can be found using \ex{ls -{}-help}
     In Linux there are two types of links: hard and symbolic
     \begin{itemize}
         \item Inode - a data structure in the Unix-style file systems, that describes a file-system object
-        \item Inode can have any number of hard links, and the inode will persists on the system until all hard links disappear. Changing in one file apply this changes also to all it's hard links
+        \item Inode can have any number of hard links, and the inode will persists on the system until all hard links disappear. Changing in one file applies these changes also to all its hard links
     \end{itemize}
 \end{frame}
 
@@ -207,13 +208,13 @@ And there are much more options, that can be found using \ex{ls -{}-help}
             username \$ ls -i \newline
             \ex[ucugrey]{> 9700529 file1  9700529 file2}
         \end{examples}
-        as far as wee can see, both files have same inode
+        it is noticeable that both files have similar inodes
         \begin{examples}
-        username \$ echo "Hello Wrold!" >> file1 \newline
+        username \$ echo "Hello World!" >> file1 \newline
         username \$ cat file2 \newline
         \ex[ucugrey]{> Hello World!}
         \end{examples}
-        So changes in one file apply this changes to the other one \newline
+        Changes in one file apply these changes to the other one \newline
     \end{itemize}
 \end{frame}
 
@@ -231,7 +232,7 @@ And there are much more options, that can be found using \ex{ls -{}-help}
         \, \, -rw-rw-r-- 2 username groupname 18 Apr 17 00:47 file2 \newline
         \, \, lrwxrwxrwx 1 username groupname  5 Apr 17 00:54 file3 -> file1
         \end{examples}
-        \item Symlinks can be created to any type of file system objects
+        \item Symlinks can be created for any type of file system objects
         \item Can be used to point to an object from another file system
     \end{itemize}
 \end{frame}
@@ -240,7 +241,7 @@ And there are much more options, that can be found using \ex{ls -{}-help}
 
     {\Large Wildcards, Globs}
     \begin{itemize}
-        \item In case, there is a folder with 25 test files, but it is necessary to delete first 8 of them... there are few ways, how to deal with that
+        \item In case, there is a folder with 25 test files, but it is necessary to delete first 8 of them... there are few ways how to deal with that
         \begin{examples}
         username \$ rm test1 test2 test3 test4 test5 test6 test7 test8 \newline
         \,\,\,or... \newline
@@ -275,19 +276,19 @@ And there are much more options, that can be found using \ex{ls -{}-help}
 \begin{frame}{Searching}
     \begin{itemize}
         \item So as for now we know how to create files, directories, move them and remove. But how to find them?
-        \item The Linux file system is well-structured, so it's very easy to navigate it, but still there are thousands of files and it's impossible to remember all locations. About the Linux File system hierarchy there is entire presentation
+        \item The Linux file system is well-structured, so it's very easy to navigate it, but still there are thousands of files and it's impossible to remember all of the locations. There is entire presentation about the Linux File system hierarchy.
         \item \ex{find [path] -name ["filename"]}, and in the name can globs can be used (but they must be escaped)
         \item But if you don't know for sure the filename or dirname, the better way is \ex{find <path> -regex ["filename\_regex"]}
-        \item \ex[ucured]{Be careful!} All files in the system have own permissions. So to search somewhere outside the \ex{/home/username} folder, you must run the program in privileged mode
+        \item \ex[ucured]{Be careful!} All files in the system have their own permissions. In order to search somewhere outside the \ex{/home/username} folder, you must run the program in the privileged mode
         
     \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Redirections}
     \begin{itemize}
-        \item As we will see in the File systems overview lecture, one of the defining features of Unix is that everything is a file
+        \item As it will be covered in the File systems overview lecture, one of the defining features of Unix is that everything is a file
         \item Even Shell is a group of files
-        \item By default, in Unix systems programs read the input from so called \ex{stdin} (input from the keyboard), write the output to the \ex{stdout} and write errors to the \ex{stderr}
+        \item By default, in Unix systems programs read the input from a so called \ex{stdin} (input from the keyboard), write the output to the \ex{stdout} and write errors to the \ex{stderr}
         \item Redirections allows to change the input/output files
         \begin{itemize}
             \item \ex{0<filename or <filename} -- input from the \ex{filename}
@@ -307,9 +308,9 @@ And there are much more options, that can be found using \ex{ls -{}-help}
 
 \begin{frame}[fragile]{Pipes}
     \begin{itemize}
-        \item Sometimes we need to give one program output of the other program (some kind of composition)
+        \item Sometimes it's required to give one program output of the other program (some kind of composition)
         \item There are pipes for such cases
-        \item Pipe can be made by \ex{|} symbol
+        \item Pipe can be made by the \ex{|} symbol
         \item \ex{wc} - Word Count program, used to... count words (also letters, lines etc)
         \begin{lstlisting}[language=Bash, style=shellstyle] 
 username $ ls -la | wc -l
@@ -327,8 +328,8 @@ username $ ls -la | wc -l
         \item There are important environment variables:
         \item \ex{HISTSIZE} indicates how many commands from your history file are loaded into the shell's memory
         \item \ex{SAVEHIST} indicates how many commands your history file can hold
-        \item \ex{All important variables is \href{https://telegra.ph/BashPeremennye-i-argumenty-09-19}{here}}
-        \item \ex{ZSH} have special extensions to work better with the history
+        \item \ex{All important variables are \href{https://telegra.ph/BashPeremennye-i-argumenty-09-19}{here}}
+        \item \ex{ZSH} has special extensions for a better work with the history
         \begin{itemize}
             \item \ex{zsh-autosuggestions} -- suggests you the last command from the history 
             \item \ex{zsh-z} - \ex{cd} command alternative, but with some history analysis
@@ -338,7 +339,7 @@ username $ ls -la | wc -l
 
 \begin{frame}{Hot keys}
     \begin{itemize}
-        \item Usually people use only \ex{Ctrl + Shift + C, Ctrl + Shift + V, Ctrl + C, Ctrl + Z}, But there are a lot of useful hotkeys:
+        \item Usually people use only \ex{Ctrl + Shift + C, Ctrl + Shift + V, Ctrl + C, Ctrl + Z}, Though there are a lot of other useful hotkeys:
             \begin{itemize}
                 \item \ex{Ctrl + n or arrow-up} -- previous command in the history
                 \item \ex{Ctrl + p or or arrow-down} -- next command in the history 
@@ -363,7 +364,7 @@ username $ ls -la | wc -l
         \item The Linux world doesn't need file extensions
         \item The operating system doesn't use them to determine how to open a file
         \item But extensions are used by some parts of the OS to determine which program to use to open file
-        \item So how the operating system find out, what the file is and how to deal with it?
+        \item How does the operating system find out, which is the file and how to deal with it?
     \end{itemize}
 }
 
@@ -391,16 +392,16 @@ username $ ls -la
 
 \framesplitc{Permissions}{graphics/permissions.png}{
     \begin{itemize}
-        \item The very first letter stands for file type (about them the info will be in the File systems topic)
+        \item The very first letter stands for the file type (this topic will be covered in the File systems presentation)
         \item To change permissions, there is a command \ex{chmod}
         \item To see all possible parameters, use \ex{chmod -{}-help}. (But some explanations for the beginners are on the next page)
-        \item All triplets of permissions \ex{rwx} have it's number correspondences
+        \item All triplets of permissions \ex{rwx} have theirs number correspondences
     \end{itemize}
 }
 
 \begin{frame}{Permissions}
     \begin{itemize}
-        \item So in the help of \ex{chmod} are a little bit confusing things
+        \item The outputoutput of \ex{chmod -{}-help}  may have some confusing stuff in it
         \item In \ex{[ugoa]} - User, Group, Other users, All
         \item In \ex{[rwxXst]} - Read, Write, eXecute
         \item eXecute only if the file is a directory or already has execute permission for some user
@@ -412,25 +413,25 @@ username $ ls -la
 \framesplitc{Sudo}{graphics/sudo_meme.jpg}{
     \begin{itemize}
         \item By default, every user have permissions to play around only his \ex{/home/username} directory
-        \item To somehow modify the system (either install programs or modify global settings), you need so named \ex{superuser mode}
-        \item If have the error starting with \ex[ucured]{permission denied}, them you need to run the program with privilages, for example, using \ex{sudo}
+        \item To somehow modify the system (either install programs or modify global settings), you need a so called \ex{superuser mode}
+        \item If there's an error starting with \ex[ucured]{permission denied}, then it's necessary to run the program with privileges, for example, using \ex{sudo}
     \end{itemize}
 }
 
 \framesplitc{Sudo}{graphics/password_meme.jpg}{
     \begin{itemize}
-        \item To run any program as superuser, use \ex{sudo <program\_name> <program\_parameters>}, sudo stands for "super user do"
-        \item To login the shall as a superuser, both \ex{su root} and \ex{sudo -i} can be used. \ex[ucured]{When you type a password, it stays invisible}
+        \item To run any program as a superuser, use \ex{sudo <program\_name> <program\_parameters>}, where sudo stands for "super user do"
+        \item To login into the shall as a superuser, both \ex{su root} and \ex{sudo -i} can be used. \ex[ucured]{When you type a password, it stays invisible}
         \item \ex[ucured]{\large DO NOT RUN GUI AS ROOT!} instead use \ex{gksu} (it is deprecated for as 2021, but still in AUR) or alternatives (\ex{kdesu, sux})
     \end{itemize}
 }
 
 \begin{frame}[fragile]{Process Control}
     \begin{itemize}
-        \item To stop the process, we can use \ex{Ctrl + z} keybinding
-        \item To unstop the process, \ex{fg} program is used (foreground)
-        \item To unstop the program, but leave it in the background, \ex{bg} program is used (background)
-        \item If you want some program to run at tha background, \ex{\&} symbol is used
+        \item To stop the process use \ex{Ctrl + z} keybinding
+        \item To unstop the process \ex{fg} program is used (foreground)
+        \item To unstop the program but leave it in the background, \ex{bg} program is used (background)
+        \item If you want some program to run at the background, \ex{\&} symbol is used
         \begin{lstlisting}[language=bash, style=shellstyle]
 username $ clion &
 > [1] 117306 \end{lstlisting}
@@ -444,8 +445,8 @@ username $ clion &
     \begin{itemize}
         \item Signals - one of possible ways how different processes communicate with each other in the POSIX systems
         \item To sent signal to the process ID (that 5-6 digits numbers) \ex{kill} command can be used
-        \item \ex{SIGTERM} - kill sends it by default. it means stop the program (TERMinate)
-        \item \ex{SIGINT} - INTerrupt the process, the hotkey is \ex{Ctrl + C}
+        \item \ex{SIGTERM} - kill sends it by default, which means stopping the program (TERMinate)
+        \item \ex{SIGINT} - Interrupt the process, the hotkey is \ex{Ctrl + C}
         \item But \ex{jobs} program shows only processes started from the current session
         \item \ex{ps} program used to see all processes, their PIDs and other info
         \begin{lstlisting}[language=bash, style=shellstyle]
@@ -469,8 +470,8 @@ username $ ps ax
         \item Script - just file with bunch of commands that can be interpreted (e.g. python, lisp scripts, or bash scripts)
         \item They can be used both for automation some small routine tasks and as large programs
         \item Shell scripts names ends with \ex{.bash}, \ex{.sh}, \ex{zsh}
-        \item But as far as we know, the Linux system doesn't use the extensions to identify the type of file. So how to run a script as a usual program?
-        \item One of possible ways to run the script - give it as a parameter to the command interpreter
+        \item But as far as we know, the Linux system doesn't use the extensions to identify the type of the file. How to run a script as a usual program?
+        \item One of possible ways to run the script is to give it as a parameter to the command interpreter
         \begin{lstlisting}[language=bash, style=shellstyle]
 username $ bash ./my_first_script.sh
 > some output
@@ -480,19 +481,19 @@ username $ bash ./my_first_script.sh
 
 \begin{frame}[fragile]{Scripts}
     \begin{itemize}
-        \item Or we can make the file executable (add \ex{x} or \ex{111} flag)
+        \item Or make the file executable (add \ex{x} or \ex{111} flag)
         \begin{lstlisting}[language=bash, style=shellstyle]
 username $ chmod +x ./my_first_script
 username $ ./my_fist_script
 > some output
         \end{lstlisting}
-        \item But, actually, there is a mistake. If do it in the following way, the script will be run from the running shell. But we want to make Python, Ruby. Scheme also executable. Unfortunately, the bash interpreter can not execute them...
+        \item Actually, there is a mistake. If you do it in the following way, the script will be run from the running shell. But we want to make Python, Ruby. Scheme also executable. Unfortunately, the bash interpreter can not execute them...
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Shebang}
     \begin{itemize}
-        \item \ex{\large Shebang} - the name of the character sequence at the very first line of the script (\ex[ucured]{line \#1, that is important!}) that specify the absolute path to the interpreter.
+        \item \ex{\large Shebang} - the name of the character sequence at the very first line of the script (\ex[ucured]{line \#1, that is important!}) which specifies the absolute path to the interpreter.
         \lstinputlisting[language=Bash, style=codestyle]{code/shebang_ex.sh}
         \item Or also possible variant (to search for the interpreter in PATH (about PATH in next presentation))
         \lstinputlisting[language=Python, style=codestyle]{code/shebang_ex.py}
@@ -505,10 +506,10 @@ username $ ./my_fist_script
         \begin{lstlisting}[language=Bash, style=shellstyle]
 username $ my_var="This is my var"
         \end{lstlisting}
-        \item \ex[ucured]{There is no space on either side of the "=" sign allowed}
+        \item \ex[ucured]{There is no space allowed on either side of the "=" sign}
         \item There are local and global variables
-        \item When we "export" the var, it becomes available in all applications run from the current session, that means global 
-        \item For programs run from the shell, global variables are same as environment variables
+        \item When we "export" the var, it becomes available in all applications run from the current session, which means global 
+        \item For programs running from the shell, global variables are the same as environment variables
         \item To get the variable, \$\{\} syntax is used:
         \begin{lstlisting}[language=Bash, style=shellstyle]
 username $ echo ${my_var}
@@ -536,8 +537,8 @@ username $ echo ${my_var}
 
 \begin{frame}[fragile]{Quoting}
     \begin{itemize}
-        \item As far as there are a lot of special characters, how to use them if you want to print it?
-        \item Quoting or escaping is used to make regular symbol from special one
+        \item As far as there are a lot of special characters, how to use them if you want to print them?
+        \item Quoting or escaping is used to make a regular symbol from a special one
         \item \ex{\textbackslash} is used in a lot of programming languages
         \begin{lstlisting}[language=Bash, style=shellstyle]
 username $ echo \$SHELL
@@ -545,7 +546,7 @@ username $ echo \$SHELL
 username $ echo ${SHELL}
 > /bin/zsh \end{lstlisting}
         \item \ex{'} - single quotes, make "escaped" everything inside
-        \item \ex{"} - double quotes, allows variables expansion
+        \item \ex{"} - double quotes, allow variables expansion
     \end{itemize}
 \end{frame}
 
@@ -590,7 +591,7 @@ username $ echo ${SHELL}
         \item \ex{[-x FILE]} -  True if FILE exists and is executable
         \item \ex{[-z STRING]} - True of the length if ”STRING” is zero
         \item \ex{[-n STRING]} - True if the length of ”STRING” is non-zero
-        \item But for strings the most popular cooperators are used
+        \item For strings the most popular cooperators are used
         \item \ex{[STRING1 == STRING2]} 
         \item the same about <, >, !=, etc
     \end{itemize}
@@ -598,13 +599,13 @@ username $ echo ${SHELL}
 
 \begin{frame}{Conditionals. Case}
     \begin{itemize}
-        \item If you have an experience in other programming languages, you definitely know the case statement. Here is the example:
+        \item If you have an experience in other programming languages, you should definitely know the case statement. Here is the example:
         \lstinputlisting[language=Bash, style=codestyle]{code/case_ex.sh}
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Loops}
-    If you know any programming language, you definitely know, what is loop. Here is bash syntax for them
+    If you know any programming language, you definitely know, what loop is. Here is bash syntax for them
     \lstinputlisting[language=Bash, style=codestyle]{code/for_syntax.sh}
     \lstinputlisting[language=Bash, style=codestyle]{code/while_syntax.sh}
     \lstinputlisting[language=Bash, style=codestyle]{code/until_syntax.sh}
@@ -622,7 +623,7 @@ username $ echo ${SHELL}
 \begin{frame}[fragile]{Arithmetic}
     \begin{itemize}
         \item In bash arithmetic is a little bit tricky
-        \item To evaluate the arithmetic expression, \ex{let} can can be used
+        \item To evaluate the arithmetic expression, \ex{let} can be used
         \begin{lstlisting}[language=Bash, style=shellstyle]
 username $ a=4+5
 username $ echo $a
@@ -636,8 +637,8 @@ username $ echo $a
 
 \begin{frame}[fragile]{Arrays}
     \begin{itemize}
-        \item As all other programming languages, Bash have arrays
-        \item So here is the syntax of using and introduction of the arrays (in ZSH it is a little different)
+        \item As all other programming languages, Bash has arrays
+        \item Here is the syntax of using and introduction of the arrays (in ZSH it is a little different)
         \lstinputlisting[language=Bash, style=codestyle]{code/arrays_syntax.sh}
         \begin{lstlisting}[language=Bash, style=shellstyle]
 username $ ./script.sh
@@ -648,7 +649,7 @@ username $ ./script.sh
 
 \begin{frame}[fragile]{Arrays}
     \begin{itemize}
-        \item There are a lot of ways how to iterate throw the array, and some more important commands
+        \item There are a lot of ways how to iterate through the array and other more important commands
         \lstinputlisting[language=Bash, style=codestyle]{code/arrays_iter.sh}
         \item Full list can be found \href{https://devhints.io/bash#arrays}{here}
     \end{itemize}
@@ -664,7 +665,7 @@ username $ ./script.sh
 \begin{frame}[fragile]{Namespace}
     \begin{itemize}
         \item For example in C, the local variable (defined inside some scope) life cycle ends with the end of the scope
-        \item But in Bash all declared variables overwrites the global one with the same names
+        \item On the opposite in Bash all declared variables overwrite the global one with the same names
         \item to prevent this, use \ex{local} definitions
         \lstinputlisting[language=Bash, style=codestyle]{code/namespace_ex.sh}
         \begin{lstlisting}[language=Bash, style=shellstyle]
