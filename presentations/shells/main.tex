@@ -55,7 +55,7 @@
 \end{frame}
 
 \section{What is Command Shell?}
-\framecard{What is Command Shell?}
+\framepic{graphics/cli.jpg}{\bf{What is command shell?}}
 
 \begin{frame}{Command Shell}
 \begin{itemize}
@@ -81,7 +81,7 @@
 \begin{frame}{ZSH}
     \begin{itemize}
         \item Zsh stands for {\color{ucugreen}Z-shell}
-        \item Like Bash, it derives from Bourne family of shells, in everyday usage zsh is the same, as {\color{ucugreen} bash}, but has a lot of extensions and other configuration files' syntax (default - {\color{ucugreen}~/.zshrc})
+        \item Like Bash, it derives from Bourne family of shells, in everyday usage zsh is the same, as {\color{ucugreen} bash}, but has a lot of extensions and other configuration files' syntax (default - {\color{ucugreen} \textasciitilde/.zshrc})
         \item There is an entire eco-system of configuration tools and themes called oh-my-zsh which is very popular
         \item Also there is a huge amount of extensions on github, that can make everyday usage easier - ranging from auto-complete to syntax highlighting
         \item also there are differences in scripts, we'll pick this up later.
@@ -90,7 +90,19 @@
 \end{frame}
 
 \section{Paths}
-\framecard{Paths}
+
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[keepaspectratio,
+                                 width=\paperwidth]{graphics/path.jpg}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
+
 \begin{frame}{Path}
     \begin{itemize}
         \item  {\color{ucugreen} Path} - one of the most important terms in this topic (and in understanding how programs work)
@@ -118,13 +130,14 @@
         \begin{itemize}
             \item {\color{ucugreen} ./} stands for the current path
             \item {\color{ucugreen} ../} stands for the path one step back. For example, if the {\color{ucugreen} ./} is {\color{ucugreen} /home/username}, the {\color{ucugreen} ../} will be {\color{ucugreen} /home}
-            \item {\color{ucugreen} \textasciitilde /} stands for the directory of current user. For example, for {\color{ucugreen} root} user {\color{ucugreen} ~/} will be {\color{ucugreen} /root}, and for {\color{ucugreen} username} it will be {\color{ucugreen} /home/username}
+            \item {\color{ucugreen} \textasciitilde /} stands for the directory of current user. For example, for {\color{ucugreen} root} user {\color{ucugreen} \textasciitilde/} will be {\color{ucugreen} /root}, and for {\color{ucugreen} username} it will be {\color{ucugreen} /home/username}
         \end{itemize}
     \end{itemize}
 \end{frame}
 
 \section{Bash Intro}
 \framecard{Bash Intro}
+\framepic{graphics/bash.jpg}{Bash intro}
 
 \begin{frame}{Syntax}
     All default commands (programs) have very similar syntax
@@ -341,8 +354,8 @@ username $ ls -la | wc -l
     \begin{itemize}
         \item Usually people use only \ex{Ctrl + Shift + C, Ctrl + Shift + V, Ctrl + C, Ctrl + Z}, Though there are a lot of other useful hotkeys:
             \begin{itemize}
-                \item \ex{Ctrl + n or arrow-up} -- previous command in the history
-                \item \ex{Ctrl + p or or arrow-down} -- next command in the history 
+                \item \ex{Ctrl + n or arrow-up} -- next command in the history
+                \item \ex{Ctrl + p or or arrow-down} -- previous command in the history
                 \item \ex{Ctrl + c} -- SIGINT signal to the program (SIGnal INTerrupn, usually stops the process)
                 \item \ex{Ctrl + l} -- clear the screen, call \ex{clear} program
                 \item \ex{Ctrl + x; Ctrl + e} -- open the \ex{\$EDITOR} to change the inputted command; if there is no command, just open the \ex{\$EDITOR}
@@ -357,7 +370,8 @@ username $ ls -la | wc -l
 
 
 \section{Permissions}
-\framecard{Permissions}
+% https://cdn.lynda.com/course/797737/797737-637478818535472268-16x9.jpg
+\framepic{graphics/permissions.jpg}{}
 
 \framesplitc{Extensions}{graphics/ext.jpg}{
     \begin{itemize}
@@ -409,6 +423,8 @@ username $ ls -la
         \item Save program text on swap device (a performance enhancer)
     \end{itemize}
 \end{frame}
+% https://i.pinimg.com/originals/7c/cb/0e/7ccb0ef4eb7d6038c13dd7314ab61fb6.jpg
+\framepic{graphics/sudo.jpg}{}
 
 \framesplitc{Sudo}{graphics/sudo_meme.jpg}{
     \begin{itemize}
@@ -592,7 +608,7 @@ username $ echo ${SHELL}
         \item \ex{[-z STRING]} - True of the length if ”STRING” is zero
         \item \ex{[-n STRING]} - True if the length of ”STRING” is non-zero
         \item For strings the most popular cooperators are used
-        \item \ex{[STRING1 == STRING2]} 
+        \item \ex{[[ ]STRING1 == STRING2 ]]} 
         \item the same about <, >, !=, etc
     \end{itemize}
 \end{frame}
