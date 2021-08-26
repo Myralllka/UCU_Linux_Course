@@ -1,6 +1,7 @@
 # Linux Course
 Repo for my course, that I am planning to make and teach =)
 
+
 ### Pre-requirements: 
 tbd
 
