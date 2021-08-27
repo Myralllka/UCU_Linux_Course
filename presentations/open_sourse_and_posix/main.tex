@@ -1,0 +1,254 @@
+\documentclass[usenames,dvipsnames,10pt,aspectratio=169]{beamer} 
+
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{minted}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{geometry}
+\usepackage{listings}
+% \usepackage{showframe}
+% \usepackage{enumitem}
+\usepackage{color, xcolor}
+\usepackage[document]{ragged2e}
+\usetheme{umu}
+
+\usemintedstyle{monokai}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=ucugreyish,
+    filecolor=ucured,
+    urlcolor=ucublue,
+}
+\urlstyle{same}
+
+%%% Some useful commands
+% pdf-friendly newline in links
+\newcommand{\pdfnewline}{\texorpdfstring{\newline}{ }} 
+% Fill the vertical space in a slide (to put text at the bottom)
+\newcommand{\framefill}{\vskip 0pt plus 1 filll}
+
+%%% Enter additional packages below (or above, I can't stop you)! / Jesper
+\renewcommand{\proofname}{\sffamily{Proof}}
+
+% presentation template slides usage
+% \framecard[color (not working)]{textbuf}
+% \framesplit{Header}{picture}{textbuf}
+% \framepic{image}{text}
+% \lstinputlisting[language=Bash, style=codestyle]{code/namespace_ex.sh}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Linux course}
+\subtitle{History and philosophy. \newline Open Source}
+\date[\today]{\small\today}
+\author[Morhunenko Mykola]{Morhunenko Mykola}
+\institute{APPS@UCU}
+
+% \setlist[itemize, 1]{label=$\color{ucublue} \bullet$, leftmargin=-2mm}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Important remarks}
+    \begin{itemize}
+        \item Probably \ex[ucuyellow]{80\%} of provided information can be found in the \href{https://www.youtube.com/watch?v=Eluzi70O-P4}{Revolution OS} film
+        \item Firstly I watch this film in the tenth year at school, and was so inspired, that from that moment I try to do all my best to develop the Open source community near me, especially in the UCU
+        \item I hope you will enjoy it as much as I do every time when I watching it
+        \item If English is a little bit hard for you, i can recommend only \href{https://www.youtube.com/watch?v=n1F_MfLRlX0}{this} Russian translation, all other are \ex[ucured]{very} bad
+        \item If you see any mistakes just let me know in the Issues, please. I am not a system administrator, just a software engineer (and a little bit geek)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\contentsname}
+\setbeamercolor{background canvas}{bg=ucugrey}
+\tableofcontents
+\end{frame}
+
+\section{Open source}
+
+\begin{frame}{Operating system}
+    \begin{itemize}
+        \item Let us start from the very important facts, useful for the whole course and this lecture especially
+        \item \textbf{Operating system} - on the very high level - batch of programs that are communicating with each other and with user
+        \item \textbf{OS kernel} - one of programs of the OS, that communicate between applications and hardware
+        \item OS itself do nothing - just waits for request from other programs, to get data from memory (disk management), execute or stop the program (memory management, task management) to print something on the screen or connect to the Internet (communication management) etc.
+        \item Linux stands for the name of the kernel, not OS. (I use Arch linux btw)
+        \item To the end of this lecture you supposed to differentiate what is what
+    \end{itemize}
+\end{frame}
+
+\framesplitc{Program code}{graphics/code.png}{
+    \begin{itemize}
+        \item Computers are very \textbf{stupid} - they can do only what programmers wrote them to do, understand only so called \ex{machine code} -- sequence of bytes
+        \item People started creating different \ex{computer languages} because it's hard to write all instructions for the computer using just two digits
+        \item \textbf{Compiler} - a program that process the text written on the specific \ex{programming language}, and produces a \ex{machine code}
+    \end{itemize}
+    \tiny{\href{https://dectechcom.wordpress.com/2019/01/15/source-code-vs-object-code/}{img source}}
+}
+
+\begin{frame}{Proprietary software}
+    \begin{itemize}
+        \item \ex[ucured]{Proprietary software} is any software that is copyrighted and bears limits against use, distribution and modification that are imposed by its publisher, vendor or developer. 
+        \item \ex[ucured]{Proprietary software} remains the property of its owner/creator and is used by end-users/organizations under predefined conditions.
+        \item Pros (for company):
+            \begin{itemize}
+                \item nobody can see your sours code with a lot of mistakes
+                \item you can earn money from the software \ex{distribution}, from \ex{support}. new versions, \ex{modifications} and patches
+                \item full control of the developing process
+            \end{itemize}
+        \item Cons (for company):
+            \begin{itemize}
+                \item expensive informational security
+                \item slow developing 
+                \item reverse-engineering took a lot of time, so the new version of program can be already developed and distributed
+            \end{itemize}
+        \item \ex[ucuorange]{Microsoft} was pioneers of the proprietary software model
+    \end{itemize}
+\end{frame}
+
+\framepic{graphics/opnsrc.png}{\vspace{-1.5cm} Open source \newline philosophy}
+\begin{frame}{Open source}
+    \begin{itemize}
+        \item \textbf{Open Source} - is a way for people to collaborate on software, that simplify all bureaucracy with buying and modifying applications
+        \item It is a sacrification of intellectual property, and step forward to the collaborating, community
+        \item The idea of what is now called Open Source was born with the start of computers. in the 70th-80th people started closing their software
+        \item The well-known story: \textbf{Richard Stallman} was working on his project in AI sphere, and he found a bug in one of programs he used. But the company that owned that code couldn't let him fix it up, even though it wold have been their advantage to do so
+        \item It soured him on whole idea of commercial software
+        \item As an \ex{Operating systems developer} he decided to develop another OS and as a author \ex{encourage everyone to share it}, create a new community
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Open source}
+    \begin{itemize}
+        \item Free software \ex{does have an author, copyright and a license}, it is not \ex{public domain}
+        \item If it was, somebody else would be able to make a little bit of changes and turn it into a proprietary software
+        \item To prevent that, \ex{copyleft} technique was used
+        \item It is the flipped \ex[ucured]{copyright} - authors gives permissions to redistribute copies, even change it, BUT \ex{under the same license}
+        \item \ex{GNU General Public Licence} was introduced to fit all that requirements
+        \item \href{https://www.gnu.org/licenses/gpl-3.0.en.html}{Here} is the last one, v3.0
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Free Software}
+    \begin{itemize}
+        \item In the term \ex{Free software} free refers to price, but to \ex{freedom}
+        \item Without freedom community is impossible, it will be divided and dominated by somebody
+        \item Free software is a social movement, not a development model
+        \item It supports \ex{four main freedoms}
+        \item \ex[ucuyellow]{The freedom to run the program for any purpose}
+        \item \ex[ucuyellow]{The freedom to study how the program works, and change it}
+        \item \ex[ucuyellow]{The freedom to redistribute and make copies}
+        \item \ex[ucuyellow]{The freedom to improve the program, and release your improvements}
+    \end{itemize} 
+\end{frame}
+
+\section{GNU}
+\framepic{graphics/gnu.png}{GNU}
+
+\begin{frame}{GNU}
+    \begin{itemize}
+        \item Stallman created legal, philosophical and technological (GNU) foundation for the Free Software movement, and for the Open Source in general
+        \item So here we go: in January 1984 he began a project called GNU (for Gnu's Not Unix), complete Unix-compatible OS
+        \item He planed to write from scratch a kernel plus all the utilities needed to write and run \ex{C programs}: editor, shell, C compiler linker, assembler and hundreds of other
+        \item \href{https://www.oreilly.com/openbook/freedom/ch07.html}{Full text} with comments can be found in this book
+    \end{itemize}    
+\end{frame}
+
+\begin{frame}{GNU}
+    \begin{itemize}
+        \item As I mentioned before, \ex{OS} - just a batch of programs. So Stallman started to write replacements for each program one by one, and other people started to join him
+        \item By 1991 they replaced almost all programs from the Unix
+        \item GNU software was in wide use on great many variants of Unix...
+        \item But there was still no free kernel
+        \item The kernel happened to be the last things they started to do
+        \item But that is where Linux Torvalds came along
+    \end{itemize}
+\end{frame}
+
+\section{Linux}
+\framepic{graphics/linux.jpg}{\ex[ucugrey2]{Linux}}
+
+\begin{frame}{Linux}
+    \begin{itemize}
+        \item \ex{Linux} -- the \ex{kernel} of operating system GNU
+        \item \ex[ucuorange]{Linux Torvalds} \ex{alone} developed a kernel, and got it working faster, then GNU team got theirs working
+        \item \ex{1991 year, Linux v0.01, 1 user}
+        \item The initial goal of \ex{Linus} was to be able to run a similar environment on his computer that he used to at the university, but there were nothing suitable
+        \item Good for us, Linus share the belief and philosophy of Free software. But he didn't make the kernel for GNU project, he just released it, and people from outside the GNU project could put together GNU and Linux, so that is how the new operating system becomes really independent from Unix
+        \item \ex{1992 year, Linux v0.96, 1000 users}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Linux}
+    \begin{itemize}
+        \item From the very beginning, Linux was much more faster, then alternatives
+        \item \ex{Richard Stallman} is a little upset, that as for 2001 \ex[ucuorange]{10 mln of people} was using the \ex{GNU/Linux} os, but call is just \ex{Linux}. As for today we have about \ex{35 mln of people} using GNU/Linux on the desktops, and more that \ex{1.7 bln} are using \ex{Android} (yes, Android is Linux-based OS), plus 93\% of web servers (\href{https://news.netcraft.com/archives/category/web-server-survey/}{source}). I think he is even more upset now...
+        \item Back to history -- without the application nothing can become popular. The Internet was that application for the Linux
+        \item \ex{1993 year, Linux v0.99, 20'000 users}
+        \item 1993 -- \ex[ucuorange]{Apache web server} project got started. Apache is the the most popular web server from 1996 till 2020. For more then decade more than half of all websites were on it (now only 26\%, and 35\% on \ex{nginx}, both are open-source)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Linux}
+    \begin{itemize}
+        \item 
+    \end{itemize}
+\end{frame}
+
+\section{POSIX}
+\framecard{POSIX}
+
+\begin{frame}{POSIX}
+    \begin{itemize}
+        \item POSIX - the Portable Operating System Interface, family of standards specified by \href{https://www.ieee.org/}{IEEE} CS society
+        \item It defines the API (Application Programming Interface) along with command line shells and utility interfaces
+        \item It guarantee the compatibility with different variants of Unix and other operation systems, so called \ex{POISx systems}
+        \item To clear it a little bit, POSIX itself is not an OS, just set of API's and some rules, some standardised way of communication with the OS
+        \item But why community require any standard? 
+        \item Usually you are not working on the same OS whole your life, for example for XILINX FPGA you need PetaLinux, for Raspberry pi - Raspbian is the best (as far as the are talking), in different huge companies Ubuntu, OpenSuse are popular
+        \item It will be much more challenging, to learn new API not only for the utilities, but also for the OS, won't it?
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{POSIX}
+    \begin{itemize}
+        \item The POSIX standard was released in 1988, the last reduction date is 2017
+        \item It is divided into
+        \begin{itemize}
+            \item \textbf{Base Definition Volume:} General terms, concepts, and interfaces.
+            \item \textbf{Systems Interfaces Volume:} Definitions of system service functions and subroutines. Also, includes portability, error handling and error recovery.
+            \item \textbf{Shell and Utilities Volume:} Definition of interfaces of any application to command shells and common utility programs.
+            \item \textbf{Rationale Volume:} Contains information and history about added or discarded features and the reasonings of the decisions.
+        \end{itemize}
+        \item The standard doesn’t cover graphical interfaces, database interfaces, object/binary code portability, system configurations, I/O considerations or resource availability.
+        \item \ex[ucured]{POSIX doesn't mean UNIX systems.} Non-UNIX systems can be POSIX-compliant e.g. QNX, Haiku
+    \end{itemize}
+\end{frame}
+
+\section{Business}
+\framepic{graphics/money.png}{\vspace{-3cm}\ex[ucugrey]{How to make money on Open Source?}}
+\begin{frame}{Business}
+    \begin{itemize}
+        \item From the very beginning Stallman had an idea, that there is a room in Free software, where business to be done
+        \item Support is one of the possible ways to earn money on people, who use your software
+        \item With proprietary software you have no choice whom to chose - the distributor... but with free software there is a free market, and consumers can always choose the better support
+        \item \ex[ucuorange]{RadHat} was the best-known Linux distributing and supporting company (nuw part of \ex[ucuorange]{IBM}
+    \end{itemize}
+\end{frame}
+
+\section{Sources}
+\framecard{Sources}
+\begin{frame}{Sources}
+    \begin{itemize}
+        \item \href{https://hackernoon.com/untouched-posix-5k202dwk}{hackernoon, Linxu, Unix, Posix?}
+        \item \href{https://pubs.opengroup.org/onlinepubs/9699919799/}{IEEE Opengroup}
+        \item \href{https://www.techopedia.com/}{Techpedia}
+        \item \href{https://docs.google.com/presentation/d/e/2PACX-1vS6kqNkHhNC_wJHbxYyyQ5jEJpwHrJpLXyvGB-qbL283JTaMu5u0vgQqhqzHlXmrkcAbzTLXZ-ssrXR/pub?start=false&loop=false&delayms=3000}{Andrew Sultanov. Open Source world}
+    \end{itemize}
+\end{frame}
+
+\end{document}

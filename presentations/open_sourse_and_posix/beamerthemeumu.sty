@@ -1,0 +1,146 @@
+\mode<presentation>
+
+% comment/uncomment this line to enable/disable debug mode
+%\newcommand*{\DEBUG}{}
+
+% Requirement
+\RequirePackage{xcolor}	% colors
+\RequirePackage{tikz}	% drawing 
+\RequirePackage{soul} 	% text highlighting
+\RequirePackage{geometry}
+
+% in debug mode, show the boxes around the text
+\ifdefined\DEBUG
+\usepackage[absolute,overlay,showboxes]{textpos}
+\else
+\usepackage[absolute,overlay]{textpos}
+\fi
+
+% Settings
+\usefonttheme[onlymath]{serif} %För seriferad table of contents
+\useinnertheme{umu}
+\useoutertheme{umu}
+\usecolortheme{umu}
+\usefonttheme{umu}
+
+% Remove navigation symbols
+\setbeamertemplate{navigation symbols}{}
+% Squared blocks
+\setbeamertemplate{blocks}[rounded=false] 
+
+% Table of contents (outline) styling
+\setbeamertemplate{section in toc}[ball numbered]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%										%%%%%
+%%%%%			~BONUS COMMANDS~			%%%%%
+%%%%%										%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% See the provided main.tex template for a tutorial
+% on how to use \framecard and \framepic.
+
+%%%%%										%%%%%
+%%%%%	~Frame with huge centered text~		%%%%%
+%%%%%										%%%%%
+\newcommand{\framecard}[2][ucuorange]{
+    {\setbeamercolor{background canvas}{bg=#1}%
+      \begin{frame}[plain]%
+        \vfill%
+        \begin{center}%
+          {\color{white}\Huge\textbf{%
+            {#2}%
+          }}%
+        \end{center}%
+        \vfill%
+      \end{frame}%
+  }
+}
+
+%%%%%
+%%%%%
+%%%%%
+
+\newcommand{\ex}[2][ucugreen]{
+    {\color{#1} #2}
+}
+%%%%%
+%%%%%
+%%%%%
+\newcommand{\exshell}[3]{
+    {
+        \begin{lstlisting}[language=Bash, style=shellstyle]
+        
+        \end{lstlisting}
+    }
+}
+%%%%%       					        %%%%%
+%%%%%       	~Splited frame~	        %%%%%
+%%%%%       					        %%%%%
+
+\newcommand{\framesplit}[3]{
+    {
+       \begin{frame}{#1}
+            \begin{columns}[t, totalwidth=1.02\textwidth]
+                \begin{column}{0.45\linewidth}
+                    #3
+                \end{column}
+        
+                \begin{column}{0.48\linewidth}
+                    \begin{center}
+                        \includegraphics[width=1\textwidth]{#2}
+                    \end{center}
+                \end{column}
+            \end{columns}
+        \end{frame}
+    }
+}
+
+%%%%%       					                %%%%%
+%%%%%       	~Splited colored frame~        %%%%%
+%%%%%       					                %%%%%
+
+\newcommand{\framesplitc}[3]{
+    {
+         \usebackgroundtemplate{
+            \tikz[overlay,remember picture] \node[opacity=1, at=(current page.center)] {
+            \includegraphics[height=\paperheight]{graphics/fg_split_v.png}};
+        }
+      \framesplit{#1}{#2}{#3}
+    }
+}
+
+%%%%%										%%%%%
+%%%%%	~Frame with background image~		%%%%%
+%%%%%										%%%%%
+\newcommand{\framepic}[3][1]{
+  {
+    \usebackgroundtemplate{
+    \tikz[overlay,remember picture] \node[opacity=#1, at=(current page.center)] {
+      \includegraphics[height=\paperheight]{#2}};
+    }
+    {
+        \begin{frame}[plain]
+            \huge{#3}
+        \end{frame}
+    }
+  }
+}
+
+%%%%%										%%%%%
+%%%%%	~Marker for text highlighting ~		%%%%%
+%%%%%										%%%%%
+
+% beamer/soul compatibility fix
+\makeatletter
+\newcommand\SoulColor{%
+  \let\set@color\beamerorig@set@color
+  \let\reset@color\beamerorig@reset@color}
+\makeatother
+
+\newcommand{\marker}[2][ucuorange]{{\SoulColor\sethlcolor{#1}\hl{#2}}}
+
+\mode<all>
+
+  
