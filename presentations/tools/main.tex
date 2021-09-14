@@ -55,42 +55,135 @@
 \end{frame}
 
 \begin{frame}{\contentsname}
-\setbeamercolor{background canvas}{bg=ucugrey}
-\tableofcontents
+    \setbeamercolor{background canvas}{bg=ucugrey}
+    \tableofcontents
+\end{frame}
+
+\begin{frame}
+    \frametitle{Intro}
+    \begin{itemize}
+        \item In this presentation, we will overview some tools that are available on all Linux distributions
+        \item All of them have a high barrier to entry as Linux itself, but when you are there - you won't imagine your life without that tools
+        \item For example, it's not a one-day task to learn how to move around your system, but after few months of practice of working with CLI, GUI for you will be as slow as a turtle is slow in comparison with a rabbit
+    \end{itemize}
 \end{frame}
 
 \section{Vim}
-\framecard{Vim}
+\framepic{graphics/vim_w.png}{}
 \framesplitc{Vi}{graphics/vim_meme.png}{
     \begin{itemize}
         \item So let's start with the text editor
         \item You have heard about \ex{vim}, haven't you?
         \item But let's start with \ex{vi}
-        \item Vi is a part of 
+        \item Vi is a part of POSIX
+        \item It's totally CLI editor (forget that you have a mous)
+        \item There are shortcuts for everything
+        \item If there is no, you can create them for yourself
+        \item Every good enough 21'st century editor has an extension for a \ex{vi mode}
+        \item But almost nobody uses it - only on some low memory and low powerful machines. So we move to Vim
     \end{itemize}
 }
 
+\begin{frame}{Vim}
+    \begin{itemize}
+        \item \ex{Vim} stands for 'Vi IMproved'
+        \item According to Linux Journal survey, 38\% (in average for 2009-2018) of respondents vote for Vim as the best editor
+        \item It has much more features, than \ex{vi}, including more commands, scriptable syntax highlighting and extensions, graphical interface (and a mous support, but don't use it)
+        \item As \ex{vi}, it has six modes - normal, visual, insert, command-line, select, and ex (yes, not only NORMAL and INSERT)
+        \item Because of a huge community (38\% of world's best geeks) \ex{vim} became a powerful IDE with thousands of extensions (syntax highlight, autocompletion, spell checking, project tree etc)
+        \item The most powerful tool of \ex{vim} is inside - its shortcuts. You can make your work dozens of times faster without a touchpad and a mous
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{NeoVim}
+    \begin{itemize}
+        \item Neovim is just a fork of Vim with some Python extensions 
+        \item And cool logo =)
+        \item Also Neovim is a community-driven text editor, while Vim is a project of only one person - \ex{Bram Moolenaar}
+        \item One 'expert' on reddit wrote that:
+        
+                \hspace*{1cm} "Neovim exists to convince Bram to push new features to Vim"
+            
+            And I mostly agree with him.
+    \end{itemize}    
+\end{frame}
 
 
+\section{Tmux}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[keepaspectratio,width=\paperwidth/2]{graphics/Tmux_logo.png}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
 
-% \section{Tmux}
-% \framecard{Tmux}
-% \begin{frame}{Tmux}
+\begin{frame}{Tmux}
+    \begin{itemize}
+        \item \ex{TMUX} stands for Terminal MUltipleXer
+        \item There are some other (screen, Konsole, etc), but they are not so good as TMUX
+        \item Why do we need it?
+        \item As you continue your practice in CLI, you can notice that it's not enough to have only one terminal window
+        \item With this much multitasking going on, we want to have more terminals. So people create a \ex{terminal multiplexor}
+        \item What TMUX can do?
+        \begin{itemize}
+            \item Not only split and stack tab, but aslo make tabs
+            \item Continue running programs in background
+            \item With extensions you can write layout files in \ex{.yml} format
+            \item Search throgh terminal output and move around with Vim shortcuts
+            \item Other interesting stuff
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
     
-% \end{frame}
+\end{frame}
 
-% \section{}
-% \framecard{}
-% \begin{frame}{Package managers}
+
+\section{Ranger}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[keepaspectratio,width=\paperwidth/4]{graphics/ra.png}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
+\begin{frame}{Ranger}
     
-% \end{frame}
+\end{frame}
 
-% \section{Sources}
-% \framecard{Sources}
-% \begin{frame}{Sources}
-%     \begin{itemize}
-%         \item it
-%     \end{itemize}
-% \end{frame}
+\section{i3}
+\framepic{graphics/i3wm.png}{i3wm}
+\begin{frame}{i3}
+    
+\end{frame}
+
+\section{Package managers}
+\framepic{graphics/pacman.jpg}{Package 
+
+managers}
+\begin{frame}{Package managers}
+    
+\end{frame}
+
+
+
+\section{Sources}
+\framecard{Sources}
+\begin{frame}{Sources}
+    \begin{itemize}
+        \item \href{https://www.linuxjournal.com/node/1203742}{Linux journal}
+        \item \href{https://opensource.com/article/21/5/linux-terminal-multiplexer}{Termianl Multiplexers}
+        \item \href{}{}
+        
+    \end{itemize}
+\end{frame}
 
 \end{document}
