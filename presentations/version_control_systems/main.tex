@@ -1,0 +1,73 @@
+\documentclass[usenames,dvipsnames,10pt,aspectratio=169]{beamer} 
+
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{minted}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{geometry}
+\usepackage{listings}
+% \usepackage{showframe}
+\usepackage{enumitem}
+\usepackage{color, xcolor}
+\usepackage[document]{ragged2e}
+\usetheme{umu}
+
+\usemintedstyle{monokai}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=ucugreyish,
+    filecolor=ucured,
+    urlcolor=ucublue,
+}
+\urlstyle{same}
+
+%%% Some useful commands
+% pdf-friendly newline in links
+\newcommand{\pdfnewline}{\texorpdfstring{\newline}{ }} 
+% Fill the vertical space in a slide (to put text at the bottom)
+\newcommand{\framefill}{\vskip 0pt plus 1 filll}
+
+%%% Enter additional packages below (or above, I can't stop you)! / Jesper
+\renewcommand{\proofname}{\sffamily{Proof}}
+
+% presentation template slides usage
+% \framecard[color (not working)]{textbuf}
+% \framesplit{Header}{picture}{textbuf}
+% \framepic{image}{text}
+% \lstinputlisting[language=Bash, style=codestyle]{code/namespace_ex.sh}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Linux course}
+\subtitle{Version control systems}
+\date[\today]{\small\today}
+\author[Morhunenko Mykola]{Morhunenko Mykola}
+\institute{APPS@UCU}
+
+\setlist[itemize, 1]{label=$\color{ucublue} \bullet$, leftmargin=-2mm}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{\contentsname}
+    \setbeamercolor{background canvas}{bg=ucugrey}
+    \tableofcontents
+\end{frame}
+
+
+
+
+\section{Sources}
+\framecard{Sources}
+\begin{frame}{Sources}
+    \begin{itemize}
+       \item a
+    \end{itemize}
+\end{frame}
+
+\end{document}
