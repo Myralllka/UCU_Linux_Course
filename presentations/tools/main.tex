@@ -194,18 +194,108 @@
 \framepic{graphics/i3wm.png}{i3wm}
 \begin{frame}{i3}
     \begin{itemize}
-        \item 
+        \item We will talk more about graphics in one of the folowing lectures
+        \item Short explain: there are three main items in every GUI on your pc:
+        \begin{itemize}
+            \item \ex{DM} - Display manager
+            \item \ex{WM} - Window manager
+            \item \ex{DE} - Desctop envieronment
+        \end{itemize}
+        \item As you can see, \ex{i3wm} is a window manager
+        \item It is quite similar to everything above in this lecture: vim shortcuts and tmux approach (but for GUI applications)
+        \item In \ex{i3} we also have windows and panes, but also \ex{workspaces}
+        \item All settings located in one file - \ex{~/.config/i3/config}
+        \item As far as there is no DE for i3, you should install everything for yourself (all applets and programs, top/bottom bar, menu)
     \end{itemize}
 \end{frame}
+
+\framesplit{i3wm example}{graphics/myi3.jpg}{
+    \begin{itemize}
+        \item Here you can see browser and two terminal emulators opened
+        \item Also \ex{polybar} with it's applets used as a top and bottom bars
+        \item \ex{dmenu} used as a menu
+        \item All windows located on a same \ex{z} level, new windows move previous one so all opened windows are visible (as in \ex{TMUX})
+        \item It is called \ex{tiling window manager} and I recommend it because it is simpler and faster, then all other types
+        \item For more info you can see \ex{man i3}
+    \end{itemize}
+}
 
 \section{Package managers}
 \framepic{graphics/pacman.jpg}{Package 
 
 managers}
 \begin{frame}{Package managers}
-    
+    \begin{itemize}
+        \item This is last but not least topic for today
+        \item Any \ex{OS} is just a batch of programs
+        \item And \ex{Package manager} is a tool for installing those programs (also upgrading, configuring, removing, resolving dependencies)
+        \item There are few core new concepts, that we need to understand how it works
+    \end{itemize}
 \end{frame}
 
+
+\framesplitc{Mirrors}{graphics/mirror.png}{
+    \begin{itemize}
+        \item \ex{Mirror server (mirror)} - servers that located (phisically) in different locations, but contain the same data
+        \item For example: You want to install something, but your internet connection is too slow (or something happend to server at the US), so you dounload package for installation from server located in Germany (or other location)
+        \item See your current list of mirrors (Arch-based): \ex{vim /etc/pacman.d/mirrorlist}
+        \item Sort them by speed: \ex{sudo fetchmirrors -c UA}
+    \end{itemize}
+}
+
+\begin{frame}{Dependencies}
+    \begin{itemize}
+        \item Another core concept called \ex{dependency}
+        \item When you write any program, you use some exsiting libraries. So your program \ex{depend on} that libraries/tools
+        \item All that libraries have its versions
+        \item As far as people change staff in their programs, API can be different from one to other version
+        \item Good package managers can resolve all that dependencies easily (\ex{debian's apt can't})
+        \item There are \ex{immidiet} (your program use it) and \ex{transitive} (your dependencies use it) dependencies
+    \end{itemize}
+\end{frame}
+
+\framesplitc{Dependencies}{graphics/dependency.png}{
+    \begin{itemize}
+        \item A lot of programming languages has it's own package managers (\ex{pip} for Python, \ex{cargo} for Rust)
+        \item Almost every Linux-based OS has it's own package manager 
+        \item All packages are \ex{erchives} with \ex{program} itself and \ex{metadata} - software's name, description of its purpose, version number, vendor, checksum, list of dependencies
+    \end{itemize}
+}
+
+\framesplit{Repositories}{graphics/repo.png}{
+    \begin{itemize}
+        \item One more important thing - repo
+        \item There are official and side repositories
+        \item Package manager supports Official repos by default, but to use some side repos, you should add it manually
+        \item Defferent PacManagers have different approaches for managing repos
+        \item \ex{Apt} repos are defined in \ex{/etc/apt/sources.list} and in \ex{/etc/apt/sources.list.d} directory
+    \end{itemize}
+}
+
+\framesplit{Pacman}{graphics/pacman_archlinux.jpg}{
+    \begin{itemize}
+        \item Why we \ex{love}\ex[ucublue]{Arch Linux} so much? Mostly because of this guy =)
+        \item \ex{Pacman} has all settings in \ex{/etc/pacman.conf} file
+        \item Main repositories are:
+        \begin{itemize}
+            \item \ex{core} (main OS elements)
+            \item \ex{extra} (not main, but important OS elements as GUI)
+            \item \ex{community} (packages that have been adopted by Trusted Users from AUR)
+            \item \ex{multilib} (32-bit software and libraries for old staff)
+            \item \ex{AUR} (Arch User Repository, the best bigger Linux repo)
+        \end{itemize}
+    \end{itemize}
+}
+
+\begin{frame}{Releases}
+    \begin{itemize}
+        \item \ex{Release system} is the concept of frequently delivering updates to applications
+        \item It usually depend on the OS (but also on PacManagers)
+        \item \ex[ucuorange]{Rolling Release}. There is no such thing as \ex{Arch 1}, \ex{Gentoo 2} or \ex{Void Linux 3}. Thats because these OS's have Rolling Release model - it's repos contain all (not always stable) new programs, but also previous versions of all packages. Good for people who like test new programs or languages, real geeks. Often updates require
+        \item \ex[ucuorange]{Stable Release}. Properly tested version of the product is released, sometimes half a year after it first appears. For example, \ex{python 3.9} was in \ex{pacman} two days after official release, but in \ex{apt} - more then half a year after. Good for average users, easy to maintain (updates are only every week/month)
+        \item \ex[ucuorange]{LTS} - Long term support. For this system package manager \ex{freeze} some special versions of all libraries and programs, and only \ex{minor bug or security fixes} are released for a really long term (sometimes up to decades). Good for corporations, big companies. If something is not working - just reinstall the system as it was at the very beginning, and everything will work again. The easiest to maintain
+    \end{itemize}
+\end{frame}
 
 
 \section{Sources}
@@ -218,6 +308,10 @@ managers}
         \item \href{https://man7.org/linux/man-pages/man1/tmux.1.html}{Tmux Linux man page}
         \item \href{https://fman.io/blog/dual-pane-file-manager-history/}{Dual pane file manager history}
         \item \href{https://github.com/ranger/ranger}{Ranger github page}
+        \item \href{https://en.wikipedia.org/wiki/Package_manager}{Wiki package managers}
+        \item \href{https://wiki.archlinux.org/title/pacman}{Pacman ArchWiki}
+        \item \href{https://itsfoss.com/adding-external-repositories-ubuntu/}{External Repositories Ubuntu}
+        \item \href{https://en.wikipedia.org/wiki/Rolling_release}{Releases Wiki}
     \end{itemize}
 \end{frame}
 
