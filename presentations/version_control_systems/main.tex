@@ -7,6 +7,8 @@
 \usepackage{wrapfig}
 \usepackage{geometry}
 \usepackage{listings}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
 % \usepackage{showframe}
 \usepackage{enumitem}
 \usepackage{color, xcolor}
@@ -32,6 +34,28 @@
 
 %%% Enter additional packages below (or above, I can't stop you)! / Jesper
 \renewcommand{\proofname}{\sffamily{Proof}}
+
+% custom fullpage image:
+% { % all template changes are local to this group.
+%     \setbeamertemplate{navigation symbols}{}
+%     \begin{frame}<article:0>[plain]
+%         \begin{tikzpicture}[remember picture,overlay]
+%             \node[at=(current page.center)] {
+%                 \includegraphics[width=\paperwidth,height=\paperheight]{graphics/version-control.png}
+%             };
+%         \end{tikzpicture}
+%      \end{frame}
+% }
+
+% custom shell example inplace
+% [fragile] frame
+% \begin{lstlisting}[language=Bash, style=shellstyle] 
+%     username $ echo a
+% \end{lstlisting}
+
+% custom code file
+% [fragile] frame
+% \lstinputlisting[language=Python, style=codestyle]{code/shebang_ex.py}
 
 % presentation template slides usage
 % \framecard[color (not working)]{textbuf}
@@ -59,14 +83,181 @@
     \tableofcontents
 \end{frame}
 
+\section{Version control}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[width=\paperwidth,height=\paperheight]{graphics/version-control.png}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
 
+\begin{frame}{Version control systems}    
+    \begin{itemize}
+        \item Sooner or later, during the development process, it is necessary to check, 
+        what was before, how it became broken
+        \item Maybe it's easier to use \ex{Ctrl+z}, but it's impossible to check what was three weeks 
+        ago with any keybinding
+        \item So in 1972 people started to think about \ex{version control systems}
+        \item Firstly, it had been just a tool for saving a history of binary files, but in 1977 
+        the first \ex{source code control system} was introduced
+        \item The main idea behind - to save the program source code on some checkpoints
+        \ex{(commits)}, add features, develop them leaving trunk untouchable\ex{(branches)}, \ex{merge} new features with a trunk, and release some \ex{tags}
+        \item Since than, the concept itself was developed, and a lot of version control systems have apeared
+    \end{itemize}
+\end{frame}
+
+\section{git}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[keepaspectratio,width=\paperwidth]{graphics/git.jpg}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
+
+\begin{frame}{Linus again...}
+    \begin{itemize}
+        \item \ex{Linux kernel} is a huge project, and it is important to have some source-control management system (SCMs) to maintain it
+        \item From 2002 to 2005 BitKeeper, a proprietary SCMs was used to maintain the project
+        \item At some point (3 April 2005), Linus Torvalds realized, that existing tools are not suitable for Linux development, so in three days he anounced a project and become a self-hosting of \ex{Git} on the next day
+        \item It was totally different SCMs. Linus maintained it for half a year, and Junio Hamano has been the core maintainer since then
+        \item It was open-source, free software, with a very strong safeguards against corruption, either accidental or malicious
+        \item Torvalds sarcastically quipped about the name \ex{Git}, means \ex[ucured]{unpleasant person} in British English
+        \item He said: \ex[ucuyellow]{\textit{"I'm an egotistical bastard, and I name all my projects after myself. First 'Linux', now 'git'."}} =)
+    \end{itemize}
+\end{frame}
+
+\framesplit{What makes Git so good}{graphics/distrib.png}{
+    \begin{itemize}
+        \item Strong support for non-linear development
+        \item Distributed development
+        \item Efficient handling of large projects
+        \item Toolkit-based design
+        \item Pluggable merge strategies
+        \item And more other features
+        \item It's hard to find any statistics, but that is clear - Git is the most popular SCMs of ourdays
+    \end{itemize}
+}
+
+\section{GitHub}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[keepaspectratio,width=\paperwidth]{graphics/github.jpg}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
+
+\framesplitc{Git is not GitHub}{graphics/gitvshub.png}{
+    \begin{itemize}
+        \item \ex{GitHub, Inc} - provifer of internet hosting for software development and version control using git
+        \item It offers all the functionality of \ex{Git} + it`s own features
+        \item Since 2018 - subsidiary of \ex[ucured]{Microsoft}
+        \item \ex[ucured]{Not an Open Source project}, but there is a forum for feature requests...
+        \item As of January 2020, GitHub reports having over 40 million users
+        \item More about it's features after\ex{Git usage} part
+    \end{itemize}
+}
+
+
+\section{GitLab}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[keepaspectratio,width=\paperwidth]{graphics/gitlab.png}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
+\framesplit{Git is not GitHub}{graphics/gitlab-vs-github.jpg}{
+    \begin{itemize}
+        \item First difference - GitLab was created by \ex{Ukrainian} people, in Ukraine =)
+        \item It has deffinitely more features, than\ex{GitHub}, but there is no critical difference
+        \item It is \ex[ucuyellow]{Open Source}, unlike github
+        \item It is possible to have the same repositoru on both servers, and I do it sometimes
+        \item So as for 2021 it's just a question of taste
+    \end{itemize}
+}
+
+\section{Git usage}
+\framecard{GIT USAGE}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[keepaspectratio,width=\paperwidth]{graphics/gitmeme.jpg}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
+
+\begin{frame}[fragile]{Creating a repo}
+    \begin{itemize}
+        \item A \ex{repository} contains all of your project's files and each file's revision history. You can discuss and manage your project's work within the repository.
+        \item \ex{Repository} is NOT a project folder. Repository is s a \textit{data structure that stores metadata for a set of files or directory structure}
+        \item Command to inicialize a repo in your current folder
+        \begin{lstlisting}[language=Bash, style=shellstyle] 
+git init
+\end{lstlisting}
+        \item use \ex{git add} command to cpecify files you want to track, followed by \ex{git commit} - add a cpecifick message to your commit
+        \begin{lstlisting}[language=Bash, style=shellstyle] 
+git add *.sh
+git add .gitignore
+git commit -m "add gitignore file; add scripts for some task" \end{lstlisting}
+        \item How to write correct commit messages is another art, but remember to write meaningdull messages
+        \item So at this point, we have a Git repository in our project directory with tracked files and an initial commit
+    \end{itemize}
+\end{frame}
+
+\framesplitc{Changes to the repo}{graphics/lifecycle.png}{
+    \begin{itemize}
+        \item At this point you have a git\ex{repo}with scripts and some files
+        \item Each file in your working directory can be in one of two states: tracked or untracked
+        \item Tracked files are files that were in the last snapshot, as well as any newly staged files; they can be unmodified, modified, or staged 
+        \item In short, tracked files are files that Git knows about
+        \item Untracked files are everything else
+        \item Use\ex{git status}to check the status of each file in current directory
+        \item Files in a\ex{.gitignore}are ignored by git repo
+    \end{itemize}
+}
+
+
+\begin{frame}[fragile]{Manipulations with repo}
+    \begin{itemize}
+        \item As far as\ex{git}is a\ex{decenralized}system, you already have your repo with all version control features
+        \item But now about the most powerful\ex{git}feature and why we use it -\ex{remote repo}
+        \item You can either\ex{clone}existing repo, or add a\ex{remote}to local one
+        \item 
+    \end{itemize}
+\end{frame}
+
+\section{GitHub features}
 
 
 \section{Sources}
 \framecard{Sources}
 \begin{frame}{Sources}
     \begin{itemize}
-       \item a
+       \item \href{https://en.wikipedia.org/wiki/Comparison_of_version-control_software}{Version control systems comparison}
+       \item \href{https://translatedby.com/you/why-git-is-better-than-x/original/}{Why Git is Better than X}
+       \item \href{https://en.wikipedia.org/wiki/Git}{Git Wiki}
+       \item \href{https://en.wikipedia.org/wiki/GitHub}{GitHub Wiki}
+       \item \href{https://about.gitlab.com/company/history/}{GitLab history}
+       \item \href{https://docs.github.com/en}{GitHub documentation}
+       \item \href{https://git-scm.com/}{Git documentation}
     \end{itemize}
 \end{frame}
 
