@@ -104,7 +104,7 @@
         the first \ex{source code control system} was introduced
         \item The main idea behind - to save the program source code on some checkpoints
         \ex{(commits)}, add features, develop them leaving trunk untouchable\ex{(branches)}, \ex{merge} new features with a trunk, and release some \ex{tags}
-        \item Since than, the concept itself was developed, and a lot of version control systems have apeared
+        \item Since then, the concept itself was developed, and many version control systems have appeared
     \end{itemize}
 \end{frame}
 
@@ -124,11 +124,11 @@
     \begin{itemize}
         \item \ex{Linux kernel} is a huge project, and it is important to have some source-control management system (SCMs) to maintain it
         \item From 2002 to 2005 BitKeeper, a proprietary SCMs was used to maintain the project
-        \item At some point (3 April 2005), Linus Torvalds realized, that existing tools are not suitable for Linux development, so in three days he anounced a project and become a self-hosting of \ex{Git} on the next day
+        \item At some point (3 April 2005), Linus Torvalds realized that existing tools are not suitable for Linux development, so in three days, he announced a project and became a self-hosting of \ex{Git} on the next day
         \item It was totally different SCMs. Linus maintained it for half a year, and Junio Hamano has been the core maintainer since then
         \item It was open-source, free software, with a very strong safeguards against corruption, either accidental or malicious
         \item Torvalds sarcastically quipped about the name \ex{Git}, means \ex[ucured]{unpleasant person} in British English
-        \item He said: \ex[ucuyellow]{\textit{"I'm an egotistical bastard, and I name all my projects after myself. First 'Linux', now 'git'."}} =)
+        \item He said: \ex[ucuyellow]{\textit{"I am an egotistical bastard, and I name all my projects after myself. First 'Linux', now 'git'."}} =)
     \end{itemize}
 \end{frame}
 
@@ -140,7 +140,7 @@
         \item Toolkit-based design
         \item Pluggable merge strategies
         \item And more other features
-        \item It's hard to find any statistics, but that is clear - Git is the most popular SCMs of ourdays
+        \item It's hard to find any statistics, but that is clear - Git is the most popular SCMs of our days
     \end{itemize}
 }
 
@@ -182,10 +182,10 @@
 \framesplit{Git is not GitHub}{graphics/gitlab-vs-github.jpg}{
     \begin{itemize}
         \item First difference - GitLab was created by \ex{Ukrainian} people, in Ukraine =)
-        \item It has deffinitely more features, than\ex{GitHub}, but there is no critical difference
-        \item It is \ex[ucuyellow]{Open Source}, unlike github
-        \item It is possible to have the same repositoru on both servers, and I do it sometimes
-        \item So as for 2021 it's just a question of taste
+        \item It has more features, than\ex{GitHub}, but there is no critical difference
+        \item It is \ex[ucuyellow]{Open Source}, unlike Github
+        \item It is possible to have the same repository on both servers, and I do it sometimes
+        \item So as for 2021, it is just a question of taste
     \end{itemize}
 }
 
@@ -225,9 +225,9 @@ git commit -m "add gitignore file; add scripts for some task" \end{lstlisting}
         \item At this point you have a git\ex{repo}with scripts and some files
         \item Each file in your working directory can be in one of two states: tracked or untracked
         \item Tracked files are files that were in the last snapshot, as well as any newly staged files; they can be unmodified, modified, or staged 
-        \item In short, tracked files are files that Git knows about
+        \item, In short, tracked files are files that Git knows about
         \item Untracked files are everything else
-        \item Use\ex{git status}to check the status of each file in current directory
+        \item Use\ex{git status}to check the status of each file in the current directory
         \item Files in a\ex{.gitignore}are ignored by git repo
     \end{itemize}
 }
@@ -334,13 +334,13 @@ Now it is possible to merge with
     \begin{itemize}
         \item If you use some app stored on \ex{GitHub} and it works with bugs
         \item You have two options - report the bug or fix it and send a bugfix to maintainers
-        \item For the first thing\ex{Issues}could be helpfull (For the second -\ex{Pull requests})
-        \item All github users can create issue on some projects pages, comment it, react on it with some emoji etc
-        \item Issue itself - a conversation starting with user's message, that (for example) he found a bug, and some information about how you got this bug
+        \item For the first thing\ex{Issues}could be helpful (For the second -\ex{Pull requests})
+        \item All GitHub users can create issue on some projects pages, comment it, react on it with some emoji etc
+        \item Issue itself - a conversation-starting with user's message, that (for example) he found a bug, and some information about how you got this bug
         \item Also there can be \ex[ucuorange]{feature request bugs} or even \ex{improvements} or other. There are dozens of such labels
-        \item Often Issues either has a sollution writen as the last message or a pull request that solves the problem
-        \item After that\ex{Issue}can be marked as solved
-        \item \ex{Issues} are part of developement workflow, so it's imortant to keep them as much as keep source code of program itself and it's commit history
+        \item Often Issues either has a solution written as the last message or a pull request that solves the problem
+        \item After that\ex{issue}can be marked as solved
+        \item \ex{Issues} are part of the development workflow, so it's important to keep them as much as keep source code of the program itself, and it's commit history
     \end{itemize}
 \end{frame}
 
@@ -349,23 +349,26 @@ Now it is possible to merge with
         \item A GitHub\ex{fork}is a copy of a repo that sits in your account rather than the account from which you forked
         \item Once you have forked a repo, you own your forked copy
         \item This means that you can edit the contents of your forked repository without impacting the parent repo
-        \item Forked repo can be\ex{detuched}(in theory, but it is not possible for now. By hands, support team can do that) to became an independant project
+        \item Forked repo can be\ex{detuched}(in theory, but it is not possible for now. By hands, the support team can do that) to became an independent project
     \end{itemize}
 }
 
 \framesplitc{Pull request}{graphics/pr.png}{
     \begin{itemize}
-        \item In most cases you don't want strangers to brake all your code, so only few people (\ex{contributors}) have rights for changing the repo
+        \item In most cases, you don't want strangers to break all your code, so only a few people (\ex{contributors}) have right for changing the repo
         \item Instead, they should\ex{fork}, make a new branch, implement some feature and make a \ex{pull request}about merging their work to your project
         \item The same can be done between simple branches (but that is not necessary)
-        \item Sometimes there is a\ex{CONTRIBUTION.md}describing how to make a correct changes with clear commits and acceptable PR message for changes to be merged 
+        \item Sometimes there is a\ex{CONTRIBUTION.md}describing how to make correct changes with clear commits and acceptable PR message for changes to be merged 
     \end{itemize}
 }
 
 \framesplitc{GitHub Actions. CI from GitHub}{graphics/ci.png}{
     \begin{itemize}
-        \item ;
-        
+        \item More advanced usage of GitHub - use it with\ex{GitHub Actions}
+        \item Continuous integration (CI) - the practice of automating the integration of code changes 
+        \item Using this tool, it is easy to test your code for compilation on different compilers, distros, with different configurations, and all of that - automatically 
+        \item There are hundreds of existing\ex{actions}, but it's possible (and quite easy) to make your own
+        \item I totally recommend to use it for lab works and small projects - than it will be easier to use it everywhere
     \end{itemize}
 }
 
@@ -380,6 +383,21 @@ Now it is possible to merge with
      \end{frame}
 }
 
+\begin{frame}{GitHub cli commands}
+    \begin{itemize}
+        \item Starting from 2021 GitHub released it's API and made an amazing tool called \ex{GitHub CLI}!
+        \item They made possible to automate a lot of staff as creating a repo or read issues, make pr etc.
+        \item Some important commands:
+        \item \ex{gh auth login} - authentification
+        \item \ex{gh config set editor <editor>}
+        \item \ex{gh repo create} - create a repo (allow to scip "going to a browser and do some stuff there...")
+        \item \ex{gh pr create} - create a pr from current branch to master
+        \item \ex{gh workflow run}
+    \end{itemize}
+\end{frame}
+
+% \section{Making own version controll system} :TODO
+
 \section{Sources}
 \framecard{Sources}
 \begin{frame}{Sources}
@@ -391,6 +409,8 @@ Now it is possible to merge with
        \item \href{https://about.gitlab.com/company/history/}{GitLab history}
        \item \href{https://docs.github.com/en}{GitHub documentation}
        \item \href{https://git-scm.com/}{Git documentation}
+       \item \href{https://docs.github.com/en/actions/guides/about-continuous-integration}{GitHub CI}
+       \item \href{https://cli.github.com/}{GitHub CLI}
     \end{itemize}
 \end{frame}
 
