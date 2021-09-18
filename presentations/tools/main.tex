@@ -68,8 +68,27 @@
     \end{itemize}
 \end{frame}
 
-\section{Vim}
+\section{Shell}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[keepaspectratio,width=\paperwidth]{graphics/shell.jpg}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
 
+\begin{frame}{The most important tool}
+    \begin{itemize}
+        \item l
+    \end{itemize}
+\end{frame}
+
+
+
+\section{Vim}
 \framepic{graphics/vim_w.png}{}
 \framesplitc{Vi}{graphics/vim_meme.png}{
     \begin{itemize}
@@ -91,8 +110,8 @@
         \item According to Linux Journal survey, 38\% (in average for 2009-2018) of respondents vote for vim as the best editor
         \item It has much more features, than \ex{vi}, including more commands, scriptable syntax highlighting and extensions, graphical interface (and a mouse support, but don't use it)
         \item As \ex{vi}, it has six modes - normal, visual, insert, command-line, select, and ex (yes, not only NORMAL and INSERT)
-        \item Because of a huge community (38\% of world's best geeks) \ex{vim} became a powerful IDE with thousands of extensions (syntax highlight, autocompletion, spell checking, project tree etc)
-        \item The most powerful tool of \ex{vim} is inside - its shortcuts. You can make your work dozens of times faster without a touchpad and a mous
+        \item Because of a huge community (38\% of world's best geeks) \ex{vim} became a powerful IDE with thousands of extensions (syntax highlight, autocompletion, spell checking, project tree etc.)
+        \item The most powerful tool of \ex{vim} is inside - its shortcuts. You can make your work dozens of times faster without a touchpad and a mouse
     \end{itemize}
 \end{frame}
 
@@ -212,10 +231,10 @@
 \framesplit{i3wm example}{graphics/myi3.jpg}{
     \begin{itemize}
         \item Here you can see browser and two terminal emulators opened
-        \item Also \ex{polybar} with it's applets used as a top and bottom bars
+        \item Also \ex{polybar} with it's applets used as top and bottom bars
         \item \ex{dmenu} used as a menu
-        \item All windows located on a same \ex{z} level, new windows move previous one so all opened windows are visible (as in \ex{TMUX})
-        \item It is called \ex{tiling window manager} and I recommend it because it is simpler and faster, then all other types
+        \item All windows located on a same \ex{z} level, new windows move previous one, so all opened windows are visible (as in \ex{TMUX})
+        \item It is called \ex{tiling window manager}, and I recommend it because it is simpler and faster than all other types
         \item For more info you can see \ex{man i3}
     \end{itemize}
 }
@@ -290,10 +309,10 @@ managers}
 \begin{frame}{Releases}
     \begin{itemize}
         \item \ex{Release system} is the concept of frequently delivering updates to applications
-        \item It usually depend on the OS (but also on PacManagers)
-        \item \ex[ucuorange]{Rolling Release}. There is no such thing as \ex{Arch 1}, \ex{Gentoo 2} or \ex{Void Linux 3}. Thats because these OS's have Rolling Release model - it's repos contain all (not always stable) new programs, but also previous versions of all packages. Good for people who like test new programs or languages, real geeks. Often updates require
-        \item \ex[ucuorange]{Stable Release}. Properly tested version of the product is released, sometimes half a year after it first appears. For example, \ex{python 3.9} was in \ex{pacman} two days after official release, but in \ex{apt} - more then half a year after. Good for average users, easy to maintain (updates are only every week/month)
-        \item \ex[ucuorange]{LTS} - Long term support. For this system package manager \ex{freeze} some special versions of all libraries and programs, and only \ex{minor bug or security fixes} are released for a really long term (sometimes up to decades). Good for corporations, big companies. If something is not working - just reinstall the system as it was at the very beginning, and everything will work again. The easiest to maintain
+        \item It usually depends on the OS (but also on PacManagers)
+        \item \ex[ucuorange]{Rolling Release}. There is no such thing as \ex{Arch 1}, \ex{Gentoo 2} or \ex{Void Linux 3}. That's because these OS's have a Rolling Release model - its repos contain all (not always stable) new programs, but also previous versions of all packages. Good for people who like to test new programs or languages, real geeks. Often updates require
+        \item \ex[ucuorange]{Stable Release}. A properly tested version of the product is released, sometimes half a year after it first appears. For example, \ex{python 3.9} was in \ex{pacman} two days after official release, but in \ex{apt} - more then half a year after. Good for average users, easy to maintain (updates are only every week/month)
+        \item \ex[ucuorange]{LTS} - Long term support. For this system, package manager \ex{freeze} some special versions of all libraries and programs, and only \ex{minor bug or security fixes} are released for a long term (sometimes up to decades). Good for corporations, big companies. If something is not working - reinstall the system as it was at the very beginning, and everything will work again. The easiest to maintain
     \end{itemize}
 \end{frame}
 
