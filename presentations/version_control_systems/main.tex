@@ -7,8 +7,6 @@
 \usepackage{wrapfig}
 \usepackage{geometry}
 \usepackage{listings}
-\usepackage{hyperref}
-\usepackage[utf8]{inputenc}
 % \usepackage{showframe}
 \usepackage{enumitem}
 \usepackage{color, xcolor}
@@ -240,12 +238,147 @@ git commit -m "add gitignore file; add scripts for some task" \end{lstlisting}
         \item As far as\ex{git}is a\ex{decenralized}system, you already have your repo with all version control features
         \item But now about the most powerful\ex{git}feature and why we use it -\ex{remote repo}
         \item You can either\ex{clone}existing repo, or add a\ex{remote}to local one
-        \item 
+        \item To\ex{remove}a file from both repo and directory, use\ex{git rm}
+        \item To\ex{rename}a file, use\ex{git mv}
+        \item To add a\ex{remote}to your repo, use\ex{git remote add <name> <url>}
+        \item To\ex{push}your updates to remote, use\ex{git push <remote> <branch>}
     \end{itemize}
 \end{frame}
 
-\section{GitHub features}
+\begin{frame}[fragile]{Manipulations with repo (examples)}
+    \begin{lstlisting}[language=Bash, style=shellstyle] 
+    mkdir test_directory
+    cd test_directory
+    echo "empty_readme" >> README.md # initialize new readme
+    git init
+    git add README.md
+    git commit -m "initialized new repo with readme"
+    # go to https://github.com, create a new repo
+    # go back to terminal and push your changes to remote
+    git remote add origin git@github.com:username/reponame.git 
+    git commit -m "add gitignore file; add scripts for some task" 
+    git push origin master\end{lstlisting}
+    % \begin{itemize}
+        % \item a     
+    % \end{itemize}
+\end{frame}
 
+\framesplitc{Remotes}{graphics/remotes.png}{
+    \begin{itemize}
+        \item \ex{Remote}- link to remote "versions" of your repository. They are stored on some kind of service (GitHub, GitLab, BitBucket etc.) or on private server
+        \item You can think of them as global versions of your repos (your repo can be stored on few of them simultaneously)
+        \item To see your remotes use\ex{git remote show}, by default there is only\ex[ucured]{origin}
+        \item For more info on a specific remote, use\ex{git remote show remotename}
+        \item Use\ex{git pull} to make a code from\ex{local}up to date with\ex{origin} 
+    \end{itemize}
+}
+
+\framepic{graphics/gitbranches.png}{\vspace{-2cm}Branches}
+
+\framesplitc{Branches}{graphics/branch.jpg}{
+    \begin{itemize}
+        \item\ex{Branch}is a divergence from the one development line to fulfill some specific purpose
+        \item For example - stable branch (usually master), development (dev), features, bug fixing
+        \item Used for concurrent work of different developers on the same project
+        \item Helps to avoid often conflicts while working on fairly independent parts
+        \item Easier to access code for a specific feature and explore its history
+    \end{itemize}
+}
+
+\begin{frame}[fragile]{Branches (examples)}
+    \begin{lstlisting}[language=Bash, style=shellstyle] 
+    # we already have a test_dir. continue working with it
+    cd test_directory
+    ls
+    > README.md
+    git checkout -b dev # same as git branch dev; git checkout dev
+    echo 'print("Hello world")' >> new.py 
+    git add new.py
+    git commit -m "add new.py file"
+    git push origin dev
+    git checkout master # checkout back to master
+    ls
+    > README.md
+\end{lstlisting}
+You are back at\ex[ucuyellow]{master}branch where there is no\ex[ucuorange]{new.py}file, it is on the\ex[ucuyellow]{dev} branch
+
+Now it is possible to merge with 
+
+\begin{lstlisting}[language=Bash, style=shellstyle] 
+    git merge dev # about merge hell read yourself
+\end{lstlisting}
+\end{frame}
+
+\section{GitHub features}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[height=\paperheight,width=\paperwidth]{graphics/gh_tools.png}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
+
+\begin{frame}{GitHub}
+    \begin{itemize}
+        \item\ex{GitHub repository} - remote “versions” of your repository, it's\ex[ucuorange]{origin}, but also much more...
+        \item\ex{GitHub} provide users with such a nice tools as \ex[ucuorange]{Issues, Pull requests, Forks, Actions}, also\ex[ucuyellow]{followers and followings, their activity, stars for projects, Projects tool for managing project development workflow, Marketplace, Insights(some statistics), Wiki, even Discussions}
+        \item So developers do a\ex{GitHub}as a big
+        \item Starting with 2021, there is such thing as\ex{GitHub CLI}!
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Issues}
+    \begin{itemize}
+        \item If you use some app stored on \ex{GitHub} and it works with bugs
+        \item You have two options - report the bug or fix it and send a bugfix to maintainers
+        \item For the first thing\ex{Issues}could be helpfull (For the second -\ex{Pull requests})
+        \item All github users can create issue on some projects pages, comment it, react on it with some emoji etc
+        \item Issue itself - a conversation starting with user's message, that (for example) he found a bug, and some information about how you got this bug
+        \item Also there can be \ex[ucuorange]{feature request bugs} or even \ex{improvements} or other. There are dozens of such labels
+        \item Often Issues either has a sollution writen as the last message or a pull request that solves the problem
+        \item After that\ex{Issue}can be marked as solved
+        \item \ex{Issues} are part of developement workflow, so it's imortant to keep them as much as keep source code of program itself and it's commit history
+    \end{itemize}
+\end{frame}
+
+\framesplitc{Fork}{graphics/fork.png}{
+    \begin{itemize}
+        \item A GitHub\ex{fork}is a copy of a repo that sits in your account rather than the account from which you forked
+        \item Once you have forked a repo, you own your forked copy
+        \item This means that you can edit the contents of your forked repository without impacting the parent repo
+        \item Forked repo can be\ex{detuched}(in theory, but it is not possible for now. By hands, support team can do that) to became an independant project
+    \end{itemize}
+}
+
+\framesplitc{Pull request}{graphics/pr.png}{
+    \begin{itemize}
+        \item In most cases you don't want strangers to brake all your code, so only few people (\ex{contributors}) have rights for changing the repo
+        \item Instead, they should\ex{fork}, make a new branch, implement some feature and make a \ex{pull request}about merging their work to your project
+        \item The same can be done between simple branches (but that is not necessary)
+        \item Sometimes there is a\ex{CONTRIBUTION.md}describing how to make a correct changes with clear commits and acceptable PR message for changes to be merged 
+    \end{itemize}
+}
+
+\framesplitc{GitHub Actions. CI from GitHub}{graphics/ci.png}{
+    \begin{itemize}
+        \item ;
+        
+    \end{itemize}
+}
+
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[height=\paperheight,width=\paperwidth]{graphics/ghcli.png}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
 
 \section{Sources}
 \framecard{Sources}
