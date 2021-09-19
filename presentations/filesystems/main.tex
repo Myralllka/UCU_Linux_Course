@@ -81,14 +81,103 @@
     \tableofcontents
 \end{frame}
 
+\begin{frame}{Intro}
+    \begin{itemize}
+        \item This is not an overview of some \ex{hardware} memory staff
+        \item Neither a pesentation with deep File systems implementation details
+        \item More about that you should learn at the \ex{Operating systems} course
+        \item This is just an overview of \ex{file systems} that system administraitors use in their everyday life
+        \item If you think that you are not a system administrator - think one more time, because you administrate your own system every day
+    \end{itemize}
+\end{frame}
 
+\section{File system for users}
+\framepic{graphics/membrain.jpg}{\hspace{-0.5cm}Memory}
+
+\framesplit{Drives}{graphics/ssdhdd.jpeg}{
+    \begin{itemize}
+        \item All data stored on some physical devices
+        \item It has different storage approaches on each device (HDD, SSD, CD, DVD, Flash, RAM, DDR memory modules)
+        \item But now we are going to overview the memory from\ex{user point of view}
+        \item How to manage files and file systems, how to chose the most suitable
+    \end{itemize}
+}
+
+\framesplitc{Memory storage}{graphics/memory.png}{
+    \begin{itemize}
+        \item Memory as abstraction looks like an array, where bites are stored one by one in a row
+        \item\ex{File system}- a method of data structure that the operating system uses to control how data is stored and retrieved
+        \item A\ex{file}is an ordered collection of data blocks
+        \item In Linux system, everything is a file and if it is not a file, it is a process
+        \item So File systems are very important for this OS
+    \end{itemize}
+}
+
+\section{Everything is a file}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[width=\paperwidth,height=\paperheight]{graphics/file.jpg}
+            };
+        \end{tikzpicture}
+        \Huge\textbf{Everything is a file}
+     \end{frame}
+}
+
+\framesplit{File types}{graphics/types.png}{
+    \begin{itemize}
+        \item There are a lot of file types, but the most important for us are:
+        \item \ex{Regular Files} - some files with data stored inside
+        \item \ex{Directories} - files, that allowed to group other files and keep tree filesystem structure
+        \item \ex{Character files} - for simulating character devices as terminals, keyboard, network etc
+        \item \ex{Block files} - for modelling block devices as disks, flash drives
+        \item \ex{Links} - entry points to other files
+        \item There are\ex{pipes}, \ex{sockets}
+    \end{itemize}
+}
+
+\framesplitc{File metadata}{graphics/metha.jpg}{
+    \begin{itemize}
+        \item File also save a \ex{metadata} about itself, as:
+        \item Protection, password
+        \item Creator, owner
+        \item Flags (r w x)
+        \item Size 
+        \item Creation time, last update time (timestamp)
+    \end{itemize}
+}
+
+\section{Fyle systems types}
+
+\begin{frame}{Fyle systems types}
+
+    
+
+\end{frame}
+
+\section{Working with file systems}
+
+\section{Mounting}
+
+\section{Linux Filesystems Hierarchy (LFS)}
+
+\begin{frame}{Linux Filesystems Hierarchy (LFS)}
+    \begin{itemize}
+        \item This topic worth a separate lecture, but lets make it short 
+        \item 
+    \end{itemize}
+\end{frame}
 
 
 \section{Sources}
 \framecard{Sources}
 \begin{frame}{Sources}
     \begin{itemize}
-        \item 
+        \item UCU Linux Club
+        \item \href{https://en.wikipedia.org/wiki/File_system}{File systems Wiki}
+        \item \href{https://www.javatpoint.com/linux-files}{Linux file systems}
     \end{itemize}
 \end{frame}
 
