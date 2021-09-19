@@ -72,7 +72,7 @@
 \begin{frame}{What is Bash}
 \begin{itemize}
     \item Bash stands for "Bourne(born)-again-shell"
-    \item It is default shell for most Linux distros
+    \item It is the default shell for most Linux distros
     \item POSIX standard has a full description of shell. Bash implements all this features, plus something of its own, known as {\color{ucugreen} bashism}
     \item Bash is a standard shell for the majority of Linux distros, but it doesn't mean it is the best one
 \end{itemize}
@@ -83,8 +83,8 @@
         \item Zsh stands for {\color{ucugreen}Z-shell}
         \item Like Bash, it derives from Bourne family of shells, in everyday usage zsh is the same, as {\color{ucugreen} bash}, but has a lot of extensions and other configuration files' syntax (default - {\color{ucugreen} \textasciitilde/.zshrc})
         \item There is an entire eco-system of configuration tools and themes called oh-my-zsh which is very popular
-        \item Also there is a huge amount of extensions on github, that can make everyday usage easier - ranging from auto-complete to syntax highlighting
-        \item also there are differences in scripts, we'll pick this up later.
+        \item There is a huge amount of extensions on github, that can make everyday usage easier - ranging from auto-complete to syntax highlighting
+        \item There are differences in scripts, we'll pick this up later.
         
     \end{itemize}
 \end{frame}
@@ -287,7 +287,7 @@ There are much more options, that can be found using \ex{ls -{}-help}
 \begin{frame}{Searching}
     \begin{itemize}
         \item So as for now we know how to create files, directories, move them and remove. But how to find them?
-        \item The Linux file system is well-structured, so it's very easy to navigate it, but still there are thousands of files and it's impossible to remember all of the locations. There is entire presentation about the Linux File system hierarchy.
+        \item The Linux file system is well-structured, so it's very easy to navigate it, but still, there are thousands of files and it's impossible to remember all of the locations. There is entire presentation about the Linux File system hierarchy.
         \item \ex{find [path] -name ["filename"]}, and in the name can globs can be used (but they must be escaped)
         \item But if you don't know for sure the filename or dirname, the better way is \ex{find <path> -regex ["filename\_regex"]}
         \item \ex[ucured]{Be careful!} All files in the system have their own permissions. In order to search somewhere outside the \ex{/home/username} folder, you must run the program in the privileged mode

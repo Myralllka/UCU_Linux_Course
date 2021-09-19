@@ -1,0 +1,417 @@
+\documentclass[usenames,dvipsnames,10pt,aspectratio=169]{beamer} 
+
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{minted}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{geometry}
+\usepackage{listings}
+% \usepackage{showframe}
+\usepackage{enumitem}
+\usepackage{color, xcolor}
+\usepackage[document]{ragged2e}
+\usetheme{umu}
+
+\usemintedstyle{monokai}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=ucugreyish,
+    filecolor=ucured,
+    urlcolor=ucublue,
+}
+\urlstyle{same}
+
+%%% Some useful commands
+% pdf-friendly newline in links
+\newcommand{\pdfnewline}{\texorpdfstring{\newline}{ }} 
+% Fill the vertical space in a slide (to put text at the bottom)
+\newcommand{\framefill}{\vskip 0pt plus 1 filll}
+
+%%% Enter additional packages below (or above, I can't stop you)! / Jesper
+\renewcommand{\proofname}{\sffamily{Proof}}
+
+% custom fullpage image:
+% { % all template changes are local to this group.
+%     \setbeamertemplate{navigation symbols}{}
+%     \begin{frame}<article:0>[plain]
+%         \begin{tikzpicture}[remember picture,overlay]
+%             \node[at=(current page.center)] {
+%                 \includegraphics[width=\paperwidth,height=\paperheight]{graphics/version-control.png}
+%             };
+%         \end{tikzpicture}
+%      \end{frame}
+% }
+
+% custom shell example inplace
+% [fragile] frame
+% \begin{lstlisting}[language=Bash, style=shellstyle] 
+%     username $ echo a
+% \end{lstlisting}
+
+% custom code file
+% [fragile] frame
+% \lstinputlisting[language=Python, style=codestyle]{code/shebang_ex.py}
+
+% presentation template slides usage
+% \framecard[color (not working)]{textbuf}
+% \framesplit{Header}{picture}{textbuf}
+% \framepic{image}{text}
+% \lstinputlisting[language=Bash, style=codestyle]{code/namespace_ex.sh}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Linux course}
+\subtitle{Version control systems}
+\date[\today]{\small\today}
+\author[Morhunenko Mykola]{Morhunenko Mykola}
+\institute{APPS@UCU}
+
+\setlist[itemize, 1]{label=$\color{ucublue} \bullet$, leftmargin=-2mm}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{\contentsname}
+    \setbeamercolor{background canvas}{bg=ucugrey}
+    \tableofcontents
+\end{frame}
+
+\section{Version control}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[width=\paperwidth,height=\paperheight]{graphics/version-control.png}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
+
+\begin{frame}{Version control systems}    
+    \begin{itemize}
+        \item Sooner or later, during the development process, it is necessary to check, 
+        what was before, how it became broken
+        \item Maybe it's easier to use \ex{Ctrl+z}, but it's impossible to check what was three weeks 
+        ago with any keybinding
+        \item So in 1972 people started to think about \ex{version control systems}
+        \item Firstly, it had been just a tool for saving a history of binary files, but in 1977 
+        the first \ex{source code control system} was introduced
+        \item The main idea behind - to save the program source code on some checkpoints
+        \ex{(commits)}, add features, develop them leaving trunk untouchable\ex{(branches)}, \ex{merge} new features with a trunk, and release some \ex{tags}
+        \item Since then, the concept itself was developed, and many version control systems have appeared
+    \end{itemize}
+\end{frame}
+
+\section{git}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[keepaspectratio,width=\paperwidth]{graphics/git.jpg}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
+
+\begin{frame}{Linus again...}
+    \begin{itemize}
+        \item \ex{Linux kernel} is a huge project, and it is important to have some source-control management system (SCMs) to maintain it
+        \item From 2002 to 2005 BitKeeper, a proprietary SCMs was used to maintain the project
+        \item At some point (3 April 2005), Linus Torvalds realized that existing tools are not suitable for Linux development, so in three days, he announced a project and became a self-hosting of \ex{Git} on the next day
+        \item It was totally different SCMs. Linus maintained it for half a year, and Junio Hamano has been the core maintainer since then
+        \item It was open-source, free software, with a very strong safeguards against corruption, either accidental or malicious
+        \item Torvalds sarcastically quipped about the name \ex{Git}, means \ex[ucured]{unpleasant person} in British English
+        \item He said: \ex[ucuyellow]{\textit{"I am an egotistical bastard, and I name all my projects after myself. First 'Linux', now 'git'."}} =)
+    \end{itemize}
+\end{frame}
+
+\framesplit{What makes Git so good}{graphics/distrib.png}{
+    \begin{itemize}
+        \item Strong support for non-linear development
+        \item Distributed development
+        \item Efficient handling of large projects
+        \item Toolkit-based design
+        \item Pluggable merge strategies
+        \item And more other features
+        \item It's hard to find any statistics, but that is clear - Git is the most popular SCMs of our days
+    \end{itemize}
+}
+
+\section{GitHub}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[keepaspectratio,width=\paperwidth]{graphics/github.jpg}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
+
+\framesplitc{Git is not GitHub}{graphics/gitvshub.png}{
+    \begin{itemize}
+        \item \ex{GitHub, Inc} - provifer of internet hosting for software development and version control using git
+        \item It offers all the functionality of \ex{Git} + it`s own features
+        \item Since 2018 - subsidiary of \ex[ucured]{Microsoft}
+        \item \ex[ucured]{Not an Open Source project}, but there is a forum for feature requests...
+        \item As of January 2020, GitHub reports having over 40 million users
+        \item More about it's features after\ex{Git usage} part
+    \end{itemize}
+}
+
+
+\section{GitLab}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[keepaspectratio,width=\paperwidth]{graphics/gitlab.png}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
+\framesplit{Git is not GitHub}{graphics/gitlab-vs-github.jpg}{
+    \begin{itemize}
+        \item First difference - GitLab was created by \ex{Ukrainian} people, in Ukraine =)
+        \item It has more features, than\ex{GitHub}, but there is no critical difference
+        \item It is \ex[ucuyellow]{Open Source}, unlike Github
+        \item It is possible to have the same repository on both servers, and I do it sometimes
+        \item So as for 2021, it is just a question of taste
+    \end{itemize}
+}
+
+\section{Git usage}
+\framecard{GIT USAGE}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[keepaspectratio,width=\paperwidth]{graphics/gitmeme.jpg}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
+
+\begin{frame}[fragile]{Creating a repo}
+    \begin{itemize}
+        \item A \ex{repository} contains all of your project's files and each file's revision history. You can discuss and manage your project's work within the repository.
+        \item \ex{Repository} is NOT a project folder. Repository is s a \textit{data structure that stores metadata for a set of files or directory structure}
+        \item Command to inicialize a repo in your current folder
+        \begin{lstlisting}[language=Bash, style=shellstyle] 
+git init
+\end{lstlisting}
+        \item use \ex{git add} command to cpecify files you want to track, followed by \ex{git commit} - add a cpecifick message to your commit
+        \begin{lstlisting}[language=Bash, style=shellstyle] 
+git add *.sh
+git add .gitignore
+git commit -m "add gitignore file; add scripts for some task" \end{lstlisting}
+        \item How to write correct commit messages is another art, but remember to write meaningdull messages
+        \item So at this point, we have a Git repository in our project directory with tracked files and an initial commit
+    \end{itemize}
+\end{frame}
+
+\framesplitc{Changes to the repo}{graphics/lifecycle.png}{
+    \begin{itemize}
+        \item At this point you have a git\ex{repo}with scripts and some files
+        \item Each file in your working directory can be in one of two states: tracked or untracked
+        \item Tracked files are files that were in the last snapshot, as well as any newly staged files; they can be unmodified, modified, or staged 
+        \item, In short, tracked files are files that Git knows about
+        \item Untracked files are everything else
+        \item Use\ex{git status}to check the status of each file in the current directory
+        \item Files in a\ex{.gitignore}are ignored by git repo
+    \end{itemize}
+}
+
+
+\begin{frame}[fragile]{Manipulations with repo}
+    \begin{itemize}
+        \item As far as\ex{git}is a\ex{decenralized}system, you already have your repo with all version control features
+        \item But now about the most powerful\ex{git}feature and why we use it -\ex{remote repo}
+        \item You can either\ex{clone}existing repo, or add a\ex{remote}to local one
+        \item To\ex{remove}a file from both repo and directory, use\ex{git rm}
+        \item To\ex{rename}a file, use\ex{git mv}
+        \item To add a\ex{remote}to your repo, use\ex{git remote add <name> <url>}
+        \item To\ex{push}your updates to remote, use\ex{git push <remote> <branch>}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Manipulations with repo (examples)}
+    \begin{lstlisting}[language=Bash, style=shellstyle] 
+    mkdir test_directory
+    cd test_directory
+    echo "empty_readme" >> README.md # initialize new readme
+    git init
+    git add README.md
+    git commit -m "initialized new repo with readme"
+    # go to https://github.com, create a new repo
+    # go back to terminal and push your changes to remote
+    git remote add origin git@github.com:username/reponame.git 
+    git commit -m "add gitignore file; add scripts for some task" 
+    git push origin master\end{lstlisting}
+    % \begin{itemize}
+        % \item a     
+    % \end{itemize}
+\end{frame}
+
+\framesplitc{Remotes}{graphics/remotes.png}{
+    \begin{itemize}
+        \item \ex{Remote}- link to remote "versions" of your repository. They are stored on some kind of service (GitHub, GitLab, BitBucket etc.) or on private server
+        \item You can think of them as global versions of your repos (your repo can be stored on few of them simultaneously)
+        \item To see your remotes use\ex{git remote show}, by default there is only\ex[ucured]{origin}
+        \item For more info on a specific remote, use\ex{git remote show remotename}
+        \item Use\ex{git pull} to make a code from\ex{local}up to date with\ex{origin} 
+    \end{itemize}
+}
+
+\framepic{graphics/gitbranches.png}{\vspace{-2cm}Branches}
+
+\framesplitc{Branches}{graphics/branch.jpg}{
+    \begin{itemize}
+        \item\ex{Branch}is a divergence from the one development line to fulfill some specific purpose
+        \item For example - stable branch (usually master), development (dev), features, bug fixing
+        \item Used for concurrent work of different developers on the same project
+        \item Helps to avoid often conflicts while working on fairly independent parts
+        \item Easier to access code for a specific feature and explore its history
+    \end{itemize}
+}
+
+\begin{frame}[fragile]{Branches (examples)}
+    \begin{lstlisting}[language=Bash, style=shellstyle] 
+    # we already have a test_dir. continue working with it
+    cd test_directory
+    ls
+    > README.md
+    git checkout -b dev # same as git branch dev; git checkout dev
+    echo 'print("Hello world")' >> new.py 
+    git add new.py
+    git commit -m "add new.py file"
+    git push origin dev
+    git checkout master # checkout back to master
+    ls
+    > README.md
+\end{lstlisting}
+You are back at\ex[ucuyellow]{master}branch where there is no\ex[ucuorange]{new.py}file, it is on the\ex[ucuyellow]{dev} branch
+
+Now it is possible to merge with 
+
+\begin{lstlisting}[language=Bash, style=shellstyle] 
+    git merge dev # about merge hell read yourself
+\end{lstlisting}
+\end{frame}
+
+\section{GitHub features}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[height=\paperheight,width=\paperwidth]{graphics/gh_tools.png}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
+
+\begin{frame}{GitHub}
+    \begin{itemize}
+        \item\ex{GitHub repository} - remote “versions” of your repository, it's\ex[ucuorange]{origin}, but also much more...
+        \item\ex{GitHub} provide users with such a nice tools as \ex[ucuorange]{Issues, Pull requests, Forks, Actions}, also\ex[ucuyellow]{followers and followings, their activity, stars for projects, Projects tool for managing project development workflow, Marketplace, Insights(some statistics), Wiki, even Discussions}
+        \item So developers do a\ex{GitHub}as a big
+        \item Starting with 2021, there is such thing as\ex{GitHub CLI}!
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Issues}
+    \begin{itemize}
+        \item If you use some app stored on \ex{GitHub} and it works with bugs
+        \item You have two options - report the bug or fix it and send a bugfix to maintainers
+        \item For the first thing\ex{Issues}could be helpful (For the second -\ex{Pull requests})
+        \item All GitHub users can create issue on some projects pages, comment it, react on it with some emoji etc
+        \item Issue itself - a conversation-starting with user's message, that (for example) he found a bug, and some information about how you got this bug
+        \item Also there can be \ex[ucuorange]{feature request bugs} or even \ex{improvements} or other. There are dozens of such labels
+        \item Often Issues either has a solution written as the last message or a pull request that solves the problem
+        \item After that\ex{issue}can be marked as solved
+        \item \ex{Issues} are part of the development workflow, so it's important to keep them as much as keep source code of the program itself, and it's commit history
+    \end{itemize}
+\end{frame}
+
+\framesplitc{Fork}{graphics/fork.png}{
+    \begin{itemize}
+        \item A GitHub\ex{fork}is a copy of a repo that sits in your account rather than the account from which you forked
+        \item Once you have forked a repo, you own your forked copy
+        \item This means that you can edit the contents of your forked repository without impacting the parent repo
+        \item Forked repo can be\ex{detuched}(in theory, but it is not possible for now. By hands, the support team can do that) to became an independent project
+    \end{itemize}
+}
+
+\framesplitc{Pull request}{graphics/pr.png}{
+    \begin{itemize}
+        \item In most cases, you don't want strangers to break all your code, so only a few people (\ex{contributors}) have right for changing the repo
+        \item Instead, they should\ex{fork}, make a new branch, implement some feature and make a \ex{pull request}about merging their work to your project
+        \item The same can be done between simple branches (but that is not necessary)
+        \item Sometimes there is a\ex{CONTRIBUTION.md}describing how to make correct changes with clear commits and acceptable PR message for changes to be merged 
+    \end{itemize}
+}
+
+\framesplitc{GitHub Actions. CI from GitHub}{graphics/ci.png}{
+    \begin{itemize}
+        \item More advanced usage of GitHub - use it with\ex{GitHub Actions}
+        \item Continuous integration (CI) - the practice of automating the integration of code changes 
+        \item Using this tool, it is easy to test your code for compilation on different compilers, distros, with different configurations, and all of that - automatically 
+        \item There are hundreds of existing\ex{actions}, but it's possible (and quite easy) to make your own
+        \item I totally recommend to use it for lab works and small projects - than it will be easier to use it everywhere
+    \end{itemize}
+}
+
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[height=\paperheight,width=\paperwidth]{graphics/ghcli.png}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
+
+\begin{frame}{GitHub cli commands}
+    \begin{itemize}
+        \item Starting from 2021 GitHub released it's API and made an amazing tool called \ex{GitHub CLI}!
+        \item They made possible to automate a lot of staff as creating a repo or read issues, make pr etc.
+        \item Some important commands:
+        \item \ex{gh auth login} - authentification
+        \item \ex{gh config set editor <editor>}
+        \item \ex{gh repo create} - create a repo (allow to scip "going to a browser and do some stuff there...")
+        \item \ex{gh pr create} - create a pr from current branch to master
+        \item \ex{gh workflow run}
+    \end{itemize}
+\end{frame}
+
+% \section{Making own version controll system} :TODO
+
+\section{Sources}
+\framecard{Sources}
+\begin{frame}{Sources}
+    \begin{itemize}
+       \item \href{https://en.wikipedia.org/wiki/Comparison_of_version-control_software}{Version control systems comparison}
+       \item \href{https://translatedby.com/you/why-git-is-better-than-x/original/}{Why Git is Better than X}
+       \item \href{https://en.wikipedia.org/wiki/Git}{Git Wiki}
+       \item \href{https://en.wikipedia.org/wiki/GitHub}{GitHub Wiki}
+       \item \href{https://about.gitlab.com/company/history/}{GitLab history}
+       \item \href{https://docs.github.com/en}{GitHub documentation}
+       \item \href{https://git-scm.com/}{Git documentation}
+       \item \href{https://docs.github.com/en/actions/guides/about-continuous-integration}{GitHub CI}
+       \item \href{https://cli.github.com/}{GitHub CLI}
+    \end{itemize}
+\end{frame}
+
+\end{document}
