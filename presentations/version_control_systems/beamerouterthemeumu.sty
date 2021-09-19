@@ -1,0 +1,44 @@
+\mode<presentation>
+
+% Frame title
+\defbeamertemplate*{frametitle}{umu}[1][]
+{
+
+\begin{tikzpicture}
+    \useasboundingbox (0.05, 0) rectangle(\the\paperwidth,0.9);
+    
+    % Colored line
+    \fill[color=ucugreyish] (-1,0.2) rectangle(\the\paperwidth,1);
+\end{tikzpicture}
+
+% If we don't have a subtitle, put the title
+% at the center of the header
+\ifx\insertframesubtitle\@empty
+  \begin{textblock*}{10cm}(0.2cm,0.23cm)
+      {\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle}
+  \end{textblock*}
+  \vspace{-0.4cm}
+\else
+% If we have both title and subtitle, stack them
+  \begin{textblock*}{10cm}(0.15cm,0.1cm)
+  {\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle}
+  \end{textblock*}
+
+  \begin{textblock*}{10cm}(0.15cm,0.6cm)
+  {\usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertframesubtitle}
+  \end{textblock*}
+
+\fi
+
+}
+
+% BACKGROUND CANVAS TEMPLATES. -------------------------------------------------
+\defbeamertemplate*{background canvas}{ucu}{%
+    \begin{tikzpicture}
+        \clip (0,0) rectangle ++(\paperwidth,\paperheight);
+        \fill[ucugrey] (0,0) rectangle ++(\paperwidth,\paperheight);
+    \end{tikzpicture}%
+}
+
+
+\mode<all>
