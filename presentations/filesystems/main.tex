@@ -149,12 +149,30 @@
     \end{itemize}
 }
 
-\section{Fyle systems types}
+\section{Fyle systems}
 
-\begin{frame}{Fyle systems types}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[width=\paperwidth,height=\paperheight]{graphics/fs.jpeg}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
 
-    
-
+\begin{frame}{Fyle systems types overview}
+    \begin{itemize}
+        \item There are several file systems types. Just for your information. the most important will be in \ex[ucuorange]{orange} colour
+        \item\ex[ucuorange]{Disk file systems} for simple disks, a.e. FAT16/32, NTFS, ext2-4, brtfs etc
+        \item\ex{Flash file systems} - consider speciality of flesh memory devices
+        \item\ex{Database file systems} - another concept for file management
+        \item Transactional file systems
+        \item\ex[ucuorange]{Network file systems} - acts as a client for a remote file access protocol, providing access to files on a server, a.e. FTP
+        \item\ex{Shared disk file systems} - a number of machines (usually servers) all have access to the same external disk subsystem
+        \item Flat file systems - no subdirectories, directory entries for all files are stored in a single directory
+    \end{itemize}
 \end{frame}
 
 \section{Working with file systems}
