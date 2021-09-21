@@ -84,14 +84,14 @@
 \begin{frame}{Intro}
     \begin{itemize}
         \item This is not an overview of some \ex{hardware} memory staff
-        \item Neither a pesentation with deep File systems implementation details
+        \item Neither a presentation with deep File systems implementation details
         \item More about that you should learn at the \ex{Operating systems} course
-        \item This is just an overview of \ex{file systems} that system administraitors use in their everyday life
+        \item This is just an overview of \ex{file systems} that system administrators use in their everyday life
         \item If you think that you are not a system administrator - think one more time, because you administrate your own system every day
     \end{itemize}
 \end{frame}
 
-\section{File system for users}
+\section{Memory overview}
 \framepic{graphics/membrain.jpg}{\hspace{-0.5cm}Memory}
 
 \framesplit{Drives}{graphics/ssdhdd.jpeg}{
@@ -99,7 +99,7 @@
         \item All data stored on some physical devices
         \item It has different storage approaches on each device (HDD, SSD, CD, DVD, Flash, RAM, DDR memory modules)
         \item But now we are going to overview the memory from\ex{user point of view}
-        \item How to manage files and file systems, how to chose the most suitable
+        \item How to manage files and file systems, how to choose the most suitable
     \end{itemize}
 }
 
@@ -108,7 +108,7 @@
         \item Memory as abstraction looks like an array, where bites are stored one by one in a row
         \item\ex{File system}- a method of data structure that the operating system uses to control how data is stored and retrieved
         \item A\ex{file}is an ordered collection of data blocks
-        \item In Linux system, everything is a file and if it is not a file, it is a process
+        \item In Linux system, everything is a file, and if it is not a file, it is a process
         \item So File systems are very important for this OS
     \end{itemize}
 }
@@ -149,8 +149,55 @@
     \end{itemize}
 }
 
-\section{Fyle systems}
+\begin{frame}{Inode}
+    \begin{itemize}
+        \item The\ex{inode}is data structure, that describes files on\ex{Unix-like OS's}
+        \item Each inode stores disk block location, some atributes, file's metadata
+        \item \ex{Directory}- just a file with list of inodes
+        \item File's inode number can be found with\ex{ls -i}command
+        \item From the inode number, the kernel's file system driver can access the inode contents, including the location of the file, thereby allowing access to the file
+        \item More about\ex{inodes} in the\ex{Operating systems} course
+    \end{itemize}
+\end{frame}
 
+\framesplit{Links}{graphics/symlinkvshardlink.jpeg}{
+    \begin{itemize}
+        \item There are two types of links:\ex{symbolic (soft)}and\ex{hard}
+        \item They are totally different types of file
+        \item Maybe first few years you will not use 
+        \item But with experience it becomes more and more useful
+        \item Here we will make only a brief overview and comparison
+    \end{itemize}
+}
+
+\begin{frame}{Hard vs Soft links}
+    \begin{columns}[t, totalwidth=\textwidth]
+        \begin{column}{0.47\linewidth}
+            {\huge Hard links}
+            \begin{itemize}
+                \item Exact replica of a file
+                \item Share same inode with other hard links
+                \item Can not be made across filesystems
+                \item Changes in\ex{hl}will reflect in other files
+                \item Deleting of a hardlink wil not affect other files
+                \item Can links to files only
+            \end{itemize}
+        \end{column}
+
+        \begin{column}{0.47\linewidth}
+            {\huge Soft links}
+                \begin{itemize}
+                    \item Alias to a file
+                    \item Has another inode 
+                    \item Can be established outside filesystem
+                    \item Link becomes inaccessible without original file
+                    \item Can links to both files and directories
+                \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\section{Fyle systems}
 { % all template changes are local to this group.
     \setbeamertemplate{navigation symbols}{}
     \begin{frame}<article:0>[plain]
@@ -175,9 +222,68 @@
     \end{itemize}
 \end{frame}
 
-\section{Working with file systems}
+\framesplit{Fyle system abstraction}{graphics/fs_tree.png}{
+    \begin{itemize}
+        \item We used to see a filesystem as a tree. It is really the most comfortable structure as for now
+        \item There is a CLI tool to see your filesystem structure called\ex{tree}
+        \item Using such abstraction programmer works with files and directories, not with memory cells or some low level staff, but with files, directories and subdirectories
+    \end{itemize}
+}
 
-\section{Mounting}
+\section{Working with file systems}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[width=\paperwidth]{graphics/lib.jpg}
+            };
+        \end{tikzpicture}
+        \ex[black]{\Huge\textbf{Working with \newline\hspace{0.1em} file systems}}
+     \end{frame}
+}
+
+\begin{frame}{Review of previous topics}
+    \begin{itemize}
+        \item It's part of presentation abot\ex{shell}, but let's make a brief overview
+        \item Every proces has it's own working directory. 
+        \item \ex{pwdx \$(pgrep process\_name)} - show working directories for a process\_name
+        \item \ex{pwd} - print working (current) directory
+        \item \ex{ls} - list what is instde the working directory
+        \item \ex{cd} - change directory
+        \item \ex{./} - spesial, current directory
+        \item \ex{../} - spesial, parrent directory (in a tree struct)
+        \item \ex{$\sim$/} - \ex{\$HOME} directory for current user
+        \item \ex{cp <from....> <to>} - copy 
+        \item \ex{mv <from....> <to>} - rename (inside one fs, or move - from one to another fs)
+        \item \ex{mkdir} - make directory
+        \item \ex{touch <filename>} - update the last acces date (if no such file - create)
+        \item \ex{rm <filename>} - remove
+        \item \ex{cat} - show the file content
+    \end{itemize}
+\end{frame}
+
+\framesplitc{Devices}{graphics/dev.jpg}{
+    \begin{itemize}
+        \item \ex{Everything is a file}, devices are not an exception
+        \item 
+    \end{itemize}
+}
+
+\framesplitc{Mounting}{graphics/mounts.jpeg}{
+    \begin{itemize}
+        \item a
+    \end{itemize}
+}
+
+\begin{frame}{Something new about filesystems usage}
+    \begin{itemize}
+        \item \ex{mkfs} - make a file system on a device
+        \item \ex{mount} - mount device to some mountpoint 
+        
+    \end{itemize}
+\end{frame}
+
 
 \section{Linux Filesystems Hierarchy (LFS)}
 
@@ -196,6 +302,8 @@
         \item UCU Linux Club
         \item \href{https://en.wikipedia.org/wiki/File_system}{File systems Wiki}
         \item \href{https://www.javatpoint.com/linux-files}{Linux file systems}
+        \item \href{http://www.differencebetween.net/technology/difference-between-soft-link-and-hard-link-in-unix-in-os/}{Differences between hard and soft links on Unix systems}
+        \item \href{https://techviewleo.com/mounting-and-unmounting-filesystems-on-linux/}{Mounting and unmounting on Linux}
     \end{itemize}
 \end{frame}
 
