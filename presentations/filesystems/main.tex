@@ -203,10 +203,11 @@
     \begin{frame}<article:0>[plain]
         \begin{tikzpicture}[remember picture,overlay]
             \node[at=(current page.center)] {
-                \includegraphics[width=\paperwidth,height=\paperheight]{graphics/fs.jpeg}
+                \includegraphics[width=\paperwidth,height=\paperheight]{graphics/fs.jpg}
             };
         \end{tikzpicture}
-     \end{frame}
+        \hspace{4cm}\Huge\textbf{File systems}
+    \end{frame}
 }
 
 \begin{frame}{Fyle systems types overview}
@@ -266,26 +267,49 @@
 \framesplitc{Devices}{graphics/dev.jpg}{
     \begin{itemize}
         \item \ex{Everything is a file}, devices are not an exception
-        \item 
+        \item All devices are in\ex{/dev}folder
+        \item Devices could be either\ex{secondary storages}or\ex{mous, keyboard, terminals, cpu, gpu} etc
+        \item Devices can be either\ex{block}or\ex{character} devices
+        \item Easy to remember:
+        \item \ex{Block devices} store or hold data
+        \item \ex{Character devices} - transmit or transfer data
     \end{itemize}
 }
 
 \framesplitc{Mounting}{graphics/mounts.jpeg}{
     \begin{itemize}
-        \item a
+        \item \ex{Mounting} - attaching some additional fs to already mounted
+        \item By default, user use only one filesystem, and it's mountpoint is \ex{/}
+        \item Then \ex{/boot} is also another fs, that is not used by user directly (more about that\ex{bootloader} topic)
+        \item On one physical device there could be few filesystems (more about that\ex{partition tables} topic)
     \end{itemize}
 }
 
-\begin{frame}{Something new about filesystems usage}
+\begin{frame}{A smorgasbord of important commands and terms}
     \begin{itemize}
         \item \ex{mkfs} - make a file system on a device
-        \item \ex{mount} - mount device to some mountpoint 
-        
+        \item \ex{mkfs.filesystemtype /dev/X} - create a filesystem on existing logical device
+        \item \ex{fdisk -l} - to see all devices available for mounting 
+        \item \ex{mount /dev/X /mnt} - to mount device.\ex{mnt} is used as a convension, and it is important
+        \item \ex{/etc/fstab}- file with all "default mountings" during startup. Usually has only \ex{/} and \ex{boot} fs's
+        \item \ex{UUID} - Universally unique identifier - 128bit label. The probability that a UUID will be duplicated is close enough to zero to be negligible. HERE - unique device identifier
     \end{itemize}
 \end{frame}
 
 
 \section{Linux Filesystems Hierarchy (LFS)}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[width=\paperwidth,height=\paperheight]{graphics/lfs.jpg}
+                % source https://www.kpl.gov/catalog/item/?i=ent://LYNDA/0/LYNDA:100016
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
+
 
 \begin{frame}{Linux Filesystems Hierarchy (LFS)}
     \begin{itemize}
@@ -304,6 +328,7 @@
         \item \href{https://www.javatpoint.com/linux-files}{Linux file systems}
         \item \href{http://www.differencebetween.net/technology/difference-between-soft-link-and-hard-link-in-unix-in-os/}{Differences between hard and soft links on Unix systems}
         \item \href{https://techviewleo.com/mounting-and-unmounting-filesystems-on-linux/}{Mounting and unmounting on Linux}
+        \item \href{https://en.wikipedia.org/wiki/Universally_unique_identifier}{UUID Wiki}
     \end{itemize}
 \end{frame}
 
