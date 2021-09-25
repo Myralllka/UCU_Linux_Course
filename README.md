@@ -3,19 +3,23 @@ Repo for my course, that I am planning to make and teach =)
 
 
 ### Pre-requirements: 
-tbd
+- Personal laptop
+- [Arch Linux](https://www.archlinux.org/) or [Manjaro](https://manjaro.org/downloads/official/gnome/) on your pc or flash drive. No virtual machines.
+	- Manual for Arch Linux installation [here](https://ucu-cs.github.io/UCU_Linux_Club/articles/arch-manual/)
+    - Manual for Manjaro installation [here](https://ucu-cs.github.io/UCU_Linux_Club/articles/manjaro-manual/)
+- Ubuntu can be an option, but not recommended at all
+- [GitHub account](https://github.com/).
+- USB flash drive 2Gb+ with Arch iso 
 
 ### Project structure
 
-* [Useful resources, links and documentation](./docs/)
-* [Week directories with useful resources](./weeks/)
-
-# Second First semester topics 
+# Lectures for the semester
 
 - Open source
-- Bash 
+- Bash
 - Git
 - File systems
 - Bootloaders
-- Linux file system structure 
-...
+- Partition tables
+- ...
+
