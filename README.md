@@ -1,5 +1,5 @@
 # Linux Course
-Repo for my course, that I am planning to make and teach =)
+Repo for my course, that I am planning to create and teach =)
 
 Inspired by [UCU Linux Club](https://github.com/ucu-cs/UCU_Linux_Club)
 
