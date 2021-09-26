@@ -1,0 +1,439 @@
+\documentclass[usenames,dvipsnames,10pt,aspectratio=169]{beamer} 
+
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{minted}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{geometry}
+\usepackage{listings}
+% \usepackage{showframe}
+\usepackage{enumitem}
+\usepackage{color, xcolor}
+\usepackage[document]{ragged2e}
+\usetheme{umu}
+
+\usemintedstyle{monokai}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=ucugreyish,
+    filecolor=ucured,
+    urlcolor=ucublue,
+}
+\urlstyle{same}
+
+%%% Some useful commands
+% pdf-friendly newline in links
+\newcommand{\pdfnewline}{\texorpdfstring{\newline}{ }} 
+% Fill the vertical space in a slide (to put text at the bottom)
+\newcommand{\framefill}{\vskip 0pt plus 1 filll}
+
+%%% Enter additional packages below (or above, I can't stop you)! / Jesper
+\renewcommand{\proofname}{\sffamily{Proof}}
+
+% custom fullpage image:
+% { % all template changes are local to this group.
+%     \setbeamertemplate{navigation symbols}{}
+%     \begin{frame}<article:0>[plain]
+%         \begin{tikzpicture}[remember picture,overlay]
+%             \node[at=(current page.center)] {
+%                 \includegraphics[width=\paperwidth,height=\paperheight]{graphics/version-control.png}
+%             };
+%         \end{tikzpicture}
+%      \end{frame}
+% }
+
+% custom shell example inplace
+% [fragile] frame
+% \begin{lstlisting}[language=Bash, style=shellstyle] 
+%     username $ echo a
+% \end{lstlisting}
+
+% custom code file
+% [fragile] frame
+% \lstinputlisting[language=Python, style=codestyle]{code/shebang_ex.py}
+
+% presentation template slides usage
+% \framecard[color (not working)]{textbuf}
+% \framesplit{Header}{picture}{textbuf}
+% \framepic{image}{text}
+% \lstinputlisting[language=Bash, style=codestyle]{code/namespace_ex.sh}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Linux course}
+\subtitle{Linux File systems}
+\date[\today]{\small\today}
+\author[Morhunenko Mykola]{Morhunenko Mykola}
+\institute{APPS@UCU}
+
+\setlist[itemize, 1]{label=$\color{ucublue} \bullet$, leftmargin=-2mm}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{\contentsname}
+    \setbeamercolor{background canvas}{bg=ucugrey}
+    \tableofcontents
+\end{frame}
+
+\begin{frame}{Intro}
+    \begin{itemize}
+        \item This is not an overview of some \ex{hardware} memory staff
+        \item Neither a presentation with deep File systems implementation details
+        \item More about that you should learn at the \ex{Operating systems} course
+        \item This is just an overview of \ex{file systems} that system administrators use in their everyday life
+        \item If you think that you are not a system administrator - think one more time, because you administrate your own system every day
+    \end{itemize}
+\end{frame}
+
+\section{Memory overview}
+\framepic{graphics/membrain.jpg}{\hspace{-0.5cm}Memory}
+
+\framesplit{Drives}{graphics/ssdhdd.jpeg}{
+    \begin{itemize}
+        \item All data stored on some physical devices
+        \item It has different storage approaches on each device (HDD, SSD, CD, DVD, Flash, RAM, DDR memory modules)
+        \item But now we are going to overview the memory from\ex{user point of view}
+        \item How to manage files and file systems, how to choose the most suitable
+    \end{itemize}
+}
+
+\framesplitc{Memory storage}{graphics/memory.png}{
+    \begin{itemize}
+        \item Memory as abstraction looks like an array, where bites are stored one by one in a row
+        \item\ex{File system}- a method of data structure that the operating system uses to control how data is stored and retrieved
+        \item A\ex{file}is an ordered collection of data blocks
+        \item In Linux system, everything is a file, and if it is not a file, it is a process
+        \item So File systems are essential for this OS
+    \end{itemize}
+}
+
+\section{Everything is a file}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[width=\paperwidth,height=\paperheight]{graphics/file.jpg}
+            };
+        \end{tikzpicture}
+        \Huge\textbf{Everything is a file}
+     \end{frame}
+}
+
+\framesplit{File types}{graphics/types.png}{
+    \begin{itemize}
+        \item There are a lot of file types, but the most important for us are:
+        \item \ex{Regular Files} - some files with data stored inside
+        \item \ex{Directories} - files, that allowed to group other files and keep tree filesystem structure
+        \item \ex{Character files} - for simulating character devices as terminals, keyboard, network etc
+        \item \ex{Block files} - for modelling block devices as disks, flash drives
+        \item \ex{Links} - entry points to other files
+        \item There are\ex{pipes}, \ex{sockets}
+    \end{itemize}
+}
+
+\framesplitc{File metadata}{graphics/metha.jpg}{
+    \begin{itemize}
+        \item File also save a \ex{metadata} about itself, as:
+        \item Protection, password
+        \item Creator, owner
+        \item Flags (r w x)
+        \item Size 
+        \item Creation time, last update time (timestamp)
+    \end{itemize}
+}
+
+\begin{frame}{Inode}
+    \begin{itemize}
+        \item The\ex{inode}is data structure, that describes files on\ex{Unix-like OS's}
+        \item Each inode stores disk block location, some atributes, file's metadata
+        \item \ex{Directory}- just a file with list of inodes
+        \item File's inode number can be found with\ex{ls -i}command
+        \item From the inode number, the kernel's file system driver can access the inode contents, including the location of the file, thereby allowing access to the file
+        \item More about\ex{inodes} in the\ex{Operating systems} course
+    \end{itemize}
+\end{frame}
+
+\framesplit{Links}{graphics/symlinkvshardlink.jpeg}{
+    \begin{itemize}
+        \item There are two types of links:\ex{symbolic (soft)}and\ex{hard}
+        \item They are totally different types of file
+        \item Maybe first few years you will not use it
+        \item But with experience it becomes more and more useful
+        \item Here we will make only a brief overview and comparison
+    \end{itemize}
+}
+
+\begin{frame}{Hard vs Soft links}
+    \begin{columns}[t, totalwidth=\textwidth]
+        \begin{column}{0.47\linewidth}
+            {\huge Hard links}
+            \begin{itemize}
+                \item Exact replica of a file
+                \item Share same inode with other hard links
+                \item Can not be made across filesystems
+                \item Changes in\ex{hl}will reflect in other files
+                \item Deleting of a hardlink wil not affect other files
+                \item Can links to files only
+            \end{itemize}
+        \end{column}
+
+        \begin{column}{0.47\linewidth}
+            {\huge Soft links}
+                \begin{itemize}
+                    \item Alias to a file
+                    \item Has another inode 
+                    \item Can be established outside filesystem
+                    \item Link becomes inaccessible without original file
+                    \item Can links to both files and directories
+                \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\section{Fyle systems}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[width=\paperwidth,height=\paperheight]{graphics/fs.jpg}
+            };
+        \end{tikzpicture}
+        \hspace{4cm}\Huge\textbf{File systems}
+    \end{frame}
+}
+
+\begin{frame}{Fyle systems types overview}
+    \begin{itemize}
+        \item There are several file systems types. Just for your information. the most important will be in \ex[ucuorange]{orange} colour
+        \item\ex[ucuorange]{Disk file systems} for simple disks, a.e. FAT16/32, NTFS, ext2-4, brtfs etc
+        \item\ex{Flash file systems} - consider speciality of flesh memory devices
+        \item\ex{Database file systems} - another concept for file management
+        \item Transactional file systems
+        \item\ex[ucuorange]{Network file systems} - acts as a client for a remote file access protocol, providing access to files on a server, a.e. FTP
+        \item\ex{Shared disk file systems} - a number of machines (usually servers) all have access to the same external disk subsystem
+        \item Flat file systems - no subdirectories, directory entries for all files are stored in a single directory
+    \end{itemize}
+\end{frame}
+
+\framesplit{Fyle system abstraction}{graphics/fs_tree.png}{
+    \begin{itemize}
+        \item We used to see a filesystem as a tree. It is the most comfortable structure as for now
+        \item There is a CLI tool to see your filesystem structure called\ex{tree}
+        \item Using such abstraction programmer works with files and directories, not with memory cells or some low-level staff, but with files, directories, and subdirectories
+    \end{itemize}
+}
+
+\section{The most important filesystems overview}
+\begin{frame}{Overview of the most important filesystems}
+    More detailes on the\ex{Operating systems}course
+    \begin{itemize}
+        \item Remark: \ex{ext} stands for extended
+        \item \ex{ext2} - year 1993. File size can be to 2TB, file system size to 32TB
+        \item \ex{ext3} - year 2001. Linux Kernel > 2.4.15. Max 32'000 subdirectories. Main benefit - allows different types of journalling (traking of all changes). Easy to convert ext2 -> ext3. (later) Can be mount as ext4
+        \item \ex{ext4} - year 2008. Linux Kernel > 2.6.19. Max 64'000 subdirectories. File system size up to 1EB (10e12GB). Option of turning the journaling feature "off". Aslo some features as multiblock allocation, delayed allocation, journal checksum, fast fsck, etc was introduced
+        \item \ex{btrfs}or\ex{B-Tree filesystem} - modern Copy-on-Write (CoW) filesystem. \href{https://linuxhint.com/btrfs-vs-ext4-filesystems-comparison/}{Comparison of ext4 and btrfs link}. As for me, the most important features are\ex{fs snapshot}and\ex{multiple devices support},\ex{built-in RAID support}
+        \item \ex{ext4} designed to be simple and stable, mostly for local-using, while \ex{btrfs} to be high-performance, high-capacity and high-performance, mostly for storage servers
+    \end{itemize}
+\end{frame}
+
+\section{The most important filesystems overview}
+\begin{frame}{Overview of the most important filesystems}
+    More details on the\ex{Operating systems}course
+    \begin{itemize}
+        \item \ex{ZFS} - this fs mostly used on data storages
+        \item It has RAID support, Copy-on-write, Data integrity verification and automatic repair, Snapshots, Maximum 256 Quadrillion Zettabytes storage and Pooled storage
+        \item It combines both fs and volume manager in one. Easy to add physical drive and extend partition size or replace physical drives, to use and maintain
+        \item \ex{FAT} - File Allocation Table fs. There are FAT16, 32, 64. Nowadays wide used on USB flash drives. More info and work with this fs on \ex{Operating systems} course
+        \item \ex{NTFS} - fs used only on \ex{windows} os, so it is a proprietary journaling file system, But it can be mount to Linux OS (so you can access your win files from Linux in case of dual-boot)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Swap}
+    \begin{itemize}
+        \item \ex{Swap} is not a filesystem type
+        \item It is a space on a disk, used when there is no space left in RAM, or because of some optimization processes
+        \item Also the only possible way for\ex{hybernation}
+        \item It could be both\ex{swap partition}and\ex{swap file}, but first is much better
+        \item \ex{mkswap} - to make a swap partition
+        \item \ex{swapon / swapoff} - obvious
+    \end{itemize}
+\end{frame}
+
+\section{Working with file systems}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[width=\paperwidth]{graphics/lib.jpg}
+            };
+        \end{tikzpicture}
+        \ex[black]{\Huge\textbf{Working with \newline\hspace{0.1em} file systems}}
+     \end{frame}
+}
+
+\begin{frame}{Review of previous topics}
+    \begin{itemize}
+        \item It's part of presentation abot\ex{shell}, but let's make a brief overview
+        \item Every proces has it's own working directory. 
+        \item \ex{pwdx \$(pgrep process\_name)} - show working directories for a process\_name
+        \item \ex{pwd} - print working (current) directory
+        \item \ex{ls} - list what is instde the working directory
+        \item \ex{cd} - change directory
+        \item \ex{./} - spesial, current directory
+        \item \ex{../} - spesial, parrent directory (in a tree struct)
+        \item \ex{$\sim$/} - \ex{\$HOME} directory for current user
+        \item \ex{cp <from....> <to>} - copy 
+        \item \ex{mv <from....> <to>} - rename (inside one fs, or move - from one to another fs)
+        \item \ex{mkdir} - make directory
+        \item \ex{touch <filename>} - update the last acces date (if no such file - create)
+        \item \ex{rm <filename>} - remove
+        \item \ex{cat} - show the file content
+    \end{itemize}
+\end{frame}
+
+\framesplitc{Devices}{graphics/dev.jpg}{
+    \begin{itemize}
+        \item \ex{Everything is a file}, devices are not an exception
+        \item All devices are in\ex{/dev}folder
+        \item Devices could be either\ex{secondary storages}or\ex{mous, keyboard, terminals, cpu, gpu} etc
+        \item Devices can be either\ex{block}or\ex{character} devices
+        \item Easy to remember:
+        \item \ex{Block devices} store or hold data
+        \item \ex{Character devices} - transmit or transfer data
+    \end{itemize}
+}
+
+\framesplitc{Mounting}{graphics/mounts.jpeg}{
+    \begin{itemize}
+        \item \ex{Mounting} - attaching some additional fs to already mounted
+        \item By default, user use only one filesystem, and it's mountpoint is \ex{/}
+        \item Then \ex{/boot} is also another fs, that is not used by user directly (more about that\ex{bootloader} topic)
+        \item On one physical device there could be few filesystems (more about that\ex{partition tables} topic)
+    \end{itemize}
+}
+
+\begin{frame}{A smorgasbord of important commands and terms}
+    \begin{itemize}
+        \item \ex{mkfs} - make a file system on a device
+        \item \ex{mkfs.filesystemtype /dev/X} - create a filesystem on existing logical device
+        \item \ex{fdisk -l} - to see all devices available for mounting 
+        \item \ex{mount /dev/X /mnt} - to mount device.\ex{mnt} is used as a convension, and it is important
+        \item \ex{/etc/fstab}- file with all "default mountings" during startup. Usually has only \ex{/} and \ex{boot} fs's
+        \item \ex{UUID} - Universally unique identifier - 128bit label. The probability that a UUID will be duplicated is close enough to zero to be negligible. HERE - unique device identifier
+        \item \ex{df, du} - are tools for capacity and used memory stats, but I recommend \ex[ucuorange]{ncdu}
+        \item \ex{parted} - tool for creating and editing partitions (\ex{or use GParted})
+    \end{itemize}
+\end{frame}
+
+
+\section{Linux Filesystems Hierarchy (LFS)}
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[width=\paperwidth,height=\paperheight]{graphics/lfs.jpg}
+                % source https://www.kpl.gov/catalog/item/?i=ent://LYNDA/0/LYNDA:100016
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
+
+
+\begin{frame}{Linux Filesystems Hierarchy Standard(FHS)}
+    \begin{itemize}
+        \item This topic is worth a separate lecture
+        \item We will make a brief overview
+        \item Every time while using your OS you can open this presentation
+        \item But soon enough you will remember all this staff
+        \item \ex{Linux Filesystem Hierarchy Standard}
+        \item Maintained by\ex{Linux Foundation}
+        \item All distros can voluntarily conform to the FHS, and most of them do
+        \item In general, file system structure is important
+        \item \ex{Please}, \ex[ucured]{Do not keep all your files in}\ex{/home/username}!
+        \item There are\ex{$~$/Downloads, $~$/Documents, $~$/Pictures, $~$/Programs}
+        \item That will be much easier to move around and remember all the paths if there is some pattern
+    \end{itemize}
+\end{frame}
+
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[width=\paperwidth,height=\paperheight]{graphics/lfs_.png}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
+
+\begin{frame}
+    \begin{itemize}
+        \item \ex{/} - Root directory of the entire file system hierarchy
+        \item BUT \ex{/} at the end of a path means that it is a directory, not a file
+        \item \ex{cat /etc/fstab} could show you which device is mounted to \ex{/ (root)} point
+        \item \ex{/bin}- NOW - symlink to\ex{/usr/bin}
+        \item \ex{/boot}- boot loader files are here. There can be\ex{/boot/grub}and\ex{/boot/efi}folders, some other files and directories related to bootloaders
+        \item \ex{/dev}- devices (including\ex{/dev/null, /dev/random, /dev/ttyX, /dev/sdX})
+        \item \ex{/etc}- (et cetera - historically). Now - directory with all global system configurations and cpecifications. Don't recommend to change anything here
+        \item \ex{/home}- directory that stores ALL users data (except root)
+        \item \ex{/root}- home for root
+        \item \ex{/lib}- NOW - symlink to \ex{/usr/lib}
+        \item \ex{/mnt}- Eecommended as a mountpoint for mounting devices
+        \item \ex{/opt}- optional software, propriet sw, most of sw from AUR is here
+        \item \ex{/proc}- virtual filesystem providing info about kernel and all running processes. Generated and populated by OS
+        \item \ex{/sbin}- NOW - symlink to \ex{/usr/bin}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{itemize}
+        \item \ex{/srv}- server cpecific data (a.e. to use pc as ftp or another server, all shared data is here)
+        \item \ex{/sys}- contains an information and interaction tools with kernel, devices, kernel modules
+        \item \ex{/tmp}- directory for temporary files as\ex{makepkg} cache, etc. Cleared after each reboot
+        \item \ex{/usr}- Universal System Resources - all of the user data
+        \begin{itemize}
+            \item \ex{/usr/bin}- file contains programs binaries for all users
+            \item \ex{/usr/include}- standard include files
+            \item \ex{/usr/lib}- file contains libraries for\ex{/usr/bin}
+            \item \ex{/usr/local}- tertiary hierarchy for local data, specific to this host. Contains\ex{/bin, /lib, share}inside
+            \item \ex{/usr/share}- architecture-independent data, a.e. fonts, icons, themes, etc
+            \item \ex{/usr/src}- source code of some programs a.e. kernel, rust, nvidia
+        \end{itemize}
+        \item \ex{/var}- variable files, that are permanently changing during normal work a.e. logs, cache, email files. Not cleared between reboots
+        \item \ex[ucured]{Important, must read}: \href{http://lists.busybox.net/pipermail/busybox/2010-December/074114.html}{difference between /bin, /sbin, /usr/bin}
+        \item But it is the info from 2010. Now it is\ex{Ok}to have them as symlinks to /usr/bin
+    \end{itemize}
+    
+
+\end{frame}
+
+\section{Sources}
+\framecard{Sources}
+\begin{frame}{Sources}
+    \begin{itemize}
+        \item UCU Linux Club resources
+        \item \href{https://en.wikipedia.org/wiki/File_system}{File systems Wiki}
+        \item \href{https://www.javatpoint.com/linux-files}{Linux file systems}
+        \item \href{https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard}{LFSH Wiki}
+        \item \href{http://www.differencebetween.net/technology/difference-between-soft-link-and-hard-link-in-unix-in-os/}{Differences between hard and soft links on Unix systems}
+        \item \href{https://techviewleo.com/mounting-and-unmounting-filesystems-on-linux/}{Mounting and unmounting on Linux}
+        \item \href{https://en.wikipedia.org/wiki/Universally_unique_identifier}{UUID Wiki}
+        \item \href{https://unix.stackexchange.com/questions/5915/difference-between-bin-and-usr-bin}{/bin and /usr/bin differences}
+        \item \href{http://lists.busybox.net/pipermail/busybox/2010-December/074114.html}{Understanding the bin, sbin, usr/bin , usr/sbin split}
+        \item \href{https://www.thegeekstuff.com/2011/05/ext2-ext3-ext4/}{ext2-3-4 differences}
+        \item \href{https://linuxhint.com/btrfs-vs-ext4-filesystems-comparison/}{btrfs vs ext4}
+        \item \href{https://www.freedesktop.org/wiki/Software/systemd/TheCaseForTheUsrMerge/}{The case for /usr merge}
+    \end{itemize}
+\end{frame}
+
+\end{document}
