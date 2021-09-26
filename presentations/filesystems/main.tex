@@ -109,7 +109,7 @@
         \item\ex{File system}- a method of data structure that the operating system uses to control how data is stored and retrieved
         \item A\ex{file}is an ordered collection of data blocks
         \item In Linux system, everything is a file, and if it is not a file, it is a process
-        \item So File systems are very important for this OS
+        \item So File systems are essential for this OS
     \end{itemize}
 }
 
@@ -164,7 +164,7 @@
     \begin{itemize}
         \item There are two types of links:\ex{symbolic (soft)}and\ex{hard}
         \item They are totally different types of file
-        \item Maybe first few years you will not use 
+        \item Maybe first few years you will not use it
         \item But with experience it becomes more and more useful
         \item Here we will make only a brief overview and comparison
     \end{itemize}
@@ -225,7 +225,7 @@
 
 \framesplit{Fyle system abstraction}{graphics/fs_tree.png}{
     \begin{itemize}
-        \item We used to see a filesystem as a tree. It is really the most comfortable structure as for now
+        \item We used to see a filesystem as a tree. It is the most comfortable structure as for now
         \item There is a CLI tool to see your filesystem structure called\ex{tree}
         \item Using such abstraction programmer works with files and directories, not with memory cells or some low-level staff, but with files, directories, and subdirectories
     \end{itemize}
@@ -246,13 +246,13 @@
 
 \section{The most important filesystems overview}
 \begin{frame}{Overview of the most important filesystems}
-    More detailes on the\ex{Operating systems}course
+    More details on the\ex{Operating systems}course
     \begin{itemize}
         \item \ex{ZFS} - this fs mostly used on data storages
         \item It has RAID support, Copy-on-write, Data integrity verification and automatic repair, Snapshots, Maximum 256 Quadrillion Zettabytes storage and Pooled storage
         \item It combines both fs and volume manager in one. Easy to add physical drive and extend partition size or replace physical drives, to use and maintain
-        \item \ex{FAT} - File Allocation Table fs. There are FAT16, 32, 64. Nowedays wide used on the USB flash drives. More info and work with this fs on \ex{Operating systems} course
-        \item \ex{NTFS} - fs used only on \ex{windows} os, so it is a proprietary journaling file system, But it can be mount to Linux OS (so you can access your win files from linux in case of dualboot)
+        \item \ex{FAT} - File Allocation Table fs. There are FAT16, 32, 64. Nowadays wide used on USB flash drives. More info and work with this fs on \ex{Operating systems} course
+        \item \ex{NTFS} - fs used only on \ex{windows} os, so it is a proprietary journaling file system, But it can be mount to Linux OS (so you can access your win files from Linux in case of dual-boot)
     \end{itemize}
 \end{frame}
 
