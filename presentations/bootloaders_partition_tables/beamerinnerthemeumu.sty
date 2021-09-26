@@ -1,0 +1,70 @@
+\mode<presentation>
+
+\setbeamertemplate{sections/subsections in toc}[circle]
+\setbeamertemplate{items}[circle]
+\usebeamercolor[fg]{normal text}
+
+\setbeamertemplate{background}{
+\begin{tikzpicture}
+  
+\ifnum\thepage>1\relax
+% background for pages > 1 
+% 	\fill[ucugrey,opacity=1] (0,0) rectangle(\the\paperwidth,\the\paperheight);
+
+\else 
+  % background for the title page
+  \useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+  \fill[ucublue,opacity=1] (0,0) rectangle(\the\paperwidth,\the\paperheight);
+  
+  % background image
+  \node[inner sep=0pt] (logo) at (.5\paperwidth,0.5\paperheight){\includegraphics[width=\paperwidth]{graphics/main.jpg}};
+
+  % logo
+  \node[inner sep=0pt] (logo) at (.5\paperwidth,0.85\paperheight){\includegraphics[width=1.5cm]{graphics/apps_logo.png}};
+
+\fi
+\end{tikzpicture}
+}
+
+% Title page
+\defbeamertemplate*{title page}{umu}[1][] {
+    \begin{textblock*}{10cm}(1cm,2.5cm)
+    {\usebeamercolor[fg]{author}\usebeamerfont{author}\sffamily\fontseries{semibold}\selectfont\insertinstitute}
+    \end{textblock*}
+    
+    \begin{textblock*}{10cm}(1cm,3.1cm)
+    {\usebeamercolor[fg]{title}\usebeamerfont{title}\inserttitle}
+    \end{textblock*}
+    
+    \begin{textblock*}{10cm}(1cm,4.1cm)
+    {\usebeamercolor[fg]{subtitle}\usebeamerfont{subtitle}\insertsubtitle}
+    \end{textblock*}
+    
+    \begin{textblock*}{10cm}(1cm,6cm)
+    {\usebeamercolor[fg]{author}\usebeamerfont{author}\sffamily\fontseries{semibold}\selectfont\insertauthor}
+    \end{textblock*}
+
+}
+
+% Section page.
+\defbeamertemplate*{section page}{focus}{%
+    {%
+        \usebeamercolor{frametitle}\colorlet{focus@@temp}{bg}%
+        \begin{tikzpicture}[overlay, remember picture]
+            \fill[color=focus@@temp] (current page.north west) rectangle ([shift = {(0, -0.45\paperheight)}] current page.north east);
+        \end{tikzpicture}%
+    }
+    
+    \vspace{-2\baselineskip}
+    \begin{minipage}[b][0.45\paperheight]{\textwidth}
+        \usebeamerfont{sectiontitle}
+        \usebeamercolor[fg]{frametitle}
+        \let\hyperlink\@secondoftwo\insertsection
+    \end{minipage}
+    
+    \begin{minipage}[t][0.55\paperheight]{\textwidth}
+    \end{minipage}
+}
+
+\mode
+<all>
