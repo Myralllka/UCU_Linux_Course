@@ -1,6 +1,7 @@
 # Linux Course
 Repo for my course, that I am planning to make and teach =)
 
+Inspired by [UCU Linux Club](https://github.com/ucu-cs/UCU_Linux_Club)
 
 ### Pre-requirements: 
 - Personal laptop
