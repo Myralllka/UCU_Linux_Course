@@ -227,9 +227,45 @@
     \begin{itemize}
         \item We used to see a filesystem as a tree. It is really the most comfortable structure as for now
         \item There is a CLI tool to see your filesystem structure called\ex{tree}
-        \item Using such abstraction programmer works with files and directories, not with memory cells or some low level staff, but with files, directories and subdirectories
+        \item Using such abstraction programmer works with files and directories, not with memory cells or some low-level staff, but with files, directories, and subdirectories
     \end{itemize}
 }
+
+\section{The most important filesystems overview}
+\begin{frame}{Overview of the most important filesystems}
+    More detailes on the\ex{Operating systems}course
+    \begin{itemize}
+        \item Remark: \ex{ext} stands for extended
+        \item \ex{ext2} - year 1993. File size can be to 2TB, file system size to 32TB
+        \item \ex{ext3} - year 2001. Linux Kernel > 2.4.15. Max 32'000 subdirectories. Main benefit - allows different types of journalling (traking of all changes). Easy to convert ext2 -> ext3. (later) Can be mount as ext4
+        \item \ex{ext4} - year 2008. Linux Kernel > 2.6.19. Max 64'000 subdirectories. File system size up to 1EB (10e12GB). Option of turning the journaling feature "off". Aslo some features as multiblock allocation, delayed allocation, journal checksum, fast fsck, etc was introduced
+        \item \ex{btrfs}or\ex{B-Tree filesystem} - modern Copy-on-Write (CoW) filesystem. \href{https://linuxhint.com/btrfs-vs-ext4-filesystems-comparison/}{Comparison of ext4 and btrfs link}. As for me, the most important features are\ex{fs snapshot}and\ex{multiple devices support},\ex{built-in RAID support}
+        \item \ex{ext4} designed to be simple and stable, mostly for local-using, while \ex{btrfs} to be high-performance, high-capacity and high-performance, mostly for storage servers
+    \end{itemize}
+\end{frame}
+
+\section{The most important filesystems overview}
+\begin{frame}{Overview of the most important filesystems}
+    More detailes on the\ex{Operating systems}course
+    \begin{itemize}
+        \item \ex{ZFS} - this fs mostly used on data storages
+        \item It has RAID support, Copy-on-write, Data integrity verification and automatic repair, Snapshots, Maximum 256 Quadrillion Zettabytes storage and Pooled storage
+        \item It combines both fs and volume manager in one. Easy to add physical drive and extend partition size or replace physical drives, to use and maintain
+        \item \ex{FAT} - File Allocation Table fs. There are FAT16, 32, 64. Nowedays wide used on the USB flash drives. More info and work with this fs on \ex{Operating systems} course
+        \item \ex{NTFS} - fs used only on \ex{windows} os, so it is a proprietary journaling file system, But it can be mount to Linux OS (so you can access your win files from linux in case of dualboot)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Swap}
+    \begin{itemize}
+        \item \ex{Swap} is not a filesystem type
+        \item It is a space on a disk, used when there is no space left in RAM, or because of some optimization processes
+        \item Also the only possible way for\ex{hybernation}
+        \item It could be both\ex{swap partition}and\ex{swap file}, but first is much better
+        \item \ex{mkswap} - to make a swap partition
+        \item \ex{swapon / swapoff} - obvious
+    \end{itemize}
+\end{frame}
 
 \section{Working with file systems}
 { % all template changes are local to this group.
@@ -293,6 +329,8 @@
         \item \ex{mount /dev/X /mnt} - to mount device.\ex{mnt} is used as a convension, and it is important
         \item \ex{/etc/fstab}- file with all "default mountings" during startup. Usually has only \ex{/} and \ex{boot} fs's
         \item \ex{UUID} - Universally unique identifier - 128bit label. The probability that a UUID will be duplicated is close enough to zero to be negligible. HERE - unique device identifier
+        \item \ex{df, du} - are tools for capacity and used memory stats, but I recommend \ex[ucuorange]{ncdu}
+        \item \ex{parted} - tool for creating and editing partitions (\ex{or use GParted})
     \end{itemize}
 \end{frame}
 
@@ -311,24 +349,56 @@
 }
 
 
-\begin{frame}{Linux Filesystems Hierarchy (LFS)}
+\begin{frame}{Linux Filesystems Hierarchy Standard(FHS)}
     \begin{itemize}
-        \item This topic worth a separate lecture, but lets make it short 
-        \item 
+        \item This topic is worth a separate lecture
+        \item We will make a brief overview
+        \item Every time while using your OS you can open this presentation
+        \item But soon enough you will remember all this staff
+        \item \ex{Linux Filesystem Hierarchy Standard}
+        \item Maintained by\ex{Linux Foundation}
+        \item All distros can voluntarily conform to the FHS, and most of them do
+        \item In general, file system structure is important
+        \item \ex{Please}, \ex[ucured]{Do not keep all your files in}\ex{/home/username}!
+        \item There are\ex{$~$/Downloads, $~$/Documents, $~$/Pictures, $~$/Programs}
+        \item That will be much easier to move around and remember all the paths if there is some pattern
     \end{itemize}
 \end{frame}
 
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[width=\paperwidth,height=\paperheight]{graphics/lfs_.png}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
+
+\begin{frame}
+    \begin{itemize}
+        \item \ex{/} - Primary hierarchy root and root directory of the entire file system hierarchy
+        \item BUT \ex{/} at the end of a path means that it is a directory, not a file
+        \item \ex{cat /etc/fstab} could show you which device is mounted to \ex{/ (root)} point
+        \item \ex{/boot} - boot loader files are here. 
+    \end{itemize}
+\end{frame}
 
 \section{Sources}
 \framecard{Sources}
 \begin{frame}{Sources}
     \begin{itemize}
-        \item UCU Linux Club
+        \item UCU Linux Club resources
         \item \href{https://en.wikipedia.org/wiki/File_system}{File systems Wiki}
         \item \href{https://www.javatpoint.com/linux-files}{Linux file systems}
         \item \href{http://www.differencebetween.net/technology/difference-between-soft-link-and-hard-link-in-unix-in-os/}{Differences between hard and soft links on Unix systems}
         \item \href{https://techviewleo.com/mounting-and-unmounting-filesystems-on-linux/}{Mounting and unmounting on Linux}
         \item \href{https://en.wikipedia.org/wiki/Universally_unique_identifier}{UUID Wiki}
+        \item \href{https://unix.stackexchange.com/questions/5915/difference-between-bin-and-usr-bin}{/bin and /usr/bin differences}
+        \item \href{http://lists.busybox.net/pipermail/busybox/2010-December/074114.html}{Understanding the bin, sbin, usr/bin , usr/sbin split}
+        \item \href{https://www.thegeekstuff.com/2011/05/ext2-ext3-ext4/}{ext2-3-4 differences}
+        \item \href{https://linuxhint.com/btrfs-vs-ext4-filesystems-comparison/}{btrfs vs ext4}
     \end{itemize}
 \end{frame}
 
