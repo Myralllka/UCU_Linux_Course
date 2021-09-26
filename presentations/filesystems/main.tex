@@ -378,11 +378,43 @@
 
 \begin{frame}
     \begin{itemize}
-        \item \ex{/} - Primary hierarchy root and root directory of the entire file system hierarchy
+        \item \ex{/} - Root directory of the entire file system hierarchy
         \item BUT \ex{/} at the end of a path means that it is a directory, not a file
         \item \ex{cat /etc/fstab} could show you which device is mounted to \ex{/ (root)} point
-        \item \ex{/boot} - boot loader files are here. 
+        \item \ex{/bin}- NOW - symlink to\ex{/usr/bin}
+        \item \ex{/boot}- boot loader files are here. There can be\ex{/boot/grub}and\ex{/boot/efi}folders, some other files and directories related to bootloaders
+        \item \ex{/dev}- devices (including\ex{/dev/null, /dev/random, /dev/ttyX, /dev/sdX})
+        \item \ex{/etc}- (et cetera - historically). Now - directory with all global system configurations and cpecifications. Don't recommend to change anything here
+        \item \ex{/home}- directory that stores ALL users data (except root)
+        \item \ex{/root}- home for root
+        \item \ex{/lib}- NOW - symlink to \ex{/usr/lib}
+        \item \ex{/mnt}- Eecommended as a mountpoint for mounting devices
+        \item \ex{/opt}- optional software, propriet sw, most of sw from AUR is here
+        \item \ex{/proc}- virtual filesystem providing info about kernel and all running processes. Generated and populated by OS
+        \item \ex{/sbin}- NOW - symlink to \ex{/usr/bin}
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{itemize}
+        \item \ex{/srv}- server cpecific data (a.e. to use pc as ftp or another server, all shared data is here)
+        \item \ex{/sys}- contains an information and interaction tools with kernel, devices, kernel modules
+        \item \ex{/tmp}- directory for temporary files as\ex{makepkg} cache, etc. Cleared after each reboot
+        \item \ex{/usr}- Universal System Resources - all of the user data
+        \begin{itemize}
+            \item \ex{/usr/bin}- file contains programs binaries for all users
+            \item \ex{/usr/include}- standard include files
+            \item \ex{/usr/lib}- file contains libraries for\ex{/usr/bin}
+            \item \ex{/usr/local}- tertiary hierarchy for local data, specific to this host. Contains\ex{/bin, /lib, share}inside
+            \item \ex{/usr/share}- architecture-independent data, a.e. fonts, icons, themes, etc
+            \item \ex{/usr/src}- source code of some programs a.e. kernel, rust, nvidia
+        \end{itemize}
+        \item \ex{/var}- variable files, that are permanently changing during normal work a.e. logs, cache, email files. Not cleared between reboots
+        \item \ex[ucured]{Important, must read}: \href{http://lists.busybox.net/pipermail/busybox/2010-December/074114.html}{difference between /bin, /sbin, /usr/bin}
+        \item But it is the info from 2010. Now it is\ex{Ok}to have them as symlinks to /usr/bin
+    \end{itemize}
+    
+
 \end{frame}
 
 \section{Sources}
@@ -392,6 +424,7 @@
         \item UCU Linux Club resources
         \item \href{https://en.wikipedia.org/wiki/File_system}{File systems Wiki}
         \item \href{https://www.javatpoint.com/linux-files}{Linux file systems}
+        \item \href{https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard}{LFSH Wiki}
         \item \href{http://www.differencebetween.net/technology/difference-between-soft-link-and-hard-link-in-unix-in-os/}{Differences between hard and soft links on Unix systems}
         \item \href{https://techviewleo.com/mounting-and-unmounting-filesystems-on-linux/}{Mounting and unmounting on Linux}
         \item \href{https://en.wikipedia.org/wiki/Universally_unique_identifier}{UUID Wiki}
@@ -399,6 +432,7 @@
         \item \href{http://lists.busybox.net/pipermail/busybox/2010-December/074114.html}{Understanding the bin, sbin, usr/bin , usr/sbin split}
         \item \href{https://www.thegeekstuff.com/2011/05/ext2-ext3-ext4/}{ext2-3-4 differences}
         \item \href{https://linuxhint.com/btrfs-vs-ext4-filesystems-comparison/}{btrfs vs ext4}
+        \item \href{https://www.freedesktop.org/wiki/Software/systemd/TheCaseForTheUsrMerge/}{The case for /usr merge}
     \end{itemize}
 \end{frame}
 
