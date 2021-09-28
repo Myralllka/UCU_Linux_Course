@@ -17,10 +17,10 @@
   \fill[ucublue,opacity=1] (0,0) rectangle(\the\paperwidth,\the\paperheight);
   
   % background image
-  \node[inner sep=0pt] (logo) at (.5\paperwidth,0.5\paperheight){\includegraphics[width=\paperwidth]{graphics/main.jpg}};
+  \node[inner sep=0pt] (logo) at (.5\paperwidth,0.5\paperheight){\includegraphics[width=\paperwidth]{graphics/main.jpeg}};
 
   % logo
-  \node[inner sep=0pt] (logo) at (.5\paperwidth,0.85\paperheight){\includegraphics[width=1.5cm]{graphics/apps_logo.png}};
+  \node[inner sep=0pt] (logo) at (.5\paperwidth,0.1\paperheight){\includegraphics[width=1.5cm]{graphics/apps_logo.png}};
 
 \fi
 \end{tikzpicture}
@@ -28,19 +28,19 @@
 
 % Title page
 \defbeamertemplate*{title page}{umu}[1][] {
-    \begin{textblock*}{10cm}(1cm,2.5cm)
+    \begin{textblock*}{10cm}(1cm,1cm)
     {\usebeamercolor[fg]{author}\usebeamerfont{author}\sffamily\fontseries{semibold}\selectfont\insertinstitute}
     \end{textblock*}
     
-    \begin{textblock*}{10cm}(1cm,3.1cm)
+    \begin{textblock*}{10cm}(1cm,1.6cm)
     {\usebeamercolor[fg]{title}\usebeamerfont{title}\inserttitle}
     \end{textblock*}
     
-    \begin{textblock*}{10cm}(1cm,4.1cm)
+    \begin{textblock*}{10cm}(1cm,2.6cm)
     {\usebeamercolor[fg]{subtitle}\usebeamerfont{subtitle}\insertsubtitle}
     \end{textblock*}
     
-    \begin{textblock*}{10cm}(1cm,6cm)
+    \begin{textblock*}{10cm}(1cm,3.5cm)
     {\usebeamercolor[fg]{author}\usebeamerfont{author}\sffamily\fontseries{semibold}\selectfont\insertauthor}
     \end{textblock*}
 
