@@ -120,6 +120,8 @@
     \end{itemize}
 \end{frame}
 
+\framepic{graphics/biosvsefi.png}{}
+
 \framesplit{Bios}{graphics/bios.jpg}{
     \begin{itemize}
         \item \ex{BIOS}is stored on an EPROM (Erasable Programmable Read-Only Memory), allowing the manufacturer to push out updates easily
@@ -133,7 +135,7 @@
 \framesplit{UEFI}{graphics/uefi.png}{
     \begin{itemize}
         \item \ex{UEFI}does the same job as a BIOS
-        \item Stores all data about initialization and startup in an .efi file, instead of storing it on the firmware
+        \item Stores all data about initialization and startup in an \ex{.efi} file, instead of storing it on the firmware
         \item This .efi file is stored on a special partition called ESP on the hard disk. This ESP partition also contains the bootloader
         \item UEFI supports bigger drive size, provides faster boot time, runs in 32-bit or 64-bit mode, can be used with GPT
         \item Has a \ex{Legacy mode} - UEFI mode that behaves in a way as BIOS did
@@ -156,24 +158,45 @@
 
 \begin{frame}{Bootloaders overview}
     \begin{itemize}
-        \item Bootloader - a program responsible for booting the operating system
+        \item \ex{Bootloader}- a program responsible for booting the operating system
         \item Bootloader stored on a specific partition
-    \end{itemize}
-\end{frame}
-    
-\begin{frame}{GRUB}
-    \begin{itemize}
-        \item 
+        \item When PC is powered off, all data is stored on the non-volatile memory
+        \item But for OS to work, it should be in the RAM
+        \item Bootloader is responsible for loading the system to RAM
+        \item There are too many platforms and too many ways how bootloaders could be used
+        \item To simplify, here is an overview of: x86 architecture, modern Linux OS (kernel v5+)
     \end{itemize}
 \end{frame}
 
+
+\framesplit{GRUB}{graphics/grub.png}{
+    \begin{itemize}
+        \item GRUB - most wide-common used bootloader for our systems from the GNU project
+        \item Can be used in both\ex{UEFI}and\ex{Legacy} modes
+        \item If installed, during booting GRUB loads\ex{/boot/grub/grub.cfg}file. Do not edit it!
+        \item To change anything in that file, change it only in\ex{/etc/default/grub} \ex[ucuorange]{(remember, there are all setting files)}and then use command \ex{gtub-mkconfig -o /boot/grub/grub.cfg}
+        \item But\ex{GRUB} is too old and slow. 
+        \item More about it is on \href{https://wiki.archlinux.org/title/GRUB}{Arch wiki}
+    \end{itemize}
+}
+
 \begin{frame}{systemd-boot}
     \begin{itemize}
-        \item 
+        \item Simple UEFI boot manager
+        \item Executes configured EFI images
+        \item Included with\ex{systemd}
+        \item Can only start EFI executables such as UEFI Shell,\ex{Linux \href{https://wiki.archlinux.org/title/EFISTUB}{EFISTAB}}, Windows, GRUB, Windows boot manager etc
+        \item Can be installed only with ESP mounted
+        \item Much faster than all other bootloaders (\ex{if your init system is systemd}) which is true for both Manjaro and Arch (Ubuntu also)
+        \item The reason - it starts fewer things in general and starts almost everything in parallel
+        \item Simple in maintaining and setting up:
+        \item \ex{bootctl install} for installation
+        \item \ex{/boot/loader/entries/} is a location for config files. If you want to add new entry, just add new\ex{.conf}file here
     \end{itemize}
 \end{frame}
 
 \section{Partition tables}
+\framepic{graphics/devices.jpg}{\vspace{5cm}\hspace{3.5cm}PARTITION TABLES}
 
 \section{Sources}
 \framecard{Sources}
@@ -184,6 +207,7 @@
         \item \href{https://en.wikipedia.org/wiki/Bootloader}{Wiki Bootloader}
         \item \href{https://wiki.archlinux.org/title/GRUB}{GRUB Arch Wiki}
         \item \href{https://wiki.archlinux.org/title/Systemd-boot}{Systemd-boot Arch wiki}
+        \item \href{https://www.maketecheasier.com/grub-vs-systemd-boot/}{GRUB vs systemd-boot}
     \end{itemize}
 \end{frame}
 
