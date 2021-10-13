@@ -198,6 +198,18 @@
 \section{Partition tables}
 \framepic{graphics/devices.jpg}{\vspace{5cm}\hspace{3.5cm}PARTITION TABLES}
 
+\framesplit{Partitioning}{graphics/cfdisk.png}{
+    \begin{itemize}
+        \item Linux see each device as a separate file a.e.\ex{/dev/sdX, /dev/nvme0nX}
+        \item \ex{Partitioning}- adding logical devices remaining the same amount of phisical. It make possible to manage each partition separate
+        \item Each such logical device called\ex{partition}
+        \item \ex{Partition table}- area on a disk where the disk stores the information about every partition
+        \item \ex{Partition editors}can be used to add/delete, adit new partitions (a.e. fdisk, cfdisk, parted, gparted)
+    \end{itemize}
+}
+
+
+
 \section{Sources}
 \framecard{Sources}
 \begin{frame}{Sources}
@@ -208,6 +220,7 @@
         \item \href{https://wiki.archlinux.org/title/GRUB}{GRUB Arch Wiki}
         \item \href{https://wiki.archlinux.org/title/Systemd-boot}{Systemd-boot Arch wiki}
         \item \href{https://www.maketecheasier.com/grub-vs-systemd-boot/}{GRUB vs systemd-boot}
+        \item \href{https://wiki.archlinux.org/title/Partitioning}{Partitioning Arch wiki}
     \end{itemize}
 \end{frame}
 
