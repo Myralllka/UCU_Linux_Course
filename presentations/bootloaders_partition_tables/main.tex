@@ -208,7 +208,28 @@
     \end{itemize}
 }
 
+\framesplit{Master boot record}{graphics/MBR.png}{
+    What everybody should know about \ex{MBR}?
+    \begin{itemize}
+        \item Very old, unfortunately still not deprecated, and you can see it even on the very new laptops
+        \item Don't support UEFI
+        \item Max disk size - 2TB. If you have more, only 2TB will be visible
+        \item Only 4 general partitions available
+        \item \ex[ucured]{Do not use it, use GPT!}
+        \item The best and easiest way - delete or move everything from the physical disk and change the partition table
+        \item Otherwise - there are some applications for Windows/Linux how to make it without dataloss (usually quite expensive)
+    \end{itemize}
+}
 
+\framesplitc{GUID Partition Table}{graphics/GPT.png}{
+    What about \ex{GPT}?
+    \begin{itemize}
+        \item \ex{GPT} - also quite old - 30 years - but conceptually still the best way for partitioning
+        \item 128 partitions available
+        \item Max disk size - 18EB. As far as the biggest HDD's I know are only 18TB each it won't be a limitation for nearest decades
+        
+    \end{itemize}
+}
 
 \section{Sources}
 \framecard{Sources}
