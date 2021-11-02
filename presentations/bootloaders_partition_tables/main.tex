@@ -214,22 +214,50 @@
         \item Very old, unfortunately still not deprecated, and you can see it even on the very new laptops
         \item Don't support UEFI
         \item Max disk size - 2TB. If you have more, only 2TB will be visible
-        \item Only 4 general partitions available
+        \item Only four general partitions available
         \item \ex[ucured]{Do not use it, use GPT!}
         \item The best and easiest way - delete or move everything from the physical disk and change the partition table
         \item Otherwise - there are some applications for Windows/Linux how to make it without dataloss (usually quite expensive)
     \end{itemize}
 }
-
-\framesplitc{GUID Partition Table}{graphics/GPT.png}{
-    What about \ex{GPT}?
-    \begin{itemize}
-        \item \ex{GPT} - also quite old - 30 years - but conceptually still the best way for partitioning
-        \item 128 partitions available
-        \item Max disk size - 18EB. As far as the biggest HDD's I know are only 18TB each it won't be a limitation for nearest decades
+\begin{frame}{GUID Partition Table} 
         
+
+    {
+        
+        \begin{columns}[t, totalwidth=\textwidth]
+        \begin{column}{0.47\linewidth}
+            \begin{center}
+                What about \ex{GPT}?
+                \begin{itemize}
+                    \item \ex{GPT} - also quite old - 30 years - but conceptually still the best way for partitioning
+                    \item Can support UEFI
+                    \item 128 partitions available
+                    \item Max disk size - 18EB. As far as the biggest HDD's I know are only 18TB each it won't be a limitation for nearest decades
+                \end{itemize}    
+            \end{center}
+        \end{column}
+
+        \begin{column}{0.47\linewidth}
+            \begin{center}
+                \includegraphics[width=0.8\textwidth]{graphics/GPT.png}    
+            \end{center}
+        \end{column}
+
+    \end{columns}
+    }
+
+\end{frame}
+
+\framesplit{How and why to use partitioning?}{graphics/storage_disk_partitions.png}{
+    \begin{itemize}
+        \item Usually partitioning is used only when installing a new OS or changing partitions info (add/remove swap, etc)
+        \item Usually\ex{cfdisk}is used for such manipulations
+        \item For more deep things (create, change, remove table)\ex{parted, Gparted, fdisk}are recommended
+        \item 
     \end{itemize}
 }
+
 
 \section{Sources}
 \framecard{Sources}
