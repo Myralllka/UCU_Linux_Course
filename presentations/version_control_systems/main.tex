@@ -33,7 +33,7 @@
 %%% Enter additional packages below (or above, I can't stop you)! / Jesper
 \renewcommand{\proofname}{\sffamily{Proof}}
 
-% custom fullpage image:
+% custom full page image:
 % { % all template changes are local to this group.
 %     \setbeamertemplate{navigation symbols}{}
 %     \begin{frame}<article:0>[plain]
@@ -97,9 +97,9 @@
     \begin{itemize}
         \item Sooner or later, during the development process, it is necessary to check, 
         what was before, how it became broken
-        \item Maybe it's easier to use \ex{Ctrl+z}, but it's impossible to check what was three weeks 
+        \item Maybe it is easier to use \ex{Ctrl+z}, but it's impossible to check what was in the code three weeks 
         ago with any keybinding
-        \item So in 1972 people started to think about \ex{version control systems}
+        \item In 1972 people started to think about \ex{version control systems}
         \item Firstly, it had been just a tool for saving a history of binary files, but in 1977 
         the first \ex{source code control system} was introduced
         \item The main idea behind - to save the program source code on some checkpoints
@@ -125,8 +125,8 @@
         \item \ex{Linux kernel} is a huge project, and it is important to have some source-control management system (SCMs) to maintain it
         \item From 2002 to 2005 BitKeeper, a proprietary SCMs was used to maintain the project
         \item At some point (3 April 2005), Linus Torvalds realized that existing tools are not suitable for Linux development, so in three days, he announced a project and became a self-hosting of \ex{Git} on the next day
-        \item It was totally different SCMs. Linus maintained it for half a year, and Junio Hamano has been the core maintainer since then
-        \item It was open-source, free software, with a very strong safeguards against corruption, either accidental or malicious
+        \item It was different SCMs. Linus maintained it for half a year, and Junio Hamano has been the core maintainer since then
+        \item It was open-source, free software, with robust safeguards against corruption, either accidental or malicious
         \item Torvalds sarcastically quipped about the name \ex{Git}, means \ex[ucured]{unpleasant person} in British English
         \item He said: \ex[ucuyellow]{\textit{"I am an egotistical bastard, and I name all my projects after myself. First 'Linux', now 'git'."}} =)
     \end{itemize}
@@ -277,7 +277,7 @@ git commit -m "add gitignore file; add scripts for some task" \end{lstlisting}
 
 \framesplitc{Branches}{graphics/branch.jpg}{
     \begin{itemize}
-        \item\ex{Branch}is a divergence from the one development line to fulfill some specific purpose
+        \item\ex{Branch}is a divergence from the one development line to fulfil some specific purpose
         \item For example - stable branch (usually master), development (dev), features, bug fixing
         \item Used for concurrent work of different developers on the same project
         \item Helps to avoid often conflicts while working on fairly independent parts
@@ -335,12 +335,12 @@ Now it is possible to merge with
         \item If you use some app stored on \ex{GitHub} and it works with bugs
         \item You have two options - report the bug or fix it and send a bugfix to maintainers
         \item For the first thing\ex{Issues}could be helpful (For the second -\ex{Pull requests})
-        \item All GitHub users can create issue on some projects pages, comment it, react on it with some emoji etc
+        \item All GitHub users can create an issue on some projects pages, comment it, react on it with some emoji etc
         \item Issue itself - a conversation-starting with user's message, that (for example) he found a bug, and some information about how you got this bug
         \item Also there can be \ex[ucuorange]{feature request bugs} or even \ex{improvements} or other. There are dozens of such labels
         \item Often Issues either has a solution written as the last message or a pull request that solves the problem
         \item After that\ex{issue}can be marked as solved
-        \item \ex{Issues} are part of the development workflow, so it's important to keep them as much as keep source code of the program itself, and it's commit history
+        \item \ex{Issues} are part of the development workflow, so it is important to keep them as much as keep source code of the program itself and its commits history
     \end{itemize}
 \end{frame}
 
@@ -349,13 +349,13 @@ Now it is possible to merge with
         \item A GitHub\ex{fork}is a copy of a repo that sits in your account rather than the account from which you forked
         \item Once you have forked a repo, you own your forked copy
         \item This means that you can edit the contents of your forked repository without impacting the parent repo
-        \item Forked repo can be\ex{detuched}(in theory, but it is not possible for now. By hands, the support team can do that) to became an independent project
+        \item Forked repo can be\ex{detuched}(in theory, but it is not possible for now. By hands, the support team can do that) to become an independent project
     \end{itemize}
 }
 
 \framesplitc{Pull request}{graphics/pr.png}{
     \begin{itemize}
-        \item In most cases, you don't want strangers to break all your code, so only a few people (\ex{contributors}) have right for changing the repo
+        \item In most cases, nobody wants all their code to be broken by strangers, so only a few people (\ex{contributors}) have the right for changing the repo
         \item Instead, they should\ex{fork}, make a new branch, implement some feature and make a \ex{pull request}about merging their work to your project
         \item The same can be done between simple branches (but that is not necessary)
         \item Sometimes there is a\ex{CONTRIBUTION.md}describing how to make correct changes with clear commits and acceptable PR message for changes to be merged 
@@ -366,9 +366,9 @@ Now it is possible to merge with
     \begin{itemize}
         \item More advanced usage of GitHub - use it with\ex{GitHub Actions}
         \item Continuous integration (CI) - the practice of automating the integration of code changes 
-        \item Using this tool, it is easy to test your code for compilation on different compilers, distros, with different configurations, and all of that - automatically 
-        \item There are hundreds of existing\ex{actions}, but it's possible (and quite easy) to make your own
-        \item I totally recommend to use it for lab works and small projects - than it will be easier to use it everywhere
+        \item Using this tool, it is easy to test any project for compilation on different compilers, distros, with different configurations, and all of that - automatically 
+        \item There are hundreds of existing\ex{actions}, but it is possible (and quite easy) to make your own
+        \item I recommend to use it for lab works and small projects - then it will be easier to use it everywhere
     \end{itemize}
 }
 
