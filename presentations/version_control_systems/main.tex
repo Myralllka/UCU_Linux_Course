@@ -332,8 +332,7 @@ Now it is possible to merge with
 
 \begin{frame}{Issues}
     \begin{itemize}
-        \item If you use some app stored on \ex{GitHub} and it works with bugs
-        \item You have two options - report the bug or fix it and send a bugfix to maintainers
+        \item If you use some app stored on \ex{GitHub} and it works with bugs - you have two options: report the bug or fix it and send a\ex[ucuyellow]{bugfix}to maintainers
         \item For the first thing\ex{Issues}could be helpful (For the second -\ex{Pull requests})
         \item All GitHub users can create an issue on some projects pages, comment it, react on it with some emoji etc
         \item Issue itself - a conversation-starting with user's message, that (for example) he found a bug, and some information about how you got this bug
@@ -356,8 +355,8 @@ Now it is possible to merge with
 \framesplitc{Pull request}{graphics/pr.png}{
     \begin{itemize}
         \item In most cases, nobody wants all their code to be broken by strangers, so only a few people (\ex{contributors}) have the right for changing the repo
-        \item Instead, they should\ex{fork}, make a new branch, implement some feature and make a \ex{pull request}about merging their work to your project
-        \item The same can be done between simple branches (but that is not necessary)
+        \item Instead, they should\ex{fork}, implement some feature and make a \ex{pull request}to merge their contribution to your project
+        \item Almost the same (merge request) can be done between branches inside one fork
         \item Sometimes there is a\ex{CONTRIBUTION.md}describing how to make correct changes with clear commits and acceptable PR message for changes to be merged 
     \end{itemize}
 }
@@ -395,6 +394,38 @@ Now it is possible to merge with
         \item \ex{gh workflow run}
     \end{itemize}
 \end{frame}
+
+\section{How to start?}
+{ % all template changes are local to this group.
+% TODO: GitHub getting started, not Git
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[height=\paperheight,width=\paperwidth]{graphics/get_started.png}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
+
+\begin{frame}[fragile]{How to get stated?}
+    \begin{itemize}
+        \item First of all you should create an account on GitHub 
+        \item Than you can create repositories, clone any open repo, add friends, put starts etc
+        \item GitHub try to improve it's security more and more
+        \item In case if you want to\ex{push}something, firstly you need to authosize yourself (abd create new ssh-key)
+    \end{itemize}
+\begin{lstlisting}[language=Bash, style=shellstyle] 
+    git config --global user.name "username"
+    git config --global user.email "email@example.com"\end{lstlisting}
+    \begin{itemize}
+        \item Then make an ssh key and add it to your gh accoung. More info \href{https://docs.github.com/en/authentication/connecting-to-github-with-ssh}{here}
+        \item Keep using it. Using\ex{Git}is cool!
+    \end{itemize}
+
+\end{frame}
+
+
 
 % \section{Making own version controll system} :TODO
 
