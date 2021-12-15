@@ -1,0 +1,148 @@
+\documentclass[usenames,dvipsnames,10pt,aspectratio=169]{beamer} 
+
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{minted}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{geometry}
+\usepackage{listings}
+% \usepackage{showframe}
+\usepackage{enumitem}
+\usepackage{color, xcolor}
+\usepackage[document]{ragged2e}
+\usetheme{umu}
+
+\usemintedstyle{monokai}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=ucugreyish,
+    filecolor=ucured,
+    urlcolor=ucublue,
+}
+\urlstyle{same}
+
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+%%% Some useful commands
+% pdf-friendly newline in links
+\newcommand{\pdfnewline}{\texorpdfstring{\newline}{ }} 
+% Fill the vertical space in a slide (to put text at the bottom)
+\newcommand{\framefill}{\vskip 0pt plus 1 filll}
+
+%%% Enter additional packages below (or above, I can't stop you)! / Jesper
+\renewcommand{\proofname}{\sffamily{Proof}}
+
+% custom fullpage image:
+% { % all template changes are local to this group.
+%     \setbeamertemplate{navigation symbols}{}
+%     \begin{frame}<article:0>[plain]
+%         \begin{tikzpicture}[remember picture,overlay]
+%             \node[at=(current page.center)] {
+%                 \includegraphics[width=\paperwidth,height=\paperheight]{graphics/version-control.png}
+%             };
+%         \end{tikzpicture}
+%      \end{frame}
+% }
+
+% custom shell example inplace
+% [fragile] frame
+% \begin{lstlisting}[language=Bash, style=shellstyle] 
+%     username $ echo a
+% \end{lstlisting}
+
+% custom code file
+% [fragile] frame
+% \lstinputlisting[language=Python, style=codestyle]{code/shebang_ex.py}
+
+% presentation template slides usage
+% \framecard[color (not working)]{textbuf}
+% \framesplit{Header}{picture}{textbuf}
+% \framepic{image}{text}
+% \lstinputlisting[language=Bash, style=codestyle]{code/namespace_ex.sh}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Linux course}
+\subtitle{Provesses}
+\date[\today]{\small\today}
+\author[Morhunenko Mykola]{Morhunenko Mykola}
+\institute{APPS@UCU}
+
+\setlist[itemize, 1]{label=$\color{ucublue} \bullet$, leftmargin=-2mm}
+
+\begin{document}
+
+\begin{frame}[noframenumbering]
+\titlepage
+\end{frame}
+
+\begin{frame}{\contentsname}
+    \setbeamercolor{background canvas}{bg=ucugrey}
+    \tableofcontents
+\end{frame}
+
+\section{Processes. Introduction}
+\framecard{Processes. Introduction}
+\begin{frame}
+    \frametitle{Processes}
+    \begin{itemize}
+        \item In our case -\ex{process}- an instance of a running program with it's resources
+        \item But what is the difference between the program and the process?
+        \item \ex{Program}- a file, containing some information that describes how to construct a process in a runtime
+        \item It includes:
+        \item Binary format identification - some metainformation about the format of executable file. Nowedays UNIX executable files called\ex{Executable and Linking format (ELF)}
+        \item Machine-language instructions - main algorithm of the program
+        \item Program entry-point address
+        \item Data
+        \item Symbol and relocation tables
+        \item Some other information, more about that on the\ex[ucublue]{Operating systems course}
+        \item But what is the process? Long story, let's begin
+    \end{itemize}
+\end{frame}
+
+\section{Processes explanation}
+
+\begin{frame}[fragile]
+    \frametitle{Process. PID}
+    \begin{itemize}
+        \item The very first thing, that is assosiated with any process, it's\ex{PID} - process id 
+        \item It's a positive integer, and system works with processes by their PID's - names (commands) are for humans 
+        \item There are no fixed ID's for any process, with exception of\ex{init}(more about that in the next topic). PID for\ex{init}equals 1
+        \item Maximum PID number for your OS can be found using the following command:
+        \begin{lstlisting}[language=Bash, style=shellstyle] 
+username $ cat /proc/sys/kernel/pid_max\end{lstlisting}
+        \item Also one more important PID for all processes - parrent PID or PPID
+        \item If parrent of any process "died" - the child become "adopted" by the\ex{init}process
+        \item Parent of any process can be found like:
+        \begin{lstlisting}[language=Bash, style=shellstyle] 
+username $ cat /proc/PID/status | grep PPid \end{lstlisting}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Page table}
+    \begin{itemize}
+        \item 
+    \end{itemize}
+\end{frame}
+
+\section{Scedualing}
+
+\section{Real time processes}
+
+\section{Sources}
+\framecard{Sources}
+\begin{frame}{Sources}
+    \begin{itemize}
+        \item \href{https://tldp.org/LDP/tlk/kernel/processes.html}{Linux processes}
+        \item "Linux programming interfaces", M. Kerrisk
+    \end{itemize}
+\end{frame}
+
+\end{document}
