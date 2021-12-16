@@ -87,13 +87,12 @@
     \tableofcontents
 \end{frame}
 
-\section{Processes. Introduction}
+\section{Processes. Introduction. General knowlage}
 \framecard{Processes. Introduction}
 \begin{frame}
-    \frametitle{Processes}
+    \frametitle{Process}
     \begin{itemize}
-        \item In our case -\ex{process}- an instance of a running program with it's resources
-        \item But what is the difference between the program and the process?
+        \item What is the difference between the program and the process?
         \item \ex{Program}- a file, containing some information that describes how to construct a process in a runtime
         \item It includes:
         \item Binary format identification - some metainformation about the format of executable file. Nowedays UNIX executable files called\ex{Executable and Linking format (ELF)}
@@ -102,11 +101,87 @@
         \item Data
         \item Symbol and relocation tables
         \item Some other information, more about that on the\ex[ucublue]{Operating systems course}
-        \item But what is the process? Long story, let's begin
+        \item In our case -\ex{process}- a program loaded to a memory for execution, with all it's allocated resources
     \end{itemize}
 \end{frame}
 
-\section{Processes explanation}
+\begin{frame}[fragile]
+    \frametitle{Memory layout of the process (recall PoCO)}
+    \begin{itemize}
+        \item For each process there is some amount of allocated memory
+        \item Usually it reffere to a segments
+        \item There are such segments as:
+        \begin{itemize}
+            \item -\ex{Text segmend}- read only (so the\ex[ucuyellow]{process can not modify it's own code}) shareble (\ex[ucuyellow]{multiple processes can share same executable code}) segment with machine code instructions to the program executing 
+            \item -\ex{Initialised data segment} - contains initialised global and static variables
+            \item -\ex{Uninitialised data segment}-\ex[ucured]{bss}- contains uninitialised global and static variables. When the program is stored on a disk, space for this segment is not initialised, this space is allocated by the program loader at the beginning of the runtime
+            \item -\ex{Heap} - memory area from which memory for variables can be allocated during the runtime
+            \item -\ex{Stack} - dynamicly growing area for local variables storage, divided on stack frames. Each stack frame is allocated for each currently called function and stores it's arguments, local variables, return address and return value
+        \end{itemize}
+        \begin{lstlisting}[language=Bash, style=shellstyle] 
+username $ size /bin/ls # check size of a binary file segments
+  text    data     bss     dec     hex filename
+132378    4840    4824  142042   22ada /bin/ls
+\end{lstlisting}
+    \end{itemize}
+\end{frame}
+
+
+\framesplitc{Virtual memory (recall PoCO)}{graphics/memory_layout.png}{
+    \begin{itemize}
+        \item All previocly discussed layout is a layout in a\ex{virtual memory}
+        \item As all modern OS's nowedays, Linux kernel do a virtual memory management
+        \item The aim of this apprach - to increase efficiency of RAM-CPU communication
+        \item \ex{Page}- the smallest fixed-size unit of a virtual memory. In most cases on modern OS's it's size is \ex{4KiB}
+        \item \ex{Page table}- one more abstruction close-related to processes. Each process has it's own page table of contents
+    \end{itemize}
+    \ex[ucuyellow]{\footnotesize Virtual memory scheme for one process on Linux x86-32 is shown on the slide}
+}
+\framesplitc{Virtual memory (recall PoCO)}{graphics/pages.png}{
+    \begin{itemize}
+        \item Just to clear things up:
+        \item \ex{MMU - memory management unit -}hardware component to manage all cpu-memory communication and caching
+        \item \ex{OS memory management - }ensures the availability of memory resources for each process continuously
+    \end{itemize}
+}
+
+\framepic{graphics/vm.png}{}
+
+\section{Process states}
+
+\begin{frame}
+    \frametitle{Process states}
+    \begin{itemize}
+        \item As a process executes it changes state according to its circumstances
+        \item There are following states in Linux:
+        \begin{itemize}
+            \item -\ex{CREATED}
+            \item -\ex[ucuyellow]{RUNNING \& RUNNABLE} - running or ready to run
+            \item -\ex{Waiting}- The process is waiting for an event or for a resource
+            \item -\ex[ucuyellow]{INTERRUPTABLE\_SLEEP}- waiting but can be interrupted by signals
+            \item -\ex[ucuyellow]{UNINTERRUPTABLE\_SLEEP}- waiting and can not be interrupted under any circumstances
+            \item -\ex[ucuyellow]{STOPED}- stopped, usually by receiving a signal
+            \item -\ex[ucuyellow]{ZOMBIE}- process that should be terminated, but for some reason (usually some bug) it can not be terminated properly
+        \end{itemize}
+        \item It is more important for scedualing
+    \end{itemize}
+\end{frame}
+
+% https://cloudchef.medium.com/linux-process-states-and-signals-a967d18fab64
+{ % all template changes are local to this group.
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}<article:0>[plain]
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[at=(current page.center)] {
+                \includegraphics[width=\paperwidth,height=\paperheight]{graphics/states.png}
+            };
+        \end{tikzpicture}
+     \end{frame}
+}
+
+\section{Processes Identifiers}
+
+\framepic{graphics/identification.png}{\hspace{250pt} Process \newline \hspace{250pt} Identifiers}
 
 \begin{frame}[fragile]
     \frametitle{Process. PID}
@@ -125,12 +200,7 @@ username $ cat /proc/PID/status | grep PPid \end{lstlisting}
     \end{itemize}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Page table}
-    \begin{itemize}
-        \item 
-    \end{itemize}
-\end{frame}
+
 
 \section{Scedualing}
 
@@ -140,8 +210,9 @@ username $ cat /proc/PID/status | grep PPid \end{lstlisting}
 \framecard{Sources}
 \begin{frame}{Sources}
     \begin{itemize}
-        \item \href{https://tldp.org/LDP/tlk/kernel/processes.html}{Linux processes}
+        \item \href{https://tldp.org/LDP/tlk/tlk-toc.html}{"The Linux Kernel book", David A Rusling}
         \item "Linux programming interfaces", M. Kerrisk
+        \item \href{https://cloudchef.medium.com/linux-process-states-and-signals-a967d18fab64}{Linux process states and signals, Medium(Cloud Chef)}
     \end{itemize}
 \end{frame}
 
