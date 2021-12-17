@@ -69,7 +69,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{Linux course}
-\subtitle{Provesses}
+\subtitle{Processes}
 \date[\today]{\small\today}
 \author[Morhunenko Mykola]{Morhunenko Mykola}
 \institute{APPS@UCU}
@@ -137,11 +137,22 @@ username $ size /bin/ls # check size of a binary file segments
     \end{itemize}
     \ex[ucuyellow]{\footnotesize Virtual memory scheme for one process on Linux x86-32 is shown on the slide}
 }
+
 \framesplitc{Virtual memory (recall PoCO)}{graphics/pages.png}{
     \begin{itemize}
         \item Just to clear things up:
         \item \ex{MMU - memory management unit -}hardware component to manage all cpu-memory communication and caching
         \item \ex{OS memory management - }ensures the availability of memory resources for each process continuously
+    \end{itemize}
+}
+
+\framesplit{Why do we need virtual memory}{graphics/virtual.jpg}{
+    Virtual memory is used for:
+    \begin{itemize}
+        \item \ex[ucuyellow]{Abstraction} - to be free from physical memory addresses/limits
+        \item \ex[ucuyellow]{Processes isolation} - every process in a separate address space
+        \item \ex[ucuyellow]{Sharing} - a single mapping can serve multiple needs
+        \item \ex[ucuyellow]{Flexibility} - assign a virtual address to a file
     \end{itemize}
 }
 
@@ -183,8 +194,19 @@ username $ size /bin/ls # check size of a binary file segments
 
 \framepic{graphics/identification.png}{\hspace{250pt} Process \newline \hspace{250pt} Identifiers}
 
+\begin{frame}
+    \frametitle{top}
+    \begin{itemize}
+        \item \ex{top}- program for system monitoring that is part of every Linux system
+        \item \ex{htop},\ex{gtop},\ex{ytop},\ex{utop} and othe system monitors may be easier to understand for begginers, but all of them are based on\ex{top}, or inspired by it
+        \item Here you can see almost all necessary information about your system and (what is more important) processes
+        \item As all other high-performance software, entry bound for this application is too high
+        \item Let's see, what is so important information about process can be found in\ex{top}output
+    \end{itemize}
+\end{frame}
+
 \begin{frame}[fragile]
-    \frametitle{Process. PID}
+    \frametitle{PID}
     \begin{itemize}
         \item The very first thing, that is assosiated with any process, it's\ex{PID} - process id 
         \item It's a positive integer, and system works with processes by their PID's - names (commands) are for humans 
@@ -200,6 +222,25 @@ username $ cat /proc/PID/status | grep PPid \end{lstlisting}
     \end{itemize}
 \end{frame}
 
+\framesplit{Other ID's}{graphics/id.jpg}{
+    \begin{itemize}
+        \item \ex{UID},\ex{GID}- also ID's that are related to the process, with \ex{RUID (Real User Id)},\ex{SUID (Saved User Id)}and\ex{EUID (Effective User Id)}
+        \item In terms of this course it is not important, it is more related to the Linux administration
+    \end{itemize}
+}
+
+\begin{frame}
+    \frametitle{Linux Memory Types}
+    \begin{itemize}
+        \item There are three main "memory types" in a processes administration
+        \item \ex{The physical memory}, limited resource
+        \item \ex{Virtual memory}, nearly unlimited resource
+        \item \ex{Swap} (optional)
+        \item If there is no\ex{swap}on the system, everything will be Ok, up to some point in time (but it is better to have it, and as partition, not as a file)
+    \end{itemize}
+    
+
+\end{frame}
 
 
 \section{Scedualing}
@@ -213,6 +254,7 @@ username $ cat /proc/PID/status | grep PPid \end{lstlisting}
         \item \href{https://tldp.org/LDP/tlk/tlk-toc.html}{"The Linux Kernel book", David A Rusling}
         \item "Linux programming interfaces", M. Kerrisk
         \item \href{https://cloudchef.medium.com/linux-process-states-and-signals-a967d18fab64}{Linux process states and signals, Medium(Cloud Chef)}
+        \item \href{https://man7.org/linux/man-pages/man1/top.1.html}{top manual}
     \end{itemize}
 \end{frame}
 
