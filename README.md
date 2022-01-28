@@ -13,14 +13,20 @@ Inspired by [UCU Linux Club](https://github.com/ucu-cs/UCU_Linux_Club)
 - USB flash drive 2Gb+ with Arch iso 
 
 ### Project structure
+### Additional lectures:
+- [tools (shells, vim, tmux, ranger, i3, package managers)](https://github.com/Myralllka/UCU_Linux_Course/blob/master/presentations/tools/main.pdf)
 
 # Lectures for the semester
-
-- Open source
-- Bash
-- Git
-- File systems
-- Bootloaders
-- Partition tables
-- ...
+1. Open source and POSIX
+2. [Programming in shell](https://github.com/Myralllka/UCU_Linux_Course/blob/master/presentations/shells/main.pdf)
+3. [Version control systems](https://github.com/Myralllka/UCU_Linux_Course/tree/master/presentations/version_control_systems/main.pdf)
+4. [Filesystems](https://github.com/Myralllka/UCU_Linux_Course/blob/master/presentations/filesystems/main.pdf)
+5. [Bootloaders, partition tables](https://github.com/Myralllka/UCU_Linux_Course/tree/master/presentations/bootloaders_partition_tables/main.pdf)
+6. [Processes](https://github.com/Myralllka/UCU_Linux_Course/blob/master/presentations/processes/main.pdf)
+7. Daemons
+8. TBD
+9. TBD
+10. TBD
+11. TBD
+12. TBD
 
