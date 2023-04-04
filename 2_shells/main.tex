@@ -59,10 +59,10 @@
 
 \begin{frame}{Command Shell}
 \begin{itemize}
-    \item Command Shell is a computer program which provides user with a (CLI) command line interface to control the computer using keyboard, without GUI (Graphical user interface), for communication with the Linux system
-    \item If you use Linux, you have definitely seen the command prompt. Usually it looks like {\color{ucugreen}\$} or, probably, {\color{ucugreen} \text{[username@hostname path] }\$}
-    \item From the very beginning it looks like GUI is faster, but it is totally false: CLI just has high entry threshold. But it allows to write scripts (files with shell commands) that can automate routine, which is impossible in GUI
-    \item Much more programs provide only CLI. If you want to use servers and connect to other computers via ssh, then being a real programmer is knowing shell
+    \item Command Shell is a computer program that provides the user with a (CLI) command-line interface to control the computer using a keyboard, without GUI (Graphical user interface), for communication with the Linux system
+    \item If you use Linux, you have seen the command prompt. Usually it looks like {\color{ucugreen}\$} or, probably, {\color{ucugreen} \text{[username@hostname path] }\$}
+    \item GUI usage looks faster only because we used to it, but it is wrong: CLI has a high entry threshold, but it allows to write scripts (files with shell commands) that can automate routines, which is impossible in GUI
+    \item The most implemented programs provide only CLI, so computer scientists should know how to use it
     \item You can check your shell by the command {\color{ucugreen} \$ echo \$SHELL}
     \item Most likely you have {\color{ucugreen} bash}, the most popular and stable one
     \item If you are done, you can exit shell with {\color{ucugreen} exit} command, or by pressing the {\color{ucugreen}Ctrl+d} in the terminal emulator window
@@ -71,20 +71,19 @@
 
 \begin{frame}{What is Bash}
 \begin{itemize}
-    \item Bash stands for "Bourne(born)-again-shell"
+    \item Bash stands for\ex{"Bourne(born)-again-shell"}
     \item It is the default shell for most Linux distros
-    \item POSIX standard has a full description of shell. Bash implements all this features, plus something of its own, known as {\color{ucugreen} bashism}
-    \item Bash is a standard shell for the majority of Linux distros, but it doesn't mean it is the best one
+    \item \ex{POSIX} standard has a full description of the shell. Bash implements all these features, plus something of its own, known as {\color{ucugreen} bashism}
+    \item Bash is a standard shell for the majority of Linux distros, but it doesn't mean it is the best one or the most comfortable
 \end{itemize}
 \end{frame}
 
 \begin{frame}{ZSH}
     \begin{itemize}
         \item Zsh stands for {\color{ucugreen}Z-shell}
-        \item Like Bash, it derives from Bourne family of shells, in everyday usage zsh is the same, as {\color{ucugreen} bash}, but has a lot of extensions and other configuration files' syntax (default - {\color{ucugreen} \textasciitilde/.zshrc})
-        \item There is an entire eco-system of configuration tools and themes called oh-my-zsh which is very popular
-        \item There is a huge amount of extensions on github, that can make everyday usage easier - ranging from auto-complete to syntax highlighting
-        \item There are differences in scripts, we'll pick this up later.
+        \item Like Bash, it derives from Bourne family of shells, in everyday usage zsh syntax is the same as {\color{ucugreen} bash}, but has a lot of extensions and other configuration files' syntax (default - {\color{ucugreen} \textasciitilde/.zshrc})
+        \item There is an entire eco-system of configuration tools and themes called \ex{oh-my-zsh}, which is very popular, and a huge amount of extensions on Github that can make everyday usage easier - ranging from auto-complete to syntax highlighting
+        \item In scripts there are few differences; we will pick this up later.
         
     \end{itemize}
 \end{frame}
@@ -104,8 +103,8 @@
 
 \begin{frame}{Path}
     \begin{itemize}
-        \item  {\color{ucugreen} Path} - one of the most important terms in this topic (and in understanding how programs work)
-        \item Current path - or current directory, working directory - the directory, from where you are working, launching programs/scripts
+        \item  {\color{ucugreen} Path} - one of the most important terms in this topic (and in understanding how all programs work)
+        \item \ex{Current path} - or current directory, working directory - the directory, from where you are working, launching programs/scripts
         \item Paths can be absolute or relative
         \item Absolute
             \begin{itemize}
@@ -117,7 +116,7 @@
             \begin{itemize}
                 \item Relative paths don't start from the root. Shell interpreter always run all programs with respect to the current path. They never begin with \ex{/}
                 \item {\color{ucugreen} .zshrc}
-                \item {\color{ucugreen} Documents/UCULinux/presentations}
+                \item {\color{ucugreen} bin/test/executable}
             \end{itemize}
     \end{itemize}
 \end{frame}
@@ -136,7 +135,15 @@
 
 \begin{frame}{PATH}
     \begin{itemize}
-        \item 
+        \item \ex{PATH}- an environmental variable in a shell, \textit{"contains an ordered list of paths that Linux will search for executables when running a command. Using these paths means that we do not have to specify an absolute path when running a command"}
+    \end{itemize}
+    \begin{example}
+        If we want to print \textbf{Hello, world!} in Bash, the command \ex[ucured]{echo} can be used rather than \ex[ucured]{/bin/echo} so long as \ex[ucured]{/bin} is in \ex[ucured]{PATH}
+    \end{example}
+    \begin{itemize}
+        \item Linux traverses the colon-separated paths in order until finding an executable. Thus, Linux uses the first path if two paths contain the desired executable.
+
+        \item We can print the current value of the PATH variable by echoing the PATH environment variable with \ex{echo \$PATH}
     \end{itemize}
 \end{frame}
 
@@ -144,9 +151,9 @@
 \framepic{graphics/bash.jpg}{Bash intro}
 
 \begin{frame}{Syntax}
-    All default commands (programs) have very similar syntax
+    Almost all commands (programs) have very similar syntax
     \begin{examples}
-    \text{program\_name [option]... [arguments]...}
+    \text{program\_name [option]... [argument]...}
     \end{examples}
     Options starts from \ex{-} or \ex{-{}-} \newline
     To see, how to use any command
@@ -189,11 +196,11 @@ The most commonly used are:
     \item \ex{ls -la} - list all with full info. The command has path as an argument so the following command is also valid
     \item \ex{ls -la /etc/systemd/system}
 \end{itemize}
-There are much more options, that can be found using \ex{ls -{}-help}
+There are much more options that can be found using \ex{ls -{}-help}
 \end{frame}
 
 \begin{frame}{Base commands}
-    Now it is possible to move around the directories and see, what is around. In order to work on labs or projects it's usually required to create something and see what is inside being able manipulate it somehow: \newline
+    Now it is possible to move around the directories and see, what is around. In order to work on labs or projects it's usually required to create something and see what is inside and being able manipulate it somehow: \newline
     \begin{itemize}
         \item \ex{mkdir [dirname]} - make directory - create a new directory
         \item \ex{touch [filename]} - create a file with filename or update the date of file's last modification to the current date
@@ -207,48 +214,43 @@ There are much more options, that can be found using \ex{ls -{}-help}
 \end{frame}
 
 \begin{frame}{Going deeper}
-
-    {\Large Creating Links} \newline
-    In Linux there are two types of links: hard and symbolic
+    {\Large Creating Links} \newline 
+    In Linux, there are two types of links: hard and symbolic
     \begin{itemize}
-        \item Inode - a data structure in the Unix-style file systems, that describes a file-system object
-        \item Inode can have any number of hard links, and the inode will persists on the system until all hard links disappear. Changing in one file applies these changes also to all its hard links
+        \item \ex{Inode}- a data structure in the Unix-style file systems that describes a \ex{file-system object} as file or directory
+        \item Inode can have any number of hard links, and the inode will persist on the system until \ex{all} hard links disappear. Changing in one file applies these changes also to all its hard links
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Going deeper}
+\begin{frame}[fragile]{Going deeper}
     \begin{itemize}
         \item \ex{ls -i} command is used to list all files with it's inodes
         \item \ex{ln [source] [destination]} is used to create hard links
-        \begin{examples}
-            username \$ ln file1 file2 \newline
-            username \$ ls -i \newline
-            \ex[ucugrey]{> 9700529 file1  9700529 file2}
-        \end{examples}
-        it is noticeable that both files have similar inodes
-        \begin{examples}
-        username \$ echo "Hello World!" >> file1 \newline
-        username \$ cat file2 \newline
-        \ex[ucugrey]{> Hello World!}
-        \end{examples}
+        \begin{lstlisting}[language=Bash, style=shellstyle]
+username $ ln file1 file2
+username $ ls -i
+> 9700529 file1  9700529 file2
+# it is noticeable that both files have similar inodes
+username $ echo "Hello world!" >> file1
+username $ cat file2
+> Hello World!\end{lstlisting}
         Changes in one file apply these changes to the other one \newline
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Going deeper}
+\begin{frame}[fragile]{Going deeper}
     What about symbolic links?
     \begin{itemize}
         \item symbolic links (symlinks) are used more often. This is a special type, and the link refers to another file by name, not by inode.
         \item deleting the source file will make the symlink broken
         \item \ex{ln -s} - used to create the symbolic link
-        \begin{examples}
-        username \$ ln -s file1 file3 \newline
-        username \$ ls -l \newline
-        
-        > -rw-rw-r-- 2 username groupname 18 Apr 17 00:47 file1 \newline
-        \, \, -rw-rw-r-- 2 username groupname 18 Apr 17 00:47 file2 \newline
-        \, \, lrwxrwxrwx 1 username groupname  5 Apr 17 00:54 file3 -> file1
-        \end{examples}
+        \begin{lstlisting}[language=Bash, style=shellstyle]
+username $ ln -s file1 file3
+username $ ls -l
+> -rw-rw-r-- 2 username groupname 18 Apr 17 00:47 file1
+  -rw-rw-r-- 2 username groupname 18 Apr 17 00:47 file2
+  lrwxrwxrwx 1 username groupname  5 Apr 17 00:54 file3 -> file1 \end{lstlisting}
+
         \item Symlinks can be created for any type of file system objects
         \item Can be used to point to an object from another file system
     \end{itemize}
@@ -292,11 +294,11 @@ There are much more options, that can be found using \ex{ls -{}-help}
 
 \begin{frame}{Searching}
     \begin{itemize}
-        \item So as for now we know how to create files, directories, move them and remove. But how to find them?
-        \item The Linux file system is well-structured, so it's very easy to navigate it, but still, there are thousands of files and it's impossible to remember all of the locations. There is entire presentation about the Linux File system hierarchy.
-        \item \ex{find [path] -name ["filename"]}, and in the name can globs can be used (but they must be escaped)
+        \item So as for now, we know how to create files directories, move them and remove them. But how to find them?
+        \item The Linux file system is well-structured, so it's straightforward to navigate it, but still, there are thousands of files, and it is impossible to remember all of the locations. There is an entire presentation about the Linux File system hierarchy.
+        \item \ex{find [path] -name ["filename"]}, and in the name globs can be used (but they must be escaped)
         \item But if you don't know for sure the filename or dirname, the better way is \ex{find <path> -regex ["filename\_regex"]}
-        \item \ex[ucured]{Be careful!} All files in the system have their own permissions. In order to search somewhere outside the \ex{/home/username} folder, you must run the program in the privileged mode
+        \item \ex[ucured]{Be careful!} All files in the system have their own permissions. In order to search somewhere outside the \ex{/home/username} folder, you must run the program in the privileged mode.
         
     \end{itemize}
 \end{frame}
@@ -379,10 +381,10 @@ username $ ls -la | wc -l
 
 \framesplitc{Extensions}{graphics/ext.jpg}{
     \begin{itemize}
-        \item The Linux world doesn't need file extensions
-        \item The operating system doesn't use them to determine how to open a file
-        \item But extensions are used by some parts of the OS to determine which program to use to open file
-        \item How does the operating system find out, which is the file and how to deal with it?
+        \item The Linux world does not need file extensions
+        \item The operating system does not use them to determine how to open a file
+        \item But extensions are used by some parts of the OS to determine which program to use to open the file
+        \item How does the operating system find out which is the file and how to deal with it?
     \end{itemize}
 }
 
@@ -703,6 +705,7 @@ username $ ./start.sh
     \item \href{https://www.funtoo.org/Linux_Fundamentals,_Part_1}{Linux basics from the founder of Gentoo, Daniel Robbins, Chris Houser, Aron Griffis}
     \item \href{https://www.funtoo.org/Bash_by_Example,_Part_1}{Bash basics, Daniel Robbins, Chris Houser, Aron Griffis}
     \item \href {https://scriptingosx.com/}{Scripting OS X}
+    \item \href {https://www.baeldung.com/linux/path-variable}{Linux path variable}
 \end{itemize}    
 \end{frame}
 
